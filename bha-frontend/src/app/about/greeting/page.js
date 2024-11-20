@@ -2,7 +2,7 @@ import Link from 'next/link';
 import URL from '@/data/url';
 import AboutLeftbar from '@/components/leftmenu/AboutLeftbar';
 
-export default function AboutPage() {
+export default function GreetingPage() {
     return (
         <div className="container">
             <div className="c_wrap">
@@ -11,7 +11,7 @@ export default function AboutPage() {
                     <ul>
                         <li><Link href={URL.HOME}>Home</Link></li>
                         <li><Link href={URL.ABOUT}>법장사 소개</Link></li>
-                        <li>소개</li>
+                        <li>주지스님 인사말</li>
                     </ul>
                 </div>
                 {/* <!--// Location --> */}
@@ -25,12 +25,8 @@ export default function AboutPage() {
                         {/* <!-- 본문 --> */}
 
                         <h1 className="tit_3">법장사 소개</h1>
-
-                        <p className="txt_1">기도하는 마음, 포교하는 기쁨<br/>
-                            법장사입니다.</p>
-
-                        <h2 className="tit_4">소개</h2>
-
+                        <p className="txt_1"></p>
+                        <h2 className="tit_4">주지스님 인사말</h2>
                         <h3 className="tit_5"></h3>
 
                         <p className="msg_1">

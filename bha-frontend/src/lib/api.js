@@ -1,9 +1,9 @@
-const API_URL = 'https://your-backend-api.com/api';
+const API_URL = 'https://localhost:8080/api/v1';
 
 // 게시글 목록 가져오기
 export async function fetchPosts() {
     try {
-        const res = await fetch(`${API_URL}/posts`);
+        const res = await fetch(`${API_URL}/post`);
         if (!res.ok) {
             throw new Error('Failed to fetch posts');
         }
@@ -15,9 +15,9 @@ export async function fetchPosts() {
 }
 
 // 게시글 상세 정보 가져오기
-export async function fetchPostById(id) {
+export async function fetchPostById(boardType, id) {
     try {
-        const res = await fetch(`${API_URL}/posts/${id}`);
+        const res = await fetch(`${API_URL}/post/${boardType}/${id}`);
         if (!res.ok) {
             throw new Error('Failed to fetch post');
         }
@@ -31,7 +31,7 @@ export async function fetchPostById(id) {
 // 새 게시글 작성
 export async function createPost(postData) {
     try {
-        const res = await fetch(`${API_URL}/posts`, {
+        const res = await fetch(`${API_URL}/post`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

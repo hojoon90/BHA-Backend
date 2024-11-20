@@ -1,74 +1,34 @@
-'use client';
+"use client"; // 클라이언트 전용 컴포넌트
 
 import Link from 'next/link';
-import { useState } from 'react';
-import styles from '../styles/Navbar.module.css';
 
-export default function Navbar() {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isSubDropdownOpen, setIsSubDropdownOpen] = useState(false);
-
-    const toggleDropdown = () => {
-        setIsDropdownOpen((prev) => !prev);
-    };
-
-    const toggleSubDropdown = () => {
-        setIsSubDropdownOpen((prev) => !prev);
-    };
-
+const Navbar = () => {
     return (
-        <nav>
-            <ul className={styles.menu}>
+        <nav className={styles.navbar}>
+            <ul className={styles.navList}>
                 <li>
-                    <Link href="/">Home</Link>
+                    <Link href="/" className={styles.navItem}>
+                        Home
+                    </Link>
                 </li>
                 <li>
-                    <Link href="/about">About</Link>
-                    <ul className={styles.dropdown}>
-                        <li>
-                            <Link href="/about/team">Our Team</Link>
-                        </li>
-                        <li>
-                            <Link href="/about/history">History</Link>
-                        </li>
-                        <li>
-                            <Link href="/about/culture">Culture</Link>
-                        </li>
-                    </ul>
+                    <Link href="/about" className={styles.navItem}>
+                        About
+                    </Link>
                 </li>
                 <li>
-                    <button className={styles.button} onClick={toggleDropdown}>Services</button>
-                    {isDropdownOpen && (
-                        <ul className={styles.dropdown}>
-                            <li>
-                                <Link href="/services/web-development">Web Development</Link>
-                            </li>
-                            <li>
-                                <Link href="/services/seo">SEO</Link>
-                            </li>
-                            <li>
-                                <button className={styles.button} onClick={toggleSubDropdown}>More Services</button>
-                                {isSubDropdownOpen && (
-                                    <ul className={styles.subDropdown}>
-                                        <li>
-                                            <Link href="/services/marketing">Marketing</Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/services/design">Design</Link>
-                                        </li>
-                                    </ul>
-                                )}
-                            </li>
-                        </ul>
-                    )}
+                    <Link href="/posts" className={styles.navItem}>
+                        Posts
+                    </Link>
                 </li>
                 <li>
-                    <Link href="/contact">Contact</Link>
-                </li>
-                <li>
-                    <Link href="/post">Post</Link> {/* 포스트 링크 추가 */}
+                    <Link href="/contact" className={styles.navItem}>
+                        Contact
+                    </Link>
                 </li>
             </ul>
         </nav>
     );
-}
+};
+
+export default Navbar;

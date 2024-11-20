@@ -1,6 +1,12 @@
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import '../styles/global.css';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import InitPage from'@/lib/ui';
+
+import '@/styles/base.css';
+import '@/styles/component.css';
+import '@/styles/page.css';
+import '@/styles/layout.css';
+import '@/styles/response.css';
 
 export default function RootLayout({ children }) {
     return (
@@ -10,9 +16,14 @@ export default function RootLayout({ children }) {
             <title>My Website</title>
         </head>
         <body>
+        <div>
             <Header />
-            <main>{children}</main>
+            <main>
+                {children}
+            </main>
             <Footer />
+            <InitPage />
+        </div>
         </body>
         </html>
     );
