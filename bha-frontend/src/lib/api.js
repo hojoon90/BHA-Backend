@@ -1,4 +1,4 @@
-const API_URL = 'https://localhost:8080/api/v1';
+const API_URL = 'http://localhost:8080/api/v1';
 
 // 게시글 목록 가져오기
 export async function fetchPosts() {
@@ -37,6 +37,44 @@ export async function createPost(postData) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(postData),
+        });
+        if (!res.ok) {
+            throw new Error('Failed to create post');
+        }
+        return await res.json();
+    } catch (error) {
+        console.error('Error creating post:', error);
+        throw error;
+    }
+}
+
+export async function loginUser(postData){
+    try{
+        const res = await fetch(`${API_URL}/user/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(postData),
+        });
+        if (!res.ok) {
+            throw new Error('Failed to create post');
+        }
+        return await res.json();
+    } catch (error) {
+        console.error('Error creating post:', error);
+        throw error;
+    }
+}
+
+export async function getUserInfo(token){
+    try{
+        const res = await fetch(`${API_URL}/user`, {
+            method: 'GET',
+            Authorization: 'Bearer ' + token,
+            headers: {
+                'Content-Type': 'application/json',
+            }
         });
         if (!res.ok) {
             throw new Error('Failed to create post');

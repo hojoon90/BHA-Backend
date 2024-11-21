@@ -1,9 +1,82 @@
-'use client';
+"use client";
 
 import { useEffect } from 'react';
 
 export default function InitPage() {
     useEffect(() => {
+
+        /* 전체메뉴 */
+        // 웹
+        document.querySelector('.btnAllMenu').addEventListener('click', (e) => {
+            const el = e.target;
+
+            el.classList.toggle('active');
+
+            const menu = document.querySelector('.all_menu.WEB');
+            if (menu.matches('.closed')) {
+                menu.classList.remove('closed');
+                el.title = '전체메뉴 닫힘';
+            } else {
+                menu.classList.add('closed');
+                el.title = '전체메뉴 열림';
+            }
+        });
+
+        // 모바일 전체메뉴 열기
+        document.querySelector('.btnAllMenuM').addEventListener('click', (e) => {
+            document.querySelector('.all_menu.Mobile').classList.remove('closed');
+            e.target.title = '전체메뉴 열림';
+        });
+
+        // 닫기
+        document.querySelector('.user_info_m .close').addEventListener('click', () => {
+            document.querySelector('.all_menu.Mobile').classList.add('closed');
+            document.querySelector('.btnAllMenuM').title = '전체메뉴 닫힘';
+        });
+
+        // PC 메뉴 항목 클릭시 메뉴 닫기
+        document.querySelector('.all_menu.WEB').addEventListener('click', (e) => {
+            if (e.target.matches('a')) {
+                document.querySelector('.all_menu.WEB').classList.add('closed');
+                document.querySelector('.btnAllMenu').classList.remove('active');
+                document.querySelector('.btnAllMenu').title = '전체메뉴 닫힘';
+            }
+        });
+        // 회원가입, 마이페이지 항목 클릭시 메뉴 닫기
+        document.querySelector('.user_info').addEventListener('click', (e) => {
+            if (e.target.matches('a')) {
+                document.querySelector('.all_menu.WEB').classList.add('closed');
+                document.querySelector('.btnAllMenu').classList.remove('active');
+                document.querySelector('.btnAllMenu').title = '전체메뉴 닫힘';
+            }
+        });
+        // 회원가입, 마이페이지 항목 클릭시 모바일 전체메뉴 열기
+        document.querySelector('.user_info_m').addEventListener('click', (e) => {
+            document.querySelector('.all_menu.Mobile').classList.add('closed');
+        });
+        // Mobile 서브메뉴 항목 클릭시 메뉴 닫기: 2023.04.13(목) 김일국 추가
+        document.querySelectorAll('.all_menu.Mobile .submenu a')
+            .forEach(el => el.addEventListener('click', (e) =>  {
+                document.querySelector('.all_menu.Mobile').classList.add('closed');
+            }));
+        // 모바일 하위 메뉴 열고 닫기
+        document.querySelectorAll('.all_menu.Mobile h3 a')
+            .forEach(el => el.addEventListener('click', (e) =>  {
+                e.preventDefault();
+                const el = e.target;
+
+                el.classList.toggle('active');
+
+                const submenu = el.parentElement.nextElementSibling;
+                if (submenu.matches('.closed')) {
+                    submenu.style.height = submenu.scrollHeight + 'px';
+                    submenu.classList.remove('closed');
+                } else {
+                    submenu.classList.add('closed');
+                    submenu.style.height = '';
+                }
+            }));
+
         // 현재 페이지에는 아직 존재하지 않은 요소에 대한 이벤트 처리
         document.addEventListener('click', (e) => {
             const el = e.target;

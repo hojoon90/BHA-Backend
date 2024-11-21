@@ -1,6 +1,7 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import InitPage from'@/lib/ui';
+import ClientWrapper from "@/components/ClientWrapper";
 
 import '@/styles/base.css';
 import '@/styles/component.css';
@@ -17,12 +18,14 @@ export default function RootLayout({ children }) {
         </head>
         <body>
         <div>
-            <Header />
-            <main>
-                {children}
-            </main>
-            <Footer />
-            <InitPage />
+            <ClientWrapper>
+                <Header />
+                    <main>
+                        {children}
+                    </main>
+                <Footer />
+                <InitPage />
+            </ClientWrapper>
         </div>
         </body>
         </html>

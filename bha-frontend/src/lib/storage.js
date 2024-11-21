@@ -33,6 +33,7 @@ export function getSessionItem(key) {
 
 export function setSessionItem(key, value) {
     const storage = typeof window !== 'undefined' ? sessionStorage : null;
+    console.log(storage);
     if(storage == null) return null;
     setItem(storage, key, value);
 }

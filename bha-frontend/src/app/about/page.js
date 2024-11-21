@@ -25,12 +25,9 @@ export default function AboutPage() {
                         {/* <!-- 본문 --> */}
 
                         <h1 className="tit_3">법장사 소개</h1>
-
                         <p className="txt_1">기도하는 마음, 포교하는 기쁨<br/>
                             법장사입니다.</p>
-
                         <h2 className="tit_4">소개</h2>
-
                         <h3 className="tit_5"></h3>
 
                         <p className="msg_1">

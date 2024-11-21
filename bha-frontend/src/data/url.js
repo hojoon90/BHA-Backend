@@ -8,11 +8,15 @@ const URL = {
     ABOUT_HISTORY:"/about/history",
     ABOUT_LOCATION:"/about/location",
 
+    NEWS: "/news",
+
 
     //게시판
     POST: "/posts",
 
     CONTACT: "/contact",
+
+    MYPAGE_MODIFY: "/",
 
     LOGIN: "/login",
     LOGOUT: "/logout",
