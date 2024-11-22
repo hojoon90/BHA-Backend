@@ -1,6 +1,6 @@
 "use client"; // 클라이언트 컴포넌트로 지정
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import * as ExtApi from '@/lib/api';
 import {jwtDecode} from "jwt-decode";
@@ -8,9 +8,11 @@ import {jwtDecode} from "jwt-decode";
 import URL from '@/data/url';
 import CODE from '@/data/code';
 import { getLocalItem, setLocalItem, setSessionItem } from '@/lib/storage';
+import { AuthContext } from '@/components/AuthProvider';
 
 export default function LoginContents({ onChangeLogin }) {
     const router = useRouter();
+    const { updateUser } = useContext(AuthContext);
 
     const [userInfo, setUserInfo] = useState({ accountId: '', password: 'default' });
     const [saveIDFlag, setSaveIDFlag] = useState(false);
@@ -74,7 +76,7 @@ export default function LoginContents({ onChangeLogin }) {
 
                     let resultVO = jwtDecode(accessToken);
                     setSessionItem('loginUser', resultVO);
-                    onChangeLogin(resultVO);
+                    updateUser(resultVO);
                     if (saveIDFlag) setLocalItem(KEY_ID, resultVO?.id);
                     router.push(URL.HOME);
                 } else {

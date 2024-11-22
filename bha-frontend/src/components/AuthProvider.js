@@ -16,8 +16,14 @@ export function AuthProvider({ children }) {
         }
     }, []);
 
+
+    // 로그인 상태 변경 함수
+    const updateUser = (newUser) => {
+        setUser(newUser);
+    };
+
     return (
-        <AuthContext.Provider value={{ user, setUser }}>
+        <AuthContext.Provider value={{ user, updateUser }}>
             {children}
         </AuthContext.Provider>
     );

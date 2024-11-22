@@ -139,7 +139,7 @@ function HomePage(props) {
                                 <strong>자료실</strong>
                                 <span>다양한 자료를<br />다운로드 받으실 수 있습니다.</span>
                             </Link>
-                            <Link href={URL.ABOUT} className="bn2">
+                            <Link href={URL.ABOUT_SITE} className="bn2">
                                 <strong>표준프레임워크센터</strong>
                                 <span>표준프레임워크센터의<br />약도 등의 정보를 제공합니다.</span>
                             </Link>

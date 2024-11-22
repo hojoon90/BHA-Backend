@@ -10,7 +10,7 @@ export default function LocationPage() {
                 <div className="location">
                     <ul>
                         <li><Link href={URL.HOME}>Home</Link></li>
-                        <li><Link href={URL.ABOUT}>법장사 소개</Link></li>
+                        <li><Link href={URL.ABOUT_SITE}>법장사 소개</Link></li>
                         <li>오시는 길</li>
                     </ul>
                 </div>
@@ -81,7 +81,7 @@ export default function LocationPage() {
                                 </dl>
                                 <dl>
                                     <dt className="email">이메일</dt>
-                                    <dd>bupjangsa@hanmail.com</dd>
+                                    <dd>bupjangsa@hanmail.net</dd>
                                 </dl>
                             </div>
                         </div>

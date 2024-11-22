@@ -10,7 +10,7 @@ export default function GreetingPage() {
                 <div className="location">
                     <ul>
                         <li><Link href={URL.HOME}>Home</Link></li>
-                        <li><Link href={URL.ABOUT}>법장사 소개</Link></li>
+                        <li><Link href={URL.ABOUT_SITE}>법장사 소개</Link></li>
                         <li>주지스님 인사말</li>
                     </ul>
                 </div>

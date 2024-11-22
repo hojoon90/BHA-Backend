@@ -1,7 +1,7 @@
-import Header from '@/components/Header';
+import Header from '@/components/header/Header';
 import Footer from '@/components/Footer';
-import InitPage from'@/lib/ui';
-import ClientWrapper from "@/components/ClientWrapper";
+import InitPage from '@/lib/ui';
+import {AuthProvider} from "@/components/AuthProvider";
 
 import '@/styles/base.css';
 import '@/styles/component.css';
@@ -18,14 +18,14 @@ export default function RootLayout({ children }) {
         </head>
         <body>
         <div>
-            <ClientWrapper>
+            <AuthProvider>
                 <Header />
                     <main>
                         {children}
                     </main>
                 <Footer />
                 <InitPage />
-            </ClientWrapper>
+            </AuthProvider>
         </div>
         </body>
         </html>

@@ -3,20 +3,30 @@ const URL = {
     HOME: "/",
 
     //about
-    ABOUT:"/about",
+    ABOUT_SITE:"/about/site",
     ABOUT_GREETING:"/about/greeting",
     ABOUT_HISTORY:"/about/history",
     ABOUT_LOCATION:"/about/location",
 
+    //소식, 일정
     NEWS: "/news",
+    NEWS_NOTICE: "/news/notice",
+    NEWS_CALENDAR: "/news/calendar",
+    NEWS_VIDEO: "/news/video",
 
+    //법회, 행사
+    CONTENT_MEETING: "/content/meeting",
+    CONTENT_PRAY: "/content/pray",
+    CONTENT_EVENT: "/content/event",
 
-    //게시판
-    POST: "/posts",
+    //참여마당
+    FORUM_FREE: "/forum/free",
+    FORUM_GALLERY: "/forum/gallery",
+    FORUM_YOUNGSAN: "/forum/youngsan",
 
-    CONTACT: "/contact",
+    ADMIN: "/admin",
 
-    MYPAGE_MODIFY: "/",
+    MYPAGE_MODIFY: "/mypage/modify",
 
     LOGIN: "/login",
     LOGOUT: "/logout",
