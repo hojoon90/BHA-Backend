@@ -8,16 +8,16 @@ const URL = {
     ABOUT_HISTORY:"/about/history",
     ABOUT_LOCATION:"/about/location",
 
-    //소식, 일정
-    NEWS: "/news",
-    NEWS_NOTICE: "/news/notice",
-    NEWS_CALENDAR: "/news/calendar",
-    NEWS_VIDEO: "/news/video",
-
     //법회, 행사
     CONTENT_MEETING: "/content/meeting",
     CONTENT_PRAY: "/content/pray",
     CONTENT_EVENT: "/content/event",
+
+    //소식, 일정
+    NEWS_NOTICE: "/news/notice",
+    NEWS: "/news",
+    NEWS_CALENDAR: "/news/calendar",
+    NEWS_VIDEO: "/news/video",
 
     //참여마당
     FORUM_FREE: "/forum/free",

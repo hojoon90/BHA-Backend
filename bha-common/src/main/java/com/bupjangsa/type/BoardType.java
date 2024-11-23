@@ -8,7 +8,7 @@ import java.util.Objects;
 import static com.bupjangsa.message.MessageConst.UNKNOWN_ERROR;
 
 public enum BoardType {
-    FREE_BOARD,NOTICE;
+    FREE_BOARD,NOTICE,NEWS;
 
     public static class Converter implements AttributeConverter<BoardType, String> {
 

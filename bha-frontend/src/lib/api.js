@@ -1,13 +1,22 @@
 const API_URL = 'http://localhost:8080/api/v1';
 
+export function getQueryString(params){
+    return `?${Object.entries(params).map(e => e.join('=')).join('&') }`
+}
+
 // 게시글 목록 가져오기
-export async function fetchPosts() {
+export async function fetchPosts(params) {
     try {
-        const res = await fetch(`${API_URL}/post`);
-        if (!res.ok) {
+        const response = await fetch(`${API_URL}/post/list${getQueryString(params)}`, {
+            method: "GET",
+            headers: {
+                'Content-type': 'application/json',
+            }
+        });
+        if (!response.ok) {
             throw new Error('Failed to fetch posts');
         }
-        return await res.json();
+        return await response.json();
     } catch (error) {
         console.error('Error fetching posts:', error);
         throw error;

@@ -9,12 +9,22 @@ import '@/styles/page.css';
 import '@/styles/layout.css';
 import '@/styles/response.css';
 
+
+export const metadata = {
+    title: "대한불교조계종 법장사",
+    description: "기도하는 마음, 포교하는 기쁨.",
+    icons: {
+        icon: "/favicon.png"
+    }
+};
+
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
         <head>
-            {/* 메타 태그 및 링크를 추가할 수 있습니다. */}
-            <title>My Website</title>
+            <title>{metadata.title}</title>
+            <meta name="description" content={metadata.description}/>
+            <link rel="icon" href={metadata.icons.icon} sizes="144x144"/>
         </head>
         <body>
         <div>
