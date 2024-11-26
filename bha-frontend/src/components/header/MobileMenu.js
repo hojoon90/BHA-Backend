@@ -37,7 +37,7 @@ function MobileMenu() {
                 <h3><a href="#forum">참여마당</a></h3>
                 <div className="submenu closed">
                     <ul>
-                        <li><Link href={URL.FORUM_FREE} className={router.pathname === URL.FORUM_FREE ? "cur" : ""}>자유개시판</Link></li>
+                        <li><Link href={URL.FORUM_FREE} className={router.pathname === URL.FORUM_FREE ? "cur" : ""}>자유게시판</Link></li>
                         <li><Link href={URL.FORUM_GALLERY} className={router.pathname === URL.FORUM_GALLERY ? "cur" : ""}>갤러리</Link></li>
                         <li><Link href={URL.FORUM_YOUNGSAN} className={router.pathname === URL.FORUM_YOUNGSAN ? "cur" : ""}>영산회상</Link></li>
                     </ul>

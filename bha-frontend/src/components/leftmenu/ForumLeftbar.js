@@ -16,7 +16,7 @@ const ForumLeftbar = () => {
             <div className="inner">
                 <h2>참여마당</h2>
                 <ul className="menu4">
-                    <li><Link href={URL.FORUM_FREE} className={isActive(URL.FORUM_FREE) ? "cur" : ""}>자유개시판</Link></li>
+                    <li><Link href={URL.FORUM_FREE} className={isActive(URL.FORUM_FREE) ? "cur" : ""}>자유게시판</Link></li>
                     <li><Link href={URL.FORUM_GALLERY} className={isActive(URL.FORUM_GALLERY) ? "cur" : ""}>갤러리</Link></li>
                     <li><Link href={URL.FORUM_YOUNGSAN} className={isActive(URL.FORUM_YOUNGSAN) ? "cur" : ""}>영산회상</Link></li>
                 </ul>

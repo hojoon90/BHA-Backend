@@ -57,6 +57,26 @@ export async function createPost(postData) {
     }
 }
 
+// 게시물 삭제
+export async function deletePost(postData) {
+    try {
+        const res = await fetch(`${API_URL}/post`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(postData),
+        });
+        if (!res.ok) {
+            throw new Error('Failed to create post');
+        }
+        return await res.json();
+    } catch (error) {
+        console.error('Error creating post:', error);
+        throw error;
+    }
+}
+
 export async function loginUser(postData){
     try{
         const res = await fetch(`${API_URL}/user/login`, {

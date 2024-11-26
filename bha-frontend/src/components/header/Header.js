@@ -21,10 +21,10 @@ function Header() {
 
                 <h1 className="logo">
                     <Link href={URL.HOME} className="w">
-                        <Image src="/assets/images/logo2.svg" width="289" height="40" alt="logo"/>
+                        <Image src="/assets/images/logo2.svg" width="289" height="40" alt="logo" priority/>
                     </Link>
                     <Link href={URL.HOME} className="m">
-                        <Image src="/assets/images/logo2.svg" width="404" height="50" alt="logo"/>
+                        <Image src="/assets/images/logo2.svg" width="404" height="50" alt="logo" priority/>
                     </Link>
                 </h1>
 

@@ -1,19 +1,13 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef } from 'react';
-import { useRouter } from "next/navigation";
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import * as ExtApi from '@/lib/api';
 import URL from '@/data/url';
-// import {Search} from '@/components/Search';
 import NewsLeftbar from "@/components/leftmenu/NewsLeftbar";
+import BoardList from "@/components/board/BoardList"; // 추가한 페이징 컴포넌트
 
 function NewsPage(props) {
-    const router = useRouter();
-
-    const cndRef = useRef();
-    const wrdRef = useRef();
-
     const bbsId = "NEWS";
 
     // 기본 검색 조건
@@ -31,27 +25,23 @@ function NewsPage(props) {
 
         ExtApi.fetchPosts(searchCondition)
             .then(resp => {
-                // setPaginationInfo(resp.result.paginationInfo);
+                setPaginationInfo({
+                    currentPageNo: searchCondition.offset,
+                    pageSize: 10,
+                    totalRecordCount: resp.data.count,
+                    recordCountPerPage: searchCondition.limit,
+                });
 
                 let mutListTag = [];
                 mutListTag.push(<p className="no_data" key="0">검색된 결과가 없습니다.</p>);
 
-                const resultCnt = parseInt(resp.data.count);
-                const currentPageNo = resp.data.totalPages;
-                const pageSize = resp.data.pageSize;
-
                 resp.data.postDetails.forEach(function (item, index) {
                     if (index === 0) mutListTag = [];
 
+                    const formattedDate = item.createdAt.split('T')[0];
+
                     mutListTag.push(
-                        <Link href={{
-                            pathname: `${URL.NEWS}/${item.postNo}`, // 동적으로 경로를 추가
-                            // query: {
-                            //     // nttId: item.nttId,
-                            //     // bbsId: item.bbsId,
-                            //     searchCondition: JSON.stringify(searchCondition) // 상태를 쿼리 파라미터로 전달
-                            // }
-                        }}
+                        <Link href={{pathname: `${URL.NEWS}/${item.postNo}`}}
                               key={item.postNo}
                               className="list_item"
                         >
@@ -62,18 +52,22 @@ function NewsPage(props) {
                                 <div className="al">{item.title}</div>
                             )}
                             <div>{item.createdBy}</div>
-                            <div>{item.createdAt}</div>
+                            <div>{formattedDate}</div>
                             <div>0</div>
                         </Link>
                     );
                 });
                 setListTag(mutListTag);
             }, (resp) => {
-            console.log("err response : ", resp);
-        });
-
-        console.groupEnd("EgovGalleryList.retrieveList()");
+            });
     }, []);
+
+    const moveToPage = (pageNumber) => {
+        setSearchCondition(prev => ({
+            ...prev,
+            offset: pageNumber
+        }));
+    };
 
     useEffect(() => {
         retrieveList(searchCondition);
@@ -102,33 +96,12 @@ function NewsPage(props) {
 
                         <h2 className="tit_2">법장사 뉴스</h2>
 
-                        {/*<Search />*/}
-
                         {/* 게시판목록 */}
-                        <div className="board_list BRD002">
-                            <div className="head">
-                                <span>번호</span>
-                                <span>제목</span>
-                                <span>작성자</span>
-                                <span>작성일</span>
-                                <span>조회수</span>
-                            </div>
-                            <div className="result">
-                                {listTag}
-                            </div>
-                        </div>
-
-                        {/*<div className="board_bot">*/}
-                        {/*    /!* Paging *!/*/}
-                        {/*    <EgovPaging pagination={paginationInfo} moveToPage={passedPage => {*/}
-                        {/*        setSearchCondition({*/}
-                        {/*            ...searchCondition,*/}
-                        {/*            pageIndex: passedPage,*/}
-                        {/*            searchCnd: cndRef.current.value,*/}
-                        {/*            searchWrd: wrdRef.current.value*/}
-                        {/*        });*/}
-                        {/*    }} />*/}
-                        {/*</div>*/}
+                        <BoardList
+                            listTag={listTag}
+                            paginationInfo={paginationInfo}
+                            moveToPage={moveToPage}
+                        />
                     </div>
                 </div>
             </div>
