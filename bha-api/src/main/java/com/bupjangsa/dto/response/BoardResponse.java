@@ -18,6 +18,7 @@ public class BoardResponse {
         private Long postNo;
         private String title;
         private String contents;
+        private Long viewCnt;
         private String createdBy;
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;
@@ -27,6 +28,7 @@ public class BoardResponse {
                     .postNo(dto.getPostNo())
                     .title(dto.getTitle())
                     .contents(dto.getContents())
+                    .viewCnt(dto.getViewCnt())
                     .createdBy(dto.getCreatedBy())
                     .createdAt(dto.getCreatedAt())
                     .build();

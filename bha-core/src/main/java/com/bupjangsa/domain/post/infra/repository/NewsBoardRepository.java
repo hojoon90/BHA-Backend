@@ -1,19 +1,19 @@
-package com.bupjangsa.domain.post.infra;
+package com.bupjangsa.domain.post.infra.repository;
 
+import com.bupjangsa.domain.post.entity.NewsBoard;
+import com.bupjangsa.domain.post.infra.SearchPostRepository;
 import com.bupjangsa.type.BoardType;
-import com.bupjangsa.domain.post.entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface PostRepository extends JpaRepository<Post, Long>, SearchPostRepository {
+public interface NewsBoardRepository extends JpaRepository<NewsBoard, Long>, SearchPostRepository {
 
-    Optional<Post> findByPostNoAndBoardType(Long postNo, BoardType boardType);
+    Optional<NewsBoard> findByPostNoAndBoardType(Long postNo, BoardType boardType);
 
-    @Query("select b.postNo from Post b " +
-            "where b.boardType = :boardType " +
+    @Query("select b.postNo from NewsBoard b " +
             "order by b.postNo desc " +
             "limit 1 ")
     Optional<Long> findPostNoByBoardTypeOrderByPostNoDesc(@Param("boardType") BoardType boardType);

@@ -1,6 +1,8 @@
 package com.bupjangsa.domain.post.dto;
 
-import com.bupjangsa.domain.post.entity.Post;
+import com.bupjangsa.domain.post.entity.BoardBase;
+import com.bupjangsa.domain.post.entity.FreeBoard;
+import com.bupjangsa.domain.post.infra.component.PostFactory;
 import com.bupjangsa.type.BoardType;
 import com.bupjangsa.domain.user.entity.User;
 import lombok.AccessLevel;
@@ -23,14 +25,8 @@ public class PostDto {
         private Long userId;
 
 
-        public Post toEntity(User user, Long postNo){
-            return Post.builder()
-                    .postNo(postNo)
-                    .title(title)
-                    .contents(contents)
-                    .boardType(boardType)
-                    .createdBy(user)
-                    .build();
+        public BoardBase toEntity(PostFactory factory, User user, Long postNo){
+            return factory.createPost(title, contents, boardType, user, postNo);
         }
 
     }
@@ -65,14 +61,16 @@ public class PostDto {
         private String title;
         private String contents;
         private String createdBy;
+        private Long viewCnt;
         private LocalDateTime createdAt;
 
-        public static PostInfo from(Post entity) {
+        public static PostInfo from(BoardBase entity) {
             return PostInfo.builder()
                     .postId(entity.getPostId())
                     .postNo(entity.getPostNo())
                     .title(entity.getTitle())
                     .contents(entity.getContents())
+                    .viewCnt(entity.getViewCnt())
                     .createdBy(entity.getCreatedBy().getAccountId())
                     .createdAt(entity.getCreatedAt())
                     .build();

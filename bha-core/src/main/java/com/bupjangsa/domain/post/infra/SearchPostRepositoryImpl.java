@@ -1,9 +1,10 @@
 package com.bupjangsa.domain.post.infra;
 
-import com.bupjangsa.type.BoardType;
 import com.bupjangsa.domain.post.dto.PostCriteria;
-import com.bupjangsa.domain.post.entity.Post;
-import com.querydsl.core.types.dsl.BooleanExpression;
+import com.bupjangsa.domain.post.entity.FreeBoard;
+import com.bupjangsa.domain.post.entity.NewsBoard;
+import com.bupjangsa.domain.post.entity.NoticeBoard;
+import com.bupjangsa.domain.post.entity.YoungsanBoard;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Page;
@@ -14,7 +15,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static com.bupjangsa.domain.post.entity.QPost.*;
+import static com.bupjangsa.domain.post.entity.QFreeBoard.freeBoard;
+import static com.bupjangsa.domain.post.entity.QNewsBoard.newsBoard;
+import static com.bupjangsa.domain.post.entity.QNoticeBoard.noticeBoard;
+import static com.bupjangsa.domain.post.entity.QYoungsanBoard.youngsanBoard;
 
 @Repository
 public class SearchPostRepositoryImpl extends QuerydslRepositorySupport
@@ -23,28 +27,52 @@ public class SearchPostRepositoryImpl extends QuerydslRepositorySupport
     private final JPAQueryFactory queryFactory;
 
     public SearchPostRepositoryImpl(JPAQueryFactory queryFactory) {
-        super(Post.class);
+        super(FreeBoard.class);
         this.queryFactory = queryFactory;
     }
 
     @Override
-    public Page<Post> selectPostPage(PostCriteria.SearchList criteria,
+    public Page<FreeBoard> selectFreeBoardPage(PostCriteria.SearchList criteria,
                                      Pageable pageable) {
-        final JPQLQuery<Post> query = queryFactory.selectFrom(post)
-                .where(
-                        equalsBoardType(criteria.getBoardType())
-                )
-                .orderBy(post.postNo.desc());
+        final JPQLQuery<FreeBoard> query = queryFactory.selectFrom(freeBoard)
+                .orderBy(freeBoard.postNo.desc());
 
         final long total_count = query.fetch().size();
-        final List<Post> postList = getQuerydsl().applyPagination(pageable, query).fetch();
+        final List<FreeBoard> postList = getQuerydsl().applyPagination(pageable, query).fetch();
 
         return new PageImpl<>(postList, pageable, total_count);
     }
 
-    private BooleanExpression equalsBoardType(final BoardType boardType) {
-        return post.boardType.eq(boardType);
+    @Override
+    public Page<YoungsanBoard> selectYoungsanPage(PostCriteria.SearchList criteria, Pageable pageable) {
+        final JPQLQuery<YoungsanBoard> query = queryFactory.selectFrom(youngsanBoard)
+                .orderBy(youngsanBoard.postNo.desc());
+
+        final long total_count = query.fetch().size();
+        final List<YoungsanBoard> postList = getQuerydsl().applyPagination(pageable, query).fetch();
+
+        return new PageImpl<>(postList, pageable, total_count);
     }
 
+    @Override
+    public Page<NoticeBoard> selectNoticePage(PostCriteria.SearchList criteria, Pageable pageable) {
+        final JPQLQuery<NoticeBoard> query = queryFactory.selectFrom(noticeBoard)
+                .orderBy(noticeBoard.postNo.desc());
 
+        final long total_count = query.fetch().size();
+        final List<NoticeBoard> postList = getQuerydsl().applyPagination(pageable, query).fetch();
+
+        return new PageImpl<>(postList, pageable, total_count);
+    }
+
+    @Override
+    public Page<NewsBoard> selectNewsPage(PostCriteria.SearchList criteria, Pageable pageable) {
+        final JPQLQuery<NewsBoard> query = queryFactory.selectFrom(newsBoard)
+                .orderBy(newsBoard.postNo.desc());
+
+        final long total_count = query.fetch().size();
+        final List<NewsBoard> postList = getQuerydsl().applyPagination(pageable, query).fetch();
+
+        return new PageImpl<>(postList, pageable, total_count);
+    }
 }

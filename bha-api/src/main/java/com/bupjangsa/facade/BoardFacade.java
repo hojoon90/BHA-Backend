@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import static com.bupjangsa.domain.post.dto.PostDto.*;
 import static com.bupjangsa.dto.request.BoardRequest.*;
 import static com.bupjangsa.dto.response.BoardResponse.*;
@@ -23,7 +25,7 @@ import static com.bupjangsa.dto.response.BoardResponse.*;
 @RequiredArgsConstructor
 public class BoardFacade {
 
-    private final PostService postService;
+    private final List<PostService> postServiceList;
 
     /**
      * 게시물 등록
@@ -39,6 +41,9 @@ public class BoardFacade {
                 .contents(request.getContents())
                 .userId(userId)
                 .build();
+
+        PostService postService = postServiceList.stream().filter(i -> i.isValidService(request.getBoardType()))
+                        .findFirst().orElseThrow(() -> new RuntimeException(""));
 
         postService.registerPost(register);
         return AppResponse.responseVoidSuccess(HttpStatus.CREATED.value());
@@ -60,6 +65,9 @@ public class BoardFacade {
                 .userId(userId)
                 .build();
 
+        PostService postService = postServiceList.stream().filter(i -> i.isValidService(request.getBoardType()))
+                .findFirst().orElseThrow(() -> new RuntimeException(""));
+
         postService.updatePost(update);
         return AppResponse.responseVoidSuccess(HttpStatus.OK.value());
     }
@@ -78,6 +86,9 @@ public class BoardFacade {
                 .userId(userId)
                 .build();
 
+        PostService postService = postServiceList.stream().filter(i -> i.isValidService(request.getBoardType()))
+                .findFirst().orElseThrow(() -> new RuntimeException(""));
+
         postService.deletePost(delete);
         return AppResponse.responseVoidSuccess(HttpStatus.NO_CONTENT.value());
     }
@@ -91,6 +102,10 @@ public class BoardFacade {
     public AppResponse<PostDetail> selectPost(String boardTypeStr, Long postNo){
 
         BoardType boardType = BoardType.valueOf(boardTypeStr);
+
+        PostService postService = postServiceList.stream().filter(i -> i.isValidService(boardType))
+                .findFirst().orElseThrow(() -> new RuntimeException(""));
+
         final PostInfo postInfo = postService.selectPost(boardType, postNo);
 
         return AppResponse.responseSuccess(PostDetail.from(postInfo));
@@ -105,6 +120,10 @@ public class BoardFacade {
         final PostCriteria.SearchList criteria = PostCriteria.SearchList.builder()
                 .boardType(BoardType.valueOf(request.getBoardType()))
                 .build();
+
+        PostService postService = postServiceList.stream().filter(i -> i.isValidService(BoardType.valueOf(request.getBoardType())))
+                .findFirst().orElseThrow(() -> new RuntimeException(""));
+
         Page<PostInfo> postInfos = postService.selectPostList(criteria, request.getPageRequest());
 
         final PostPage page = PostPage.of(postInfos.getTotalElements(), postInfos.getTotalPages()

@@ -53,7 +53,7 @@ function NewsPage(props) {
                             )}
                             <div>{item.createdBy}</div>
                             <div>{formattedDate}</div>
-                            <div>0</div>
+                            <div>{item.viewCnt}</div>
                         </Link>
                     );
                 });

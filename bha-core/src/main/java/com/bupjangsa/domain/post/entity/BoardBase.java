@@ -1,24 +1,21 @@
 package com.bupjangsa.domain.post.entity;
 
-
 import com.bupjangsa.domain.common.BaseEntity;
 import com.bupjangsa.type.BoardType;
 import com.bupjangsa.domain.user.entity.User;
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
-
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.ColumnDefault;
 
 @Getter
-@Builder
-@Entity
-@Table(name = "t_post")
-@SQLDelete(sql = "UPDATE t_post SET deleted = true where post_id = ?")
-@Where(clause = "deleted = false")  //삭제가 아닌 유저만 조회하도록 조건처리
 @NoArgsConstructor
 @AllArgsConstructor
-public class Post extends BaseEntity {
+@SuperBuilder
+@MappedSuperclass  // 공통 속성을 상속할 수 있도록 설정
+public abstract class BoardBase extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +35,10 @@ public class Post extends BaseEntity {
     @Lob
     private String contents;
 
+    @Column
+    @ColumnDefault("0")
+    private Long viewCnt;
+
     @ManyToOne
     @JoinColumn(name = "created_by")
     private User createdBy;
@@ -46,11 +47,13 @@ public class Post extends BaseEntity {
     @JoinColumn(name = "last_modified_by")
     private User lastModifiedBy;
 
-    public void updatePostData(String title, String contetns, User user){
+    public void updatePostData(String title, String contents, User user) {
         this.title = title;
-        this.contents = contetns;
+        this.contents = contents;
         this.lastModifiedBy = user;
     }
 
-
+    public void updateViewCnt(){
+        this.viewCnt++;
+    }
 }

@@ -19,7 +19,7 @@ function BoardDetail({ boardDetail, onClickDeleteBoardArticle,
                     </dl>
                     <dl>
                         <dt>조회수</dt>
-                        <dd>{boardDetail?.viewCount || 0}</dd>
+                        <dd>{boardDetail?.viewCnt || 0}</dd>
                     </dl>
                 </div>
             </div>
