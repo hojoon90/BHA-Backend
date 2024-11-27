@@ -15,7 +15,7 @@ public class BoardResponse {
     @Getter
     @Builder
     public static class PostDetail {
-        private Long postNo;
+        private Long postId;
         private String title;
         private String contents;
         private Long viewCnt;
@@ -25,7 +25,7 @@ public class BoardResponse {
 
         public static PostDetail from(PostDto.PostInfo dto){
             return PostDetail.builder()
-                    .postNo(dto.getPostNo())
+                    .postId(dto.getPostId())
                     .title(dto.getTitle())
                     .contents(dto.getContents())
                     .viewCnt(dto.getViewCnt())

@@ -41,11 +41,11 @@ function NoticePage(props) {
                     const formattedDate = item.createdAt.split('T')[0];
 
                     mutListTag.push(
-                        <Link href={{pathname: `${URL.FORUM_FREE}/${item.postNo}`}}
-                              key={item.postNo}
+                        <Link href={{pathname: `${URL.FORUM_FREE}/${item.postId}`}}
+                              key={item.postId}
                               className="list_item"
                         >
-                            <div>{item.postNo}</div>
+                            <div>{item.postId}</div>
                             {item.replyLc * 1 ? (
                                 <div className="al reply">{item.title}</div>
                             ) : (

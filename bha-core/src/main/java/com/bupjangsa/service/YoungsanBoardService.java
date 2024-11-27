@@ -43,13 +43,10 @@ public class YoungsanBoardService implements PostService{
         User user = userRepository.findById(boardDto.getUserId())
                 .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
 
-        Optional<Long> lastPostNo = youngsanBoardRepository.findPostNoByBoardTypeOrderByPostNoDesc(boardDto.getBoardType());
-        Long newPostNo = lastPostNo.map(i -> i + 1).orElse(1L);
-
         PostFactory factory = postFactoryList.stream()
                 .filter(i -> i.selectFactory(boardDto.getBoardType())).findFirst().orElseThrow(() -> new RuntimeException(""));
 
-        YoungsanBoard entity = Optional.ofNullable(boardDto.toEntity(factory, user, newPostNo))
+        YoungsanBoard entity = Optional.ofNullable(boardDto.toEntity(factory, user))
                 .filter(YoungsanBoard.class::isInstance)
                 .map(YoungsanBoard.class::cast)
                 .orElseThrow(() -> new IllegalArgumentException("생성된 객체는 YoungsanBoard가 아닙니다."));
@@ -64,7 +61,7 @@ public class YoungsanBoardService implements PostService{
         User user = userRepository.findById(boardDto.getUserId())
                 .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
 
-        YoungsanBoard post = youngsanBoardRepository.findByPostNoAndBoardType(boardDto.getPostNo(), boardDto.getBoardType())
+        YoungsanBoard post = youngsanBoardRepository.findById(boardDto.getPostId())
                 .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND.getMessage()));
 
         post.updatePostData(boardDto.getTitle(), boardDto.getContents(), user);
@@ -77,7 +74,7 @@ public class YoungsanBoardService implements PostService{
         User user = userRepository.findById(boardDto.getUserId())
                 .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
 
-        YoungsanBoard post = youngsanBoardRepository.findByPostNoAndBoardType(boardDto.getPostNo(), boardDto.getBoardType())
+        YoungsanBoard post = youngsanBoardRepository.findById(boardDto.getPostId())
                 .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND.getMessage()));
 
         //등록자가 아닐 경우 예외처리
@@ -91,8 +88,8 @@ public class YoungsanBoardService implements PostService{
     @Override
     @Transactional
     //단건 조회
-    public PostInfo selectPost(BoardType boardType, Long postNo){
-        YoungsanBoard youngsanBoard = youngsanBoardRepository.findByPostNoAndBoardType(postNo, boardType)
+    public PostInfo selectPost(Long postId){
+        YoungsanBoard youngsanBoard = youngsanBoardRepository.findById(postId)
                 .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND.getMessage()));
 
         youngsanBoard.updateViewCnt();

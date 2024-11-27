@@ -11,10 +11,8 @@ import java.util.Optional;
 
 public interface NoticeBoardRepository extends JpaRepository<NoticeBoard, Long>, SearchPostRepository {
 
-    Optional<NoticeBoard> findByPostNoAndBoardType(Long postNo, BoardType boardType);
-
-    @Query("select b.postNo from NoticeBoard b " +
-            "order by b.postNo desc " +
+    @Query("select b.postId from NoticeBoard b " +
+            "order by b.postId desc " +
             "limit 1 ")
     Optional<Long> findPostNoByBoardTypeOrderByPostNoDesc(@Param("boardType") BoardType boardType);
 }

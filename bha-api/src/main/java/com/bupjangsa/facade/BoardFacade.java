@@ -1,9 +1,9 @@
 package com.bupjangsa.facade;
 
 import com.bupjangsa.common.AppResponse;
-import com.bupjangsa.type.BoardType;
 import com.bupjangsa.domain.post.dto.PostCriteria;
 import com.bupjangsa.service.PostService;
+import com.bupjangsa.type.BoardType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,8 @@ import java.util.List;
 
 import static com.bupjangsa.domain.post.dto.PostDto.*;
 import static com.bupjangsa.dto.request.BoardRequest.*;
-import static com.bupjangsa.dto.response.BoardResponse.*;
+import static com.bupjangsa.dto.response.BoardResponse.PostDetail;
+import static com.bupjangsa.dto.response.BoardResponse.PostPage;
 
 /**
  * Facade 는 아래 역할만 수행한다.
@@ -58,7 +59,7 @@ public class BoardFacade {
     public AppResponse<Void> updatePost(Long userId, PostUpdateRequest request){
 
         Update update = Update.builder()
-                .postNo(request.getPostNo())
+                .postId(request.getPostId())
                 .title(request.getTitle())
                 .contents(request.getContents())
                 .boardType(request.getBoardType())
@@ -81,7 +82,7 @@ public class BoardFacade {
     public AppResponse<Void> deletePost(Long userId, PostDeleteRequest request){
 
         Delete delete = Delete.builder()
-                .postNo(request.getPostNo())
+                .postId(request.getPostId())
                 .boardType(request.getBoardType())
                 .userId(userId)
                 .build();
@@ -96,17 +97,17 @@ public class BoardFacade {
     /**
      * 게시물 조회
      * @param boardTypeStr
-     * @param postNo
+     * @param postId
      * @return
      */
-    public AppResponse<PostDetail> selectPost(String boardTypeStr, Long postNo){
+    public AppResponse<PostDetail> selectPost(String boardTypeStr, Long postId){
 
         BoardType boardType = BoardType.valueOf(boardTypeStr);
 
         PostService postService = postServiceList.stream().filter(i -> i.isValidService(boardType))
                 .findFirst().orElseThrow(() -> new RuntimeException(""));
 
-        final PostInfo postInfo = postService.selectPost(boardType, postNo);
+        final PostInfo postInfo = postService.selectPost(postId);
 
         return AppResponse.responseSuccess(PostDetail.from(postInfo));
     }

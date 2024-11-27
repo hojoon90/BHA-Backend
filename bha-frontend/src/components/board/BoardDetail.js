@@ -3,7 +3,7 @@ import URL from '@/data/url';
 import { formatDate } from '@/lib/util'; // 날짜 포맷 함수
 
 function BoardDetail({ boardDetail, onClickDeleteBoardArticle,
-                         sessionUniqId, boardUrl, postNo, boardType }) {
+                         sessionUniqId, boardUrl, postId}) {
     return (
         <div className="board_view">
             <div className="board_view_top">
@@ -39,7 +39,7 @@ function BoardDetail({ boardDetail, onClickDeleteBoardArticle,
                 {sessionUniqId === boardDetail?.createdBy && (
                     <div className="left_col btn3">
                         <Link
-                            href={ URL.HOME /*, query: { postNo, boardType } */}
+                            href={ URL.HOME /*, query: { postId} */}
                             className="btn btn_skyblue_h46 w_100"
                         >
                             수정

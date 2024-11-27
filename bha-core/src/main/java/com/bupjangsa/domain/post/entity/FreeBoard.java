@@ -1,11 +1,10 @@
 package com.bupjangsa.domain.post.entity;
 
 
-import com.bupjangsa.domain.common.BaseEntity;
-import com.bupjangsa.type.BoardType;
-import com.bupjangsa.domain.user.entity.User;
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;

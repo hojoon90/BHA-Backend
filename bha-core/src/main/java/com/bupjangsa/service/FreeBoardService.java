@@ -42,13 +42,10 @@ public class FreeBoardService implements PostService{
         User user = userRepository.findById(boardDto.getUserId())
                 .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
 
-        Optional<Long> lastPostNo = freeBoardRepository.findPostNoByBoardTypeOrderByPostNoDesc(boardDto.getBoardType());
-        Long newPostNo = lastPostNo.map(i -> i + 1).orElse(1L);
-
         PostFactory factory = postFactoryList.stream()
                 .filter(i -> i.selectFactory(boardDto.getBoardType())).findFirst().orElseThrow(() -> new RuntimeException(""));
 
-        FreeBoard entity = Optional.ofNullable(boardDto.toEntity(factory, user, newPostNo))
+        FreeBoard entity = Optional.ofNullable(boardDto.toEntity(factory, user))
                 .filter(FreeBoard.class::isInstance)
                 .map(FreeBoard.class::cast)
                 .orElseThrow(() -> new IllegalArgumentException("생성된 객체는 FreeBoard가 아닙니다."));
@@ -63,7 +60,7 @@ public class FreeBoardService implements PostService{
         User user = userRepository.findById(boardDto.getUserId())
                 .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
 
-        FreeBoard post = freeBoardRepository.findByPostNoAndBoardType(boardDto.getPostNo(), boardDto.getBoardType())
+        FreeBoard post = freeBoardRepository.findById(boardDto.getPostId())
                 .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND.getMessage()));
 
         post.updatePostData(boardDto.getTitle(), boardDto.getContents(), user);
@@ -76,7 +73,7 @@ public class FreeBoardService implements PostService{
         User user = userRepository.findById(boardDto.getUserId())
                 .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
 
-        FreeBoard post = freeBoardRepository.findByPostNoAndBoardType(boardDto.getPostNo(), boardDto.getBoardType())
+        FreeBoard post = freeBoardRepository.findById(boardDto.getPostId())
                 .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND.getMessage()));
 
         //등록자가 아닐 경우 예외처리
@@ -90,8 +87,8 @@ public class FreeBoardService implements PostService{
     @Override
     @Transactional
     //단건 조회
-    public PostInfo selectPost(BoardType boardType, Long postNo){
-        FreeBoard freeBoard = freeBoardRepository.findByPostNoAndBoardType(postNo, boardType)
+    public PostInfo selectPost(Long postId){
+        FreeBoard freeBoard = freeBoardRepository.findById(postId)
                 .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND.getMessage()));
 
         //조회수 증가

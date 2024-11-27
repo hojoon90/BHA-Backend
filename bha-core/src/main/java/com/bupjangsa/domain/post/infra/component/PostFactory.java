@@ -9,5 +9,5 @@ import org.springframework.stereotype.Component;
 public interface PostFactory {
     boolean selectFactory(BoardType boardType);
 
-    BoardBase createPost(String title, String contents, BoardType boardType, User user, Long postNo);
+    BoardBase createPost(String title, String contents, User user);
 }

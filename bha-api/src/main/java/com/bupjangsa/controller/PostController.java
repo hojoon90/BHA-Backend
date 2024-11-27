@@ -48,13 +48,13 @@ public class PostController {
                 .body(boardFacade.deletePost(user.getUserId(), request));
     }
 
-    @GetMapping(value = "/{boardType}/{postNo}")
+    @GetMapping(value = "/{boardType}/{postId}")
     public ResponseEntity<AppResponse<PostDetail>> getPost(
             @PathVariable String boardType,
-            @PathVariable Long postNo
+            @PathVariable Long postId
     ){
         return ResponseEntity.status(HttpStatus.OK)
-                .body(boardFacade.selectPost(boardType, postNo));
+                .body(boardFacade.selectPost(boardType, postId));
     }
 
     @GetMapping(value = "/list")

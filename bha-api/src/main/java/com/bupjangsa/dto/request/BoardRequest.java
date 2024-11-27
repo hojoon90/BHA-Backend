@@ -24,7 +24,7 @@ public class BoardRequest {
     @Builder
     public static class PostUpdateRequest {
 
-        private Long postNo;
+        private Long postId;
         private String title;
         private String contents;
         private BoardType boardType;
@@ -35,7 +35,7 @@ public class BoardRequest {
     @Builder
     public static class PostDeleteRequest {
 
-        private Long postNo;
+        private Long postId;
         private BoardType boardType;
 
     }

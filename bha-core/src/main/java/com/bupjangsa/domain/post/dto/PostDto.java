@@ -1,7 +1,6 @@
 package com.bupjangsa.domain.post.dto;
 
 import com.bupjangsa.domain.post.entity.BoardBase;
-import com.bupjangsa.domain.post.entity.FreeBoard;
 import com.bupjangsa.domain.post.infra.component.PostFactory;
 import com.bupjangsa.type.BoardType;
 import com.bupjangsa.domain.user.entity.User;
@@ -25,8 +24,8 @@ public class PostDto {
         private Long userId;
 
 
-        public BoardBase toEntity(PostFactory factory, User user, Long postNo){
-            return factory.createPost(title, contents, boardType, user, postNo);
+        public BoardBase toEntity(PostFactory factory, User user){
+            return factory.createPost(title, contents, user);
         }
 
     }
@@ -35,7 +34,7 @@ public class PostDto {
     @Builder
     public static class Update{
 
-        private Long postNo;
+        private Long postId;
         private String title;
         private String contents;
         private BoardType boardType;
@@ -47,7 +46,7 @@ public class PostDto {
     @Builder
     public static class Delete{
 
-        private Long postNo;
+        private Long postId;
         private BoardType boardType;
         private Long userId;
     }
@@ -57,7 +56,6 @@ public class PostDto {
     public static class PostInfo {
 
         private Long postId;
-        private Long postNo;
         private String title;
         private String contents;
         private String createdBy;
@@ -67,7 +65,6 @@ public class PostDto {
         public static PostInfo from(BoardBase entity) {
             return PostInfo.builder()
                     .postId(entity.getPostId())
-                    .postNo(entity.getPostNo())
                     .title(entity.getTitle())
                     .contents(entity.getContents())
                     .viewCnt(entity.getViewCnt())

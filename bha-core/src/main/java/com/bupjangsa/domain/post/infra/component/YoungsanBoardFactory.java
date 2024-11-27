@@ -14,12 +14,10 @@ public class YoungsanBoardFactory implements PostFactory {
     }
 
     @Override
-    public YoungsanBoard createPost(String title, String contents, BoardType boardType, User user, Long postNo) {
+    public YoungsanBoard createPost(String title, String contents, User user) {
         return YoungsanBoard.builder()
-                .postNo(postNo)
                 .title(title)
                 .contents(contents)
-                .boardType(boardType)
                 .viewCnt(0L)
                 .createdBy(user)
                 .build();

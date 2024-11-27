@@ -15,12 +15,10 @@ public class NoticeBoardFactory implements PostFactory {
     }
 
     @Override
-    public NoticeBoard createPost(String title, String contents, BoardType boardType, User user, Long postNo) {
+    public NoticeBoard createPost(String title, String contents, User user) {
         return NoticeBoard.builder()
-                .postNo(postNo)
                 .title(title)
                 .contents(contents)
-                .boardType(boardType)
                 .viewCnt(0L)
                 .createdBy(user)
                 .build();

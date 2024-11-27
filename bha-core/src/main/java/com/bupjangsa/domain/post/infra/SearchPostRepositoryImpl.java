@@ -35,7 +35,7 @@ public class SearchPostRepositoryImpl extends QuerydslRepositorySupport
     public Page<FreeBoard> selectFreeBoardPage(PostCriteria.SearchList criteria,
                                      Pageable pageable) {
         final JPQLQuery<FreeBoard> query = queryFactory.selectFrom(freeBoard)
-                .orderBy(freeBoard.postNo.desc());
+                .orderBy(freeBoard.postId.desc());
 
         final long total_count = query.fetch().size();
         final List<FreeBoard> postList = getQuerydsl().applyPagination(pageable, query).fetch();
@@ -46,7 +46,7 @@ public class SearchPostRepositoryImpl extends QuerydslRepositorySupport
     @Override
     public Page<YoungsanBoard> selectYoungsanPage(PostCriteria.SearchList criteria, Pageable pageable) {
         final JPQLQuery<YoungsanBoard> query = queryFactory.selectFrom(youngsanBoard)
-                .orderBy(youngsanBoard.postNo.desc());
+                .orderBy(youngsanBoard.postId.desc());
 
         final long total_count = query.fetch().size();
         final List<YoungsanBoard> postList = getQuerydsl().applyPagination(pageable, query).fetch();
@@ -57,7 +57,7 @@ public class SearchPostRepositoryImpl extends QuerydslRepositorySupport
     @Override
     public Page<NoticeBoard> selectNoticePage(PostCriteria.SearchList criteria, Pageable pageable) {
         final JPQLQuery<NoticeBoard> query = queryFactory.selectFrom(noticeBoard)
-                .orderBy(noticeBoard.postNo.desc());
+                .orderBy(noticeBoard.postId.desc());
 
         final long total_count = query.fetch().size();
         final List<NoticeBoard> postList = getQuerydsl().applyPagination(pageable, query).fetch();
@@ -68,7 +68,7 @@ public class SearchPostRepositoryImpl extends QuerydslRepositorySupport
     @Override
     public Page<NewsBoard> selectNewsPage(PostCriteria.SearchList criteria, Pageable pageable) {
         final JPQLQuery<NewsBoard> query = queryFactory.selectFrom(newsBoard)
-                .orderBy(newsBoard.postNo.desc());
+                .orderBy(newsBoard.postId.desc());
 
         final long total_count = query.fetch().size();
         final List<NewsBoard> postList = getQuerydsl().applyPagination(pageable, query).fetch();

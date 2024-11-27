@@ -1,8 +1,8 @@
 package com.bupjangsa.domain.post.entity;
 
 import com.bupjangsa.domain.common.BaseEntity;
-import com.bupjangsa.type.BoardType;
 import com.bupjangsa.domain.user.entity.User;
+import com.bupjangsa.type.BoardType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,13 +20,6 @@ public abstract class BoardBase extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long postId;
-
-    @Column(nullable = false)
-    @Convert(converter = BoardType.Converter.class)
-    private BoardType boardType;
-
-    @Column(nullable = false)
-    private Long postNo;
 
     @Column(nullable = false)
     private String title;

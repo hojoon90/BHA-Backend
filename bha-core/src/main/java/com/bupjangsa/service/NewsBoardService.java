@@ -43,13 +43,10 @@ public class NewsBoardService implements PostService{
         User user = userRepository.findById(boardDto.getUserId())
                 .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
 
-        Optional<Long> lastPostNo = newsBoardRepository.findPostNoByBoardTypeOrderByPostNoDesc(boardDto.getBoardType());
-        Long newPostNo = lastPostNo.map(i -> i + 1).orElse(1L);
-
         PostFactory factory = postFactoryList.stream()
                 .filter(i -> i.selectFactory(boardDto.getBoardType())).findFirst().orElseThrow(() -> new RuntimeException(""));
 
-        NewsBoard entity = Optional.ofNullable(boardDto.toEntity(factory, user, newPostNo))
+        NewsBoard entity = Optional.ofNullable(boardDto.toEntity(factory, user))
                 .filter(NewsBoard.class::isInstance)
                 .map(NewsBoard.class::cast)
                 .orElseThrow(() -> new IllegalArgumentException("생성된 객체는 NewsBoard가 아닙니다."));
@@ -64,7 +61,7 @@ public class NewsBoardService implements PostService{
         User user = userRepository.findById(boardDto.getUserId())
                 .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
 
-        NewsBoard post = newsBoardRepository.findByPostNoAndBoardType(boardDto.getPostNo(), boardDto.getBoardType())
+        NewsBoard post = newsBoardRepository.findById(boardDto.getPostId())
                 .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND.getMessage()));
 
         post.updatePostData(boardDto.getTitle(), boardDto.getContents(), user);
@@ -77,7 +74,7 @@ public class NewsBoardService implements PostService{
         User user = userRepository.findById(boardDto.getUserId())
                 .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
 
-        NewsBoard post = newsBoardRepository.findByPostNoAndBoardType(boardDto.getPostNo(), boardDto.getBoardType())
+        NewsBoard post = newsBoardRepository.findById(boardDto.getPostId())
                 .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND.getMessage()));
 
         //등록자가 아닐 경우 예외처리
@@ -91,8 +88,8 @@ public class NewsBoardService implements PostService{
     @Override
     @Transactional
     //단건 조회
-    public PostInfo selectPost(BoardType boardType, Long postNo){
-        NewsBoard newsBoard = newsBoardRepository.findByPostNoAndBoardType(postNo, boardType)
+    public PostInfo selectPost(Long postId){
+        NewsBoard newsBoard = newsBoardRepository.findById(postId)
                 .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND.getMessage()));
 
         newsBoard.updateViewCnt();

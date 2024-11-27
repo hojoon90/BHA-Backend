@@ -114,3 +114,7 @@ export async function getUserInfo(token){
         throw error;
     }
 }
+
+export async function getCalendar(){
+
+}

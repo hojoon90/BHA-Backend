@@ -10,10 +10,10 @@ import BoardDetail from '@/components/board/BoardDetail';
 import Link from "next/link";
 import NewsLeftbar from "@/components/leftmenu/NewsLeftbar"; // BoardDetailView 컴포넌트 import
 
-function NewsDetail({ params }) {
+function YoungsanDetail({ params }) {
     const router = useRouter();
-    const postNo = params.postNo; // 동적 경로에서 postNo를 가져옴
-    const boardType = "NEWS"; // 게시판 타입 설정
+    const postId = params.postId; // 동적 경로에서 postId 가져옴
+    const boardType = "YOUNGSAN"; // 게시판 타입 설정
 
     const [sessionUniqId, setSessionUniqId] = useState(null); // 세션 값 상태로 관리
     const [boardDetail, setBoardDetail] = useState({});
@@ -26,7 +26,7 @@ function NewsDetail({ params }) {
 
     const retrieveDetail = async () => {
         try {
-            const response = await ExtApi.fetchPostById(boardType, postNo);
+            const response = await ExtApi.fetchPostById(boardType, postId);
             setBoardDetail(response.data);
         } catch (error) {
             console.error('게시글 상세 조회 오류:', error);
@@ -34,12 +34,12 @@ function NewsDetail({ params }) {
     };
 
     const onClickDeleteBoardArticle = async () => {
-        const postData = { postNo };
+        const postData = { postId: postId };
         try {
             const response = await ExtApi.deletePost(postData);
             if (response.resultCode === CODE.RCV_SUCCESS) {
                 alert('게시글이 삭제되었습니다.');
-                router.push(URL.NEWS);  // 삭제 후 목록 페이지로 이동
+                router.push(URL.FORUM_YOUNGSAN);  // 삭제 후 목록 페이지로 이동
             } else {
                 alert('게시글 삭제 실패');
             }
@@ -49,10 +49,10 @@ function NewsDetail({ params }) {
     };
 
     useEffect(() => {
-        if (postNo) {
+        if (postId) {
             retrieveDetail();
         }
-    }, [postNo]);
+    }, [postId]);
 
     if (sessionUniqId === null) {
         return <div>Loading...</div>; // 세션 정보가 로드되기 전에는 로딩 화면 표시
@@ -65,8 +65,8 @@ function NewsDetail({ params }) {
                 <div className="location">
                     <ul>
                         <li><Link href={URL.HOME} className="home">Home</Link></li>
-                        <li><Link href={URL.NEWS_NOTICE}>사찰 소식</Link></li>
-                        <li>법장사 뉴스</li>
+                        <li><Link href={URL.FORUM_FREE}>참여마당</Link></li>
+                        <li>영산회상</li>
                     </ul>
                 </div>
 
@@ -76,18 +76,17 @@ function NewsDetail({ params }) {
                     {/* Contents */}
                     <div className="contents NOTICE_VIEW" id="contents">
                         <div className="top_tit">
-                            <h1 className="tit_1">사찰 소식</h1>
+                            <h1 className="tit_1">참여마당</h1>
                         </div>
-                        <h2 className="tit_2">법장사 뉴스</h2>
+                        <h2 className="tit_2">영산회상</h2>
 
                         {/* 게시판 상세보기 */}
                         <BoardDetail
                             boardDetail={boardDetail}
                             onClickDeleteBoardArticle={onClickDeleteBoardArticle}
                             sessionUniqId={sessionUniqId}
-                            boardUrl={URL.NEWS}
-                            postNo={postNo}
-                            boardType={boardType}
+                            boardUrl={URL.FORUM_YOUNGSAN}
+                            postId={postId}
                         />
                     </div>
                 </div>
@@ -96,4 +95,4 @@ function NewsDetail({ params }) {
     );
 }
 
-export default NewsDetail;
+export default YoungsanDetail;

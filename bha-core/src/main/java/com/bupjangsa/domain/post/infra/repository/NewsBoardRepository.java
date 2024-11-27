@@ -11,10 +11,8 @@ import java.util.Optional;
 
 public interface NewsBoardRepository extends JpaRepository<NewsBoard, Long>, SearchPostRepository {
 
-    Optional<NewsBoard> findByPostNoAndBoardType(Long postNo, BoardType boardType);
-
-    @Query("select b.postNo from NewsBoard b " +
-            "order by b.postNo desc " +
+    @Query("select b.postId from NewsBoard b " +
+            "order by b.postId desc " +
             "limit 1 ")
     Optional<Long> findPostNoByBoardTypeOrderByPostNoDesc(@Param("boardType") BoardType boardType);
 }

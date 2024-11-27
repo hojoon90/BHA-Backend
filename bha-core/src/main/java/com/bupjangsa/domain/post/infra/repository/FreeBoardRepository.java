@@ -11,10 +11,8 @@ import java.util.Optional;
 
 public interface FreeBoardRepository extends JpaRepository<FreeBoard, Long>, SearchPostRepository {
 
-    Optional<FreeBoard> findByPostNoAndBoardType(Long postNo, BoardType boardType);
-
-    @Query("select b.postNo from FreeBoard b " +
-            "order by b.postNo desc " +
+    @Query("select b.postId from FreeBoard b " +
+            "order by b.postId desc " +
             "limit 1 ")
     Optional<Long> findPostNoByBoardTypeOrderByPostNoDesc(@Param("boardType") BoardType boardType);
 }

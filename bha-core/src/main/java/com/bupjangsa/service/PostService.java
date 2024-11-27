@@ -18,7 +18,7 @@ public interface PostService {
     void updatePost(Update boardDto);
     void deletePost(Delete boardDto);
     //단건 조회
-    PostInfo selectPost(BoardType boardType, Long postNo);
+    PostInfo selectPost(Long postId);
     //게시물 목록 조회
     Page<PostInfo> selectPostList(PostCriteria.SearchList criteria, Pageable pageable);
 

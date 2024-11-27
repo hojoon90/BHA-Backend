@@ -17,6 +17,7 @@ const URL = {
     NEWS_NOTICE: "/news/notice",
     NEWS: "/news",
     NEWS_CALENDAR: "/news/calendar",
+    NEWS_CALENDAR_DETAIL: "/news/calendar/detail",
     NEWS_VIDEO: "/news/video",
 
     //참여마당
@@ -24,7 +25,10 @@ const URL = {
     FORUM_GALLERY: "/forum/gallery",
     FORUM_YOUNGSAN: "/forum/youngsan",
 
+    //관리자용
     ADMIN: "/admin",
+    ADMIN_CALENDAR_CREATE: "/news/calendar/create",
+
 
     MYPAGE_MODIFY: "/mypage/modify",
 

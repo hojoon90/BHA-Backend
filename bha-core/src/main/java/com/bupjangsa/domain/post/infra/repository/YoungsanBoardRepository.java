@@ -11,10 +11,8 @@ import java.util.Optional;
 
 public interface YoungsanBoardRepository extends JpaRepository<YoungsanBoard, Long>, SearchPostRepository {
 
-    Optional<YoungsanBoard> findByPostNoAndBoardType(Long postNo, BoardType boardType);
-
-    @Query("select b.postNo from YoungsanBoard b " +
-            "order by b.postNo desc " +
+    @Query("select b.postId from YoungsanBoard b " +
+            "order by b.postId desc " +
             "limit 1 ")
     Optional<Long> findPostNoByBoardTypeOrderByPostNoDesc(@Param("boardType") BoardType boardType);
 }

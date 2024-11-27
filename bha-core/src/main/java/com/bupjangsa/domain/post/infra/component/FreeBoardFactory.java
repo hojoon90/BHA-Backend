@@ -14,12 +14,10 @@ public class FreeBoardFactory implements PostFactory {
     }
 
     @Override
-    public FreeBoard createPost(String title, String contents, BoardType boardType, User user, Long postNo) {
+    public FreeBoard createPost(String title, String contents, User user) {
         return FreeBoard.builder()
-                .postNo(postNo)
                 .title(title)
                 .contents(contents)
-                .boardType(boardType)
                 .viewCnt(0L)
                 .createdBy(user)
                 .build();
