@@ -10,7 +10,7 @@
 .Plogin .login_box .group input + input {margin-top: 18px;}
 .Plogin .login_box input[type=text]:-ms-input-placeholder,
 .Plogin .login_box input[type=password]:-ms-input-placeholder {color: #aaa; opacity: 1;}
-.Plogin .login_box button {display: block; position: absolute; left: 435px; top: 70px; width: 160px; height: 110px; border-radius: 8px; color: #fff; font-size: 20px; font-weight: 500; text-align: center; line-height: 110px; background: #169bd5;}
+.Plogin .login_box button {display: block; position: absolute; left: 435px; top: 70px; width: 160px; height: 110px; border-radius: 8px; color: #fff; font-size: 20px; font-weight: 500; text-align: center; line-height: 110px; background: #B9A26A;}
 .Plogin .login_box button span {display: block; position: relative; height: 100%;}
 .Plogin .login_box .chk {margin-top: 20px; font-size: 0;}
 .Plogin .login_box .chk em {display: inline-block; height: 30px; margin-left: 40px; color: #666; font-size: 16px;}
@@ -38,7 +38,7 @@
     .P_MAIN .mini_board .tab li + li {margin-left: 40px;}
     .P_MAIN .mini_board .tab li a {display: block; position: relative; padding-bottom: 12px; color: #ccc; font-size: 30px; font-weight: 700;}
     .P_MAIN .mini_board .tab li a.on {color: #222;}
-    .P_MAIN .mini_board .tab li a.on::after {content: ""; display: block; position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; background: #0465be;}
+    .P_MAIN .mini_board .tab li a.on::after {content: ""; display: block; position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; background: #B6500E;}
     .P_MAIN .mini_board .more {display: block; position: absolute; right: 0; top: 16px; height: 16px; padding-left: 27px; color: #444; font-size: 18px; line-height: 16px; background: url(images/ico_plus.png) no-repeat;}
     .P_MAIN .mini_board .list ul {margin-top: 33px;}
     .P_MAIN .mini_board .list ul > li {position: relative;}
@@ -71,7 +71,7 @@
     .P_MAIN .banner_bot > div.b2 > div {background: url(images/ico_bn02.png) no-repeat center 60px;}
     .P_MAIN .banner_bot > div.b3 > div {background: url(images/ico_bn03.png) no-repeat center 60px;}
     .P_MAIN .banner_bot > div.b4 > div {background: url(images/ico_bn04.png) no-repeat center 60px;}
-    
+
 
     /* 오늘의 행사 */
     .BRD001 .head > span:nth-child(1) {width: 150px;}
@@ -304,15 +304,15 @@
     .calendar_list {border-top: 2px solid #222;}
     .calendar_list thead th {height: 70px; border-bottom: 1px solid #888; color: #000; font-size: 16px; font-weight: 400; line-height: 70px;}
     .calendar_list thead th:first-child {color: #eb6877;}
-    .calendar_list thead th:last-child {color: #169bd5;}
+    .calendar_list thead th:last-child {color: #B9A26A;}
     .calendar_list tbody td {height: 90px; padding: 18px 0 20px 0; border-right: 1px solid #c8d0d5; border-bottom: 1px solid #c8d0d5; text-align: center; vertical-align: top;}
     .calendar_list tbody tr td:last-child {border-right: 0;}
     .calendar_list .day {color: #666; font-size: 16px; font-weight: 400;}
     .calendar_list tbody td:first-child .day {color: #eb6877;}
-    .calendar_list tbody td:last-child .day {color: #169bd5;}
+    .calendar_list tbody td:last-child .day {color: #B9A26A;}
     .calendar_list tbody td.selected {background: #ecf0f3;}
     .calendar_list .schedule {display: block; position: relative; height: 10px; margin-top: 10px; font-size: 0;}
-    .calendar_list .schedule::before {content: ""; display: block; position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 10px; height: 10px; border-radius: 50%; background: #0465be;}
+    .calendar_list .schedule::before {content: ""; display: block; position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 10px; height: 10px; border-radius: 50%; background: #B9A26A;}
 
     .calendar_list + .calendar_info {margin-top: 30px;}
     .calendar_info h2 {height: 60px; border-top: 2px solid #c8d0d5; border-bottom: 1px solid #c8d0d5; color: #28303c; font-size: 18px; font-weight: 500; line-height: 60px; text-align: center; background: #ecf0f3;}
@@ -320,3 +320,55 @@
     .calendar_info ul li::before {content: ""; display: block; position: absolute; left: 20px; top: 27px; width: 2px; height: 2px; background: #222;}
     .calendar_info ul li a {color: #222; font-size: 16px; font-weight: 300;}
     .calendar_info ul li span {position: absolute; right: 15px; top: 15px; color: #808080; font-size: 16px; font-weight: 300;}
+
+    /* 갤러리 컨테이너 */
+    .gallery-board {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 기본 반응형 레이아웃 */
+        gap: 20px; /* 카드 간격 */
+        padding: 20px 0; /* 상하 여백 */
+        justify-items: center; /* 카드 중앙 정렬 */
+    }
+
+    /* 개별 카드 */
+    .gallery-card {
+        background-color: #fff; /* 흰색 배경 */
+        border: 1px solid #e0e0e0; /* 카드 테두리 */
+        border-radius: 8px; /* 모서리 둥글게 */
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+        transition: transform 0.2s, box-shadow 0.2s;
+        width: 100%; /* 카드 너비 꽉 채우기 */
+        max-width: 300px; /* 최대 너비 제한 */
+    }
+
+    /* 카드 호버 효과 */
+    .gallery-card:hover {
+        transform: translateY(-5px); /* 살짝 위로 이동 */
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* 그림자 강화 */
+    }
+
+    /* 카드 이미지 */
+    .gallery-card img {
+        width: 100%;
+        height: auto;
+        object-fit: cover; /* 이미지 비율 유지 */
+    }
+
+    /* 카드 제목 */
+    .gallery-card .card-title {
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        margin: 10px 0;
+        color: #333; /* 제목 색상 */
+    }
+
+    /* 카드 내용 */
+    .gallery-card .card-content {
+        font-size: 14px;
+        color: #666;
+        text-align: center;
+        padding: 0 10px 10px;
+        line-height: 1.5;
+    }

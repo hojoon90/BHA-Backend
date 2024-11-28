@@ -45,7 +45,7 @@ public class CalendarDto {
         private Long startDate;
         private Long endDate;
 //        private String createdBy;
-        private LocalDateTime createdAt;
+//        private LocalDateTime createdAt;
 
         public static CalendarDto.CalendarInfo from(Calendar entity) {
             return CalendarInfo.builder()
@@ -53,7 +53,7 @@ public class CalendarDto {
                     .eventName(entity.getEventName())
                     .startDate(entity.getStartDate())
                     .endDate(entity.getEndDate())
-                    .createdAt(entity.getCreatedAt())
+//                    .createdAt(entity.getCreatedAt())
                     .build();
         }
 

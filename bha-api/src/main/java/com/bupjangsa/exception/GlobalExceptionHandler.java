@@ -1,11 +1,16 @@
 package com.bupjangsa.exception;
 
 import com.bupjangsa.common.AppResponse;
+import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import static com.bupjangsa.message.MessageConst.NOTNULL_PARAMETER;
 
 @Slf4j
 @RestControllerAdvice
@@ -73,5 +78,10 @@ public class GlobalExceptionHandler {
                 AppResponse.responseFail(httpStatus, message), httpStatus);
     }
 
-
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    private ResponseEntity<AppResponse<Void>> handleMissingServletRequestParameterException(Exception ex) {
+        log.error("MissingServletRequestParameterException: {}", ex.getMessage(), ex);
+        return getExceptionResponseEntity(HttpStatus.BAD_REQUEST, NOTNULL_PARAMETER.getMessage());
+    }
 }

@@ -6,129 +6,148 @@ import * as ExtApi from "@/lib/api";
 import URL from "@/data/url";
 import CODE from "@/data/code";
 import NewsLeftbar from "@/components/leftmenu/NewsLeftbar";
+import { getSessionItem } from "@/lib/storage";
 
 function NewsCalendarList() {
     const TODAY = new Date();
 
+    // State
     const [searchCondition, setSearchCondition] = useState({
         schdulSe: "",
         year: TODAY.getFullYear(),
-        month: TODAY.getMonth(),
-        date: TODAY.getDate(),
+        month: TODAY.getMonth() + 1, // 1월이 0부터 시작하므로 +1
     });
 
     const [calendarTag, setCalendarTag] = useState([]);
     const [scheduleList, setScheduleList] = useState([]);
+    const [sessionUniqId, setSessionUniqId] = useState(null);
 
-    // 날짜 관련 함수
-    const getLastDateOfMonth = (year, month) => new Date(year, month + 1, 0);
-    const getFirstDateOfMonth = (year, month) => new Date(year, month, 1);
+    // 유저 세션 확인 및 상태 업데이트
+    useEffect(() => {
+        const sessionUser = getSessionItem("loginUser");
+        setSessionUniqId(sessionUser?.accountId || null);
+    }, []);
+
+    const isAdmin = sessionUniqId === "admin";
+
+    // Helper Functions
+    const getLastDateOfMonth = (year, month) => new Date(year, month, 0);
+    const getFirstDateOfMonth = (year, month) => new Date(year, month - 1, 1);
 
     const changeDate = (target, amount) => {
         const newDate =
             target === CODE.DATE_YEAR
-                ? new Date(searchCondition.year + amount, searchCondition.month, searchCondition.date)
-                : new Date(searchCondition.year, searchCondition.month + amount, searchCondition.date);
+                ? new Date(searchCondition.year + amount, searchCondition.month - 1)
+                : new Date(searchCondition.year, searchCondition.month - 1 + amount);
 
-        setSearchCondition((prev) => ({
-            ...prev,
+        setSearchCondition({
             year: newDate.getFullYear(),
-            month: newDate.getMonth(),
-            date: newDate.getDate(),
-        }));
+            month: newDate.getMonth() + 1, // 월은 0부터 시작하므로 +1
+        });
     };
 
-    // 일정 리스트 가져오기
+    // API 데이터 가져오기
     const retrieveList = useCallback(async () => {
         try {
-            const response = await ExtApi.getCalendar();
-            setScheduleList(response.result.resultList);
+            const response = await ExtApi.getCalendar(searchCondition);
+            setScheduleList(response.data.calendarList || []);
         } catch (error) {
             console.error("Error fetching calendar data:", error);
         }
-    }, []);
+    }, [searchCondition]);
 
-    // 캘린더 그리기
+    // 캘린더 렌더링
     const drawCalendar = useCallback(() => {
-        const PREV_MONTH_ADDITION = -1;
-        const lastOfLastMonth = getLastDateOfMonth(searchCondition.year, searchCondition.month + PREV_MONTH_ADDITION);
+        const lastOfLastMonth = getLastDateOfMonth(searchCondition.year, searchCondition.month - 1);
         const firstOfThisMonth = getFirstDateOfMonth(searchCondition.year, searchCondition.month);
         const lastOfThisMonth = getLastDateOfMonth(searchCondition.year, searchCondition.month);
 
         const firstDayOfThisMonth = firstOfThisMonth.getDay();
         const lastDateOfThisMonth = lastOfThisMonth.getDate();
 
-        const monthArr = [];
-        let weekArr = [];
+        const weeks = [];
+        let currentWeek = [];
         let dayCount = 0;
 
         // 첫 주
-        for (let day = 0; day < 7; day++) {
-            if (day < firstDayOfThisMonth) {
-                weekArr.push(0);
+        for (let i = 0; i < 7; i++) {
+            if (i < firstDayOfThisMonth) {
+                currentWeek.push(null);
             } else {
-                weekArr.push(++dayCount);
+                currentWeek.push(++dayCount);
             }
         }
-        monthArr.push(weekArr);
+        weeks.push(currentWeek);
 
-        // 중간 주
-        weekArr = [];
-        for (let day = dayCount + 1; day <= lastDateOfThisMonth; day++) {
-            weekArr.push(day);
-            if (weekArr.length === 7) {
-                monthArr.push(weekArr);
-                weekArr = [];
+        // 중간 주와 마지막 주
+        while (dayCount < lastDateOfThisMonth) {
+            currentWeek = [];
+            for (let i = 0; i < 7; i++) {
+                if (dayCount < lastDateOfThisMonth) {
+                    currentWeek.push(++dayCount);
+                } else {
+                    currentWeek.push(null);
+                }
             }
+            weeks.push(currentWeek);
         }
 
-        // 마지막 주
-        if (weekArr.length > 0) {
-            while (weekArr.length < 7) {
-                weekArr.push(0);
-            }
-            monthArr.push(weekArr);
-        }
-
-        // 캘린더 태그 생성
-        const mutsUseYearMonth = `${searchCondition.year}${(searchCondition.month + 1).toString().padStart(2, "0")}`;
-        const mutCalendarTagList = monthArr.map((week, weekIdx) => (
+        // 캘린더 UI 생성
+        const calendarTags = weeks.map((week, weekIdx) => (
             <tr key={weekIdx}>
                 {week.map((day, dayIdx) => {
-                    if (day === 0) return <td key={dayIdx}></td>;
+                    if (!day) return <td key={dayIdx}></td>;
 
-                    const sDate = day.toString().padStart(2, "0");
-                    const iUseDate = Number(`${mutsUseYearMonth}${sDate}`);
+                    const formattedDate = `${searchCondition.year}${String(searchCondition.month).padStart(2, "0")}${String(day).padStart(2, "0")}`;
                     const daySchedules = scheduleList.filter((schedule) => {
-                        const iBeginDate = Number(schedule.schdulBgnde.substring(0, 8));
-                        const iEndDate = Number(schedule.schdulEndde.substring(0, 8));
-                        return iUseDate >= iBeginDate && iUseDate <= iEndDate;
+                        const startDate = Number(schedule.startDate);
+                        const endDate = Number(schedule.endDate);
+                        return formattedDate >= startDate && formattedDate <= endDate;
                     });
 
                     return (
                         <td key={dayIdx}>
-                            <Link href={{ pathname: URL.ADMIN_CALENDAR_CREATE, query: { iUseDate } }} className="day">
-                                {day}
-                            </Link>
-                            <br />
-                            {daySchedules.map((schedule) => (
+                            {isAdmin ? (
                                 <Link
-                                    href={{ pathname: URL.NEWS_CALENDAR_DETAIL, query: { schdulId: schedule.schdulId } }}
-                                    key={schedule.schdulId}
+                                    href={{
+                                        pathname: URL.ADMIN_CALENDAR_CREATE,
+                                        query: {iUseDate: formattedDate},
+                                    }}
+                                    className="day"
                                 >
-                                    {schedule.schdulNm}
+                                    {day}
                                 </Link>
-                            ))}
+                            ) : (
+                                <span className="day">{day}</span>
+                            )}
+
+                            {daySchedules.map((schedule) =>
+                                isAdmin ? (
+                                    <Link
+                                        href={{
+                                            pathname: URL.NEWS_CALENDAR_DETAIL,
+                                            query: {calId: schedule.calId},
+                                        }}
+                                        key={schedule.calId}
+                                    >
+                                        <br/><br/>
+                                        {schedule.eventName}
+                                    </Link>
+                                ) : (
+                                    <span key={schedule.calId}><br/><br/>{schedule.eventName}</span>
+                                )
+                            )}
+
                         </td>
                     );
                 })}
             </tr>
         ));
 
-        setCalendarTag(mutCalendarTagList);
-    }, [searchCondition, scheduleList]);
+        setCalendarTag(calendarTags);
+    }, [searchCondition, scheduleList, isAdmin]);
 
-    // Effect
+    // Effects
     useEffect(() => {
         retrieveList();
     }, [retrieveList]);
@@ -165,31 +184,23 @@ function NewsCalendarList() {
                                 <li className="half L">
                                     <button
                                         className="prev"
-                                        onClick={() => {
-                                            changeDate(CODE.DATE_YEAR, -1);
-                                        }}
+                                        onClick={() => changeDate(CODE.DATE_YEAR, -1)}
                                     ></button>
                                     <span>{searchCondition.year}</span>
                                     <button
                                         className="next"
-                                        onClick={() => {
-                                            changeDate(CODE.DATE_YEAR, 1);
-                                        }}
+                                        onClick={() => changeDate(CODE.DATE_YEAR, 1)}
                                     ></button>
                                 </li>
                                 <li className="half R">
                                     <button
                                         className="prev"
-                                        onClick={() => {
-                                            changeDate(CODE.DATE_MONTH, -1);
-                                        }}
+                                        onClick={() => changeDate(CODE.DATE_MONTH, -1)}
                                     ></button>
-                                    <span>{searchCondition.month + 1}</span>
+                                    <span>{searchCondition.month}</span>
                                     <button
                                         className="next"
-                                        onClick={() => {
-                                            changeDate(CODE.DATE_MONTH, 1);
-                                        }}
+                                        onClick={() => changeDate(CODE.DATE_MONTH, 1)}
                                     ></button>
                                 </li>
                             </ul>

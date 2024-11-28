@@ -13,7 +13,7 @@ public enum MessageConst {
     //ErrorCode
     //400
     WRONG_PASSWORD("패스워드가 일치하지 않습니다."),
-    NEGATIVE_NUMBER("송금액은 음수가 될 수 없습니다."),
+    NOTNULL_PARAMETER("파라미터는 Null 일 수 없습니다."),
     QUOTE_EXPIRED("견적서가 만료 되었습니다."),
     LIMIT_EXCESS("오늘 송금 한도 초과 입니다."),
 

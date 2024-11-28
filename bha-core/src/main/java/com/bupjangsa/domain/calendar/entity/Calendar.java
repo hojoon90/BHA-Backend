@@ -34,4 +34,10 @@ public class Calendar extends BaseEntity {
     @Column(nullable = false)
     private Long endDate;
 
+    public void updateCalendarData(String eventName, Long startDate, Long endDate){
+        this.eventName = eventName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
 }

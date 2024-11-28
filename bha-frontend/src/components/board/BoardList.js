@@ -16,11 +16,13 @@ function BoardList({ listTag, paginationInfo, moveToPage }) {
                 {listTag}
             </div>
 
-            {/* 페이징 컴포넌트 */}
-            <BoardPaging
-                paginationInfo={paginationInfo}
-                moveToPage={moveToPage}
-            />
+            <div className="board_bot">
+                {/* 페이징 컴포넌트 */}
+                <BoardPaging
+                    paginationInfo={paginationInfo}
+                    moveToPage={moveToPage}
+                />
+            </div>
         </div>
     );
 }

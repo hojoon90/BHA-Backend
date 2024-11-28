@@ -24,7 +24,14 @@ function Header() {
                         <Image src="/assets/images/logo2.svg" width="289" height="40" alt="logo" priority/>
                     </Link>
                     <Link href={URL.HOME} className="m">
-                        <Image src="/assets/images/logo2.svg" width="404" height="50" alt="logo" priority/>
+                        <Image
+                            src="/assets/images/logo2.svg"
+                            alt="logo"
+                            priority
+                            width={404}  // width는 0으로 설정하고 height만 고정
+                            height={33} // height는 고정
+                            style={{ width: 'auto', height: '30px', alignItems: 'center' }}
+                        />
                     </Link>
                 </h1>
 

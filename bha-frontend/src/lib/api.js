@@ -115,6 +115,20 @@ export async function getUserInfo(token){
     }
 }
 
-export async function getCalendar(){
-
+export async function getCalendar(params){
+    try{
+        const res = await fetch(`${API_URL}/calendar/eventList`+getQueryString(params), {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        if (!res.ok) {
+            throw new Error('Failed to create post');
+        }
+        return await res.json();
+    } catch (error) {
+        console.error('Error creating post:', error);
+        throw error;
+    }
 }
