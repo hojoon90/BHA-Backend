@@ -4,6 +4,7 @@ import com.bupjangsa.common.AppResponse;
 import com.bupjangsa.domain.post.dto.PostCriteria;
 import com.bupjangsa.service.PostService;
 import com.bupjangsa.type.BoardType;
+import com.bupjangsa.util.FileUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,7 @@ import static com.bupjangsa.dto.response.BoardResponse.PostPage;
 public class BoardFacade {
 
     private final List<PostService> postServiceList;
+    private final FileUtil fileUtil;
 
     /**
      * 게시물 등록
@@ -46,9 +48,14 @@ public class BoardFacade {
         PostService postService = postServiceList.stream().filter(i -> i.isValidService(request.getBoardType()))
                         .findFirst().orElseThrow(() -> new RuntimeException(""));
 
-        postService.registerPost(register);
+        //파일 저장 처리
+        Long postId = postService.registerPost(register);
+        fileUtil.registerFile(request.getFileList(), postId, request.getBoardType());
+
         return AppResponse.responseVoidSuccess(HttpStatus.CREATED.value());
     }
+
+
 
     /**
      * 게시물 업데이트

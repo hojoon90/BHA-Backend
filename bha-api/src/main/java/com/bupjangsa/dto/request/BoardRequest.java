@@ -6,6 +6,10 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
+
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class BoardRequest {
@@ -17,6 +21,7 @@ public class BoardRequest {
         private String title;
         private String contents;
         private BoardType boardType;
+        private List<MultipartFile> fileList;
 
     }
 

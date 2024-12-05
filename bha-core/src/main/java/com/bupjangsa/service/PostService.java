@@ -14,7 +14,7 @@ import static com.bupjangsa.domain.post.dto.PostDto.*;
 public interface PostService {
 
     boolean isValidService(BoardType boardType);
-    void registerPost(Register boardDto);
+    Long registerPost(Register boardDto);
     void updatePost(Update boardDto);
     void deletePost(Delete boardDto);
     //단건 조회

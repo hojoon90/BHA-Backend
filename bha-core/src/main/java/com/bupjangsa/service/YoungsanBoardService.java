@@ -39,7 +39,7 @@ public class YoungsanBoardService implements PostService{
 
     @Override
     @Transactional
-    public void registerPost(Register boardDto){
+    public Long registerPost(Register boardDto){
         User user = userRepository.findById(boardDto.getUserId())
                 .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
 
@@ -51,7 +51,7 @@ public class YoungsanBoardService implements PostService{
                 .map(YoungsanBoard.class::cast)
                 .orElseThrow(() -> new IllegalArgumentException("생성된 객체는 YoungsanBoard가 아닙니다."));
 
-        youngsanBoardRepository.save(entity);
+        return youngsanBoardRepository.save(entity).getPostId();
     }
 
     @Override

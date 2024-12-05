@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.annotations.Where;
 
 
@@ -15,7 +16,7 @@ import org.hibernate.annotations.Where;
 @Entity
 @Table(name = "t_youngsan_board")
 @SQLDelete(sql = "UPDATE t_youngsan_board SET deleted = true where post_id = ?")
-@Where(clause = "deleted = false")  //삭제가 아닌 유저만 조회하도록 조건처리
+@SQLRestriction("deleted = false")  //삭제가 아닌 유저만 조회하도록 조건처리
 @NoArgsConstructor
 public class YoungsanBoard extends BoardBase {
 

@@ -38,7 +38,7 @@ public class FreeBoardService implements PostService{
 
     @Override
     @Transactional
-    public void registerPost(Register boardDto){
+    public Long registerPost(Register boardDto){
         User user = userRepository.findById(boardDto.getUserId())
                 .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
 
@@ -50,7 +50,7 @@ public class FreeBoardService implements PostService{
                 .map(FreeBoard.class::cast)
                 .orElseThrow(() -> new IllegalArgumentException("생성된 객체는 FreeBoard가 아닙니다."));
 
-        freeBoardRepository.save(entity);
+        return freeBoardRepository.save(entity).getPostId();
     }
 
     @Override

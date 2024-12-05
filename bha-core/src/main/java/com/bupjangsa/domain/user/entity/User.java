@@ -18,7 +18,7 @@ import static lombok.AccessLevel.PROTECTED;
 @Entity
 @Table(name = "t_user")
 @SQLDelete(sql = "UPDATE t_user SET deleted = true where user_id = ?")
-@Where(clause = "deleted = false")  //삭제가 아닌 유저만 조회하도록 조건처리
+@SQLRestriction(clause = "deleted = false")  //삭제가 아닌 유저만 조회하도록 조건처리
 @NoArgsConstructor(access = PROTECTED)
 public class User extends BaseEntity {
 

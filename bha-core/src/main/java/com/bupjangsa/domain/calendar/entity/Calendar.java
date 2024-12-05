@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.annotations.Where;
 
 import static lombok.AccessLevel.PROTECTED;
@@ -17,7 +18,7 @@ import static lombok.AccessLevel.PROTECTED;
 @SuperBuilder
 @Table(name = "t_calendar")
 @SQLDelete(sql = "UPDATE t_calendar SET deleted = true where user_id = ?")
-@Where(clause = "deleted = false")  //삭제가 아닌 유저만 조회하도록 조건처리
+@SQLRestriction("deleted = false")  //삭제가 아닌 유저만 조회하도록 조건처리
 @NoArgsConstructor(access = PROTECTED)
 public class Calendar extends BaseEntity {
 

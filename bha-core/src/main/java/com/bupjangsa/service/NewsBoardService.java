@@ -39,7 +39,7 @@ public class NewsBoardService implements PostService{
 
     @Override
     @Transactional
-    public void registerPost(Register boardDto){
+    public Long registerPost(Register boardDto){
         User user = userRepository.findById(boardDto.getUserId())
                 .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
 
@@ -51,7 +51,7 @@ public class NewsBoardService implements PostService{
                 .map(NewsBoard.class::cast)
                 .orElseThrow(() -> new IllegalArgumentException("생성된 객체는 NewsBoard가 아닙니다."));
 
-        newsBoardRepository.save(entity);
+        return newsBoardRepository.save(entity).getPostId();
     }
 
     @Override
