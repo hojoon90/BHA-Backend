@@ -21,7 +21,6 @@ public class BoardRequest {
         private String title;
         private String contents;
         private BoardType boardType;
-        private List<MultipartFile> fileList;
 
     }
 

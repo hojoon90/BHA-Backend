@@ -1,8 +1,6 @@
 package com.bupjangsa.service;
 
 import com.bupjangsa.domain.post.dto.PostCriteria;
-import com.bupjangsa.domain.post.entity.FreeBoard;
-import com.bupjangsa.domain.post.entity.NewsBoard;
 import com.bupjangsa.domain.post.entity.NoticeBoard;
 import com.bupjangsa.domain.post.infra.component.PostFactory;
 import com.bupjangsa.domain.post.infra.repository.NoticeBoardRepository;
@@ -22,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.bupjangsa.domain.post.dto.PostDto.*;
-import static com.bupjangsa.message.MessageConst.*;
+import static com.bupjangsa.constant.MessageConst.*;
 
 @Service
 @RequiredArgsConstructor

@@ -4,6 +4,7 @@ import com.bupjangsa.domain.file.dto.FileDto;
 import com.bupjangsa.service.FileService;
 import com.bupjangsa.type.BoardType;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -17,13 +18,16 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+import static com.bupjangsa.constant.AppConst.*;
+
 @Component
 @RequiredArgsConstructor
 public class FileUtil {
 
     private final FileService fileService;
 
-    private static final String uploadPath = "";
+    @Value("${post-file.path}")
+    private String uploadPath;
 
     @Transactional
     public void registerFile(List<MultipartFile> fileList, Long postId, BoardType boardType) {
@@ -43,24 +47,26 @@ public class FileUtil {
     public FileDto.Register uploadFile(final MultipartFile file, Long postId, BoardType boardType) {
 
         String saveName = generateSaveFilename(file.getOriginalFilename());
-        String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        String today = LocalDate.now().format(DateTimeFormatter.ofPattern(YYYY_MM_DD));
         String uploadPath = getUploadPath(today) + File.separator + saveName;
         File uploadFile = new File(uploadPath);
 
-
-        try {
-            file.transferTo(uploadFile);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        return FileDto.Register.builder()
+        FileDto.Register fileDto = FileDto.Register.builder()
                 .postId(postId)
                 .boardType(boardType)
                 .saveName(generateSaveFilename(file.getOriginalFilename()))
                 .originName(file.getOriginalFilename())
                 .fileSize(file.getSize())
                 .build();
+
+        try {
+            // https://stackoverflow.com/questions/60336929/java-nio-file-nosuchfileexception-when-file-transferto-is-called
+            file.transferTo(uploadFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return fileDto;
     }
 
     /**
@@ -69,9 +75,9 @@ public class FileUtil {
      * @return 디스크에 저장할 파일명
      */
     private String generateSaveFilename(final String filename) {
-        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        String uuid = UUID.randomUUID().toString().replaceAll(DASH, "");
         String extension = StringUtils.getFilenameExtension(filename);
-        return uuid + "." + extension;
+        return uuid + DOT + extension;
     }
 
     /**

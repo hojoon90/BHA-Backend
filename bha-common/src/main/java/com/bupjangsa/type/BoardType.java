@@ -5,10 +5,10 @@ import jakarta.persistence.AttributeConverter;
 import java.util.Arrays;
 import java.util.Objects;
 
-import static com.bupjangsa.message.MessageConst.UNKNOWN_ERROR;
+import static com.bupjangsa.constant.MessageConst.UNKNOWN_ERROR;
 
 public enum BoardType {
-    FREE_BOARD,NOTICE,NEWS,YOUNGSAN;
+    FREE_BOARD,NOTICE,NEWS,YOUNGSAN,GALLERY;
 
     public static class Converter implements AttributeConverter<BoardType, String> {
 

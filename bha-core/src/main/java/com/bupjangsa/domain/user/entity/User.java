@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.annotations.Where;
 
 import java.time.LocalDate;
@@ -18,7 +19,7 @@ import static lombok.AccessLevel.PROTECTED;
 @Entity
 @Table(name = "t_user")
 @SQLDelete(sql = "UPDATE t_user SET deleted = true where user_id = ?")
-@SQLRestriction(clause = "deleted = false")  //삭제가 아닌 유저만 조회하도록 조건처리
+@SQLRestriction("deleted = false")  //삭제가 아닌 유저만 조회하도록 조건처리
 @NoArgsConstructor(access = PROTECTED)
 public class User extends BaseEntity {
 

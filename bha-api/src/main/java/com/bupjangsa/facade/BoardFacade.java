@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class BoardFacade {
      * @param request
      * @return
      */
-    public AppResponse<Void> registerPost(Long userId, PostRegisterRequest request){
+    public AppResponse<Void> registerPost(Long userId, PostRegisterRequest request, List<MultipartFile> fileList){
 
         Register register = Register.builder()
                 .title(request.getTitle())
@@ -50,7 +51,7 @@ public class BoardFacade {
 
         //파일 저장 처리
         Long postId = postService.registerPost(register);
-        fileUtil.registerFile(request.getFileList(), postId, request.getBoardType());
+        fileUtil.registerFile(fileList, postId, request.getBoardType());
 
         return AppResponse.responseVoidSuccess(HttpStatus.CREATED.value());
     }

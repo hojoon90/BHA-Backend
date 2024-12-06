@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import static com.bupjangsa.message.MessageConst.USER_NOT_FOUND;
+import static com.bupjangsa.constant.MessageConst.USER_NOT_FOUND;
 
 /**
  * Repository 에서 데이터 처리 후 DTO를 리턴합니다.

@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static com.bupjangsa.dto.request.UserRequest.*;
 import static com.bupjangsa.dto.response.UserResponse.*;
-import static com.bupjangsa.message.MessageConst.WRONG_PASSWORD;
+import static com.bupjangsa.constant.MessageConst.WRONG_PASSWORD;
 
 /**
  * Facade 는 아래 역할만 수행한다.

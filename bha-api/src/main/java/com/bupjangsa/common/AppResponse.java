@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
-import static com.bupjangsa.message.MessageConst.RESULT_SUCCESS;
+import static com.bupjangsa.constant.MessageConst.RESULT_SUCCESS;
 
 @Getter
 @Builder

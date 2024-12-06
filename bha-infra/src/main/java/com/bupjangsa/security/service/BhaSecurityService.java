@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
 
-import static com.bupjangsa.message.MessageConst.UNAUTHORIZED_TOKEN;
+import static com.bupjangsa.constant.MessageConst.UNAUTHORIZED_TOKEN;
 
 @Slf4j
 @Service

@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 import static com.bupjangsa.dto.request.BoardRequest.*;
 import static com.bupjangsa.dto.response.BoardResponse.PostPage;
@@ -24,10 +27,11 @@ public class PostController {
     @PostMapping
     public ResponseEntity<AppResponse<Void>> registerPost(
             @AuthenticationPrincipal AppUserDetails user,
-            @RequestBody final PostRegisterRequest request
-    ){
+            @RequestPart("data") final PostRegisterRequest request,
+            @RequestPart("file") final List<MultipartFile> fileList
+            ){
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(boardFacade.registerPost(user.getUserId(), request));
+                .body(boardFacade.registerPost(user.getUserId(), request, fileList));
     }
 
     @PutMapping

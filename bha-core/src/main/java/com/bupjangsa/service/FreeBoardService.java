@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.bupjangsa.domain.post.dto.PostDto.*;
-import static com.bupjangsa.message.MessageConst.*;
+import static com.bupjangsa.constant.MessageConst.*;
 
 @Service
 @RequiredArgsConstructor

@@ -1,4 +1,4 @@
-package com.bupjangsa.message;
+package com.bupjangsa.constant;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
