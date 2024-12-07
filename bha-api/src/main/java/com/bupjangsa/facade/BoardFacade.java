@@ -116,6 +116,7 @@ public class BoardFacade {
                 .findFirst().orElseThrow(() -> new RuntimeException(""));
 
         final PostInfo postInfo = postService.selectPost(postId);
+        //TODO 파일 조회(cdn url 세팅후 리턴 처리)
 
         return AppResponse.responseSuccess(PostDetail.from(postInfo));
     }

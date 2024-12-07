@@ -1,6 +1,7 @@
 package com.bupjangsa.domain.post.entity;
 
 import com.bupjangsa.domain.common.BaseEntity;
+import com.bupjangsa.domain.file.entity.File;
 import com.bupjangsa.domain.user.entity.User;
 import com.bupjangsa.type.BoardType;
 import jakarta.persistence.*;
@@ -9,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.ColumnDefault;
+
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
