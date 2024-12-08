@@ -46,6 +46,8 @@ public class FileUtil {
      */
     public FileDto.Register uploadFile(final MultipartFile file, Long postId, BoardType boardType) {
 
+        //TODO 갤러리 타입일 경우 썸네일 처리
+
         String saveName = generateSaveFilename(file.getOriginalFilename());
         String today = LocalDate.now().format(DateTimeFormatter.ofPattern(YYYY_MM_DD));
         String uploadPath = getUploadPath(today) + File.separator + saveName;

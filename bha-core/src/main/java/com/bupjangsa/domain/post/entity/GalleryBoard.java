@@ -1,6 +1,5 @@
 package com.bupjangsa.domain.post.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -17,8 +16,5 @@ import org.hibernate.annotations.SQLRestriction;
 @SQLRestriction("deleted = false")  //삭제가 아닌 유저만 조회하도록 조건처리
 @NoArgsConstructor
 public class GalleryBoard extends BoardBase {
-
-    @Column
-    private String thumbImgUrl;
 
 }
