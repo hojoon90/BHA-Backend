@@ -1,15 +1,14 @@
 package com.bupjangsa.domain.post.dto;
 
+import com.bupjangsa.domain.file.dto.FileDto;
 import com.bupjangsa.domain.post.entity.BoardBase;
 import com.bupjangsa.domain.post.infra.component.PostFactory;
 import com.bupjangsa.type.BoardType;
 import com.bupjangsa.domain.user.entity.User;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PostDto {
@@ -53,20 +52,46 @@ public class PostDto {
 
     @Getter
     @Builder
-    public static class PostInfo {
+    public static class PostSummary {
 
         private Long postId;
         private String title;
-        private String contents;
+        private String thumbName;
         private String createdBy;
         private Long viewCnt;
         private LocalDateTime createdAt;
 
-        public static PostInfo from(BoardBase entity) {
-            return PostInfo.builder()
+        public static PostSummary from(BoardBase entity) {
+            return PostSummary.builder()
+                    .postId(entity.getPostId())
+                    .title(entity.getTitle())
+                    .thumbName()
+                    .viewCnt(entity.getViewCnt())
+                    .createdBy(entity.getCreatedBy().getAccountId())
+                    .createdAt(entity.getCreatedAt())
+                    .build();
+        }
+
+    }
+
+    @Getter
+    @Builder
+    public static class PostDetail {
+
+        private Long postId;
+        private String title;
+        private String contents;
+        private List<FileDto.FileInfo> fileList;
+        private String createdBy;
+        private Long viewCnt;
+        private LocalDateTime createdAt;
+
+        public static PostDetail from(BoardBase entity, List<FileDto.FileInfo> fileList) {
+            return PostDetail.builder()
                     .postId(entity.getPostId())
                     .title(entity.getTitle())
                     .contents(entity.getContents())
+                    .fileList(fileList)
                     .viewCnt(entity.getViewCnt())
                     .createdBy(entity.getCreatedBy().getAccountId())
                     .createdAt(entity.getCreatedAt())

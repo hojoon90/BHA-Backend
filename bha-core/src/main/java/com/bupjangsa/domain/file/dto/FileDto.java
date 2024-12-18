@@ -30,4 +30,24 @@ public class FileDto {
         }
     }
 
+    @Getter
+    @Builder
+    public static class FileInfo{
+        private Long fileId;
+        private Long postId;
+        private BoardType boardType;
+        private String fileName;
+        private String thumbName;
+
+        public static FileInfo from(File entity) {
+            return FileInfo.builder()
+                    .fileId(entity.getFileId())
+                    .postId(entity.getPostId())
+                    .boardType(entity.getBoardType())
+                    .fileName(entity.getSaveName())
+                    .thumbName(entity.getThumbName())
+                    .build();
+        }
+    }
+
 }

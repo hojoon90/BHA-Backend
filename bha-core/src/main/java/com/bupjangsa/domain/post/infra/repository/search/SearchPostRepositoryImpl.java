@@ -1,10 +1,7 @@
-package com.bupjangsa.domain.post.infra;
+package com.bupjangsa.domain.post.infra.repository.search;
 
 import com.bupjangsa.domain.post.dto.PostCriteria;
-import com.bupjangsa.domain.post.entity.FreeBoard;
-import com.bupjangsa.domain.post.entity.NewsBoard;
-import com.bupjangsa.domain.post.entity.NoticeBoard;
-import com.bupjangsa.domain.post.entity.YoungsanBoard;
+import com.bupjangsa.domain.post.entity.*;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Page;
@@ -16,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 import static com.bupjangsa.domain.post.entity.QFreeBoard.freeBoard;
+import static com.bupjangsa.domain.post.entity.QGalleryBoard.galleryBoard;
 import static com.bupjangsa.domain.post.entity.QNewsBoard.newsBoard;
 import static com.bupjangsa.domain.post.entity.QNoticeBoard.noticeBoard;
 import static com.bupjangsa.domain.post.entity.QYoungsanBoard.youngsanBoard;
@@ -72,6 +70,17 @@ public class SearchPostRepositoryImpl extends QuerydslRepositorySupport
 
         final long total_count = query.fetch().size();
         final List<NewsBoard> postList = getQuerydsl().applyPagination(pageable, query).fetch();
+
+        return new PageImpl<>(postList, pageable, total_count);
+    }
+
+    @Override
+    public Page<GalleryBoard> selectGalleryPage(PostCriteria.SearchList criteria, Pageable pageable) {
+        final JPQLQuery<GalleryBoard> query = queryFactory.selectFrom(galleryBoard)
+                .orderBy(newsBoard.postId.desc());
+
+        final long total_count = query.fetch().size();
+        final List<GalleryBoard> postList = getQuerydsl().applyPagination(pageable, query).fetch();
 
         return new PageImpl<>(postList, pageable, total_count);
     }

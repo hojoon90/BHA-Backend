@@ -1,4 +1,4 @@
-package com.bupjangsa.domain.post.infra;
+package com.bupjangsa.domain.post.infra.repository.search;
 
 import com.bupjangsa.domain.post.dto.PostCriteria;
 import com.bupjangsa.domain.post.entity.*;
@@ -10,4 +10,6 @@ public interface SearchPostRepository {
     Page<FreeBoard> selectFreeBoardPage(PostCriteria.SearchList criteria, Pageable pageable);
     Page<NoticeBoard> selectNoticePage(PostCriteria.SearchList criteria, Pageable pageable);
     Page<NewsBoard> selectNewsPage(PostCriteria.SearchList criteria, Pageable pageable);
+    Page<GalleryBoard> selectGalleryPage(PostCriteria.SearchList criteria, Pageable pageable);
+
 }

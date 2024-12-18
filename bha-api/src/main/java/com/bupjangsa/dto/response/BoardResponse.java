@@ -14,6 +14,27 @@ public class BoardResponse {
 
     @Getter
     @Builder
+    public static class PostSummary {
+        private Long postId;
+        private String title;
+        private Long viewCnt;
+        private String createdBy;
+        private LocalDateTime createdAt;
+        private LocalDateTime updatedAt;
+
+        public static PostSummary from(PostDto.PostSummary dto){
+            return BoardResponse.PostSummary.builder()
+                    .postId(dto.getPostId())
+                    .title(dto.getTitle())
+                    .viewCnt(dto.getViewCnt())
+                    .createdBy(dto.getCreatedBy())
+                    .createdAt(dto.getCreatedAt())
+                    .build();
+        }
+    }
+
+    @Getter
+    @Builder
     public static class PostDetail {
         private Long postId;
         private String title;
@@ -23,8 +44,8 @@ public class BoardResponse {
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;
 
-        public static PostDetail from(PostDto.PostInfo dto){
-            return PostDetail.builder()
+        public static PostDetail from(PostDto.PostDetail dto){
+            return BoardResponse.PostDetail.builder()
                     .postId(dto.getPostId())
                     .title(dto.getTitle())
                     .contents(dto.getContents())
@@ -41,10 +62,10 @@ public class BoardResponse {
         private long count;
         private int totalPages;
         private long pageSize;
-        private List<PostDetail> postDetails;
+        private List<PostSummary> postDetails;
 
-        public static PostPage of(long count, int totalPages, long pageSize, List<PostDto.PostInfo> postDetails) {
-            final List<PostDetail> collect = postDetails.stream().map(PostDetail::from).toList();
+        public static PostPage of(long count, int totalPages, long pageSize, List<PostDto.PostSummary> postDetails) {
+            final List<PostSummary> collect = postDetails.stream().map(BoardResponse.PostSummary::from).toList();
             return PostPage.builder()
                     .count(count)
                     .totalPages(totalPages)

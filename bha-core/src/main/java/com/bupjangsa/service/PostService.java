@@ -1,7 +1,6 @@
 package com.bupjangsa.service;
 
 import com.bupjangsa.domain.post.dto.PostCriteria;
-import com.bupjangsa.domain.post.infra.component.PostFactory;
 import com.bupjangsa.type.BoardType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,8 +17,8 @@ public interface PostService {
     void updatePost(Update boardDto);
     void deletePost(Delete boardDto);
     //단건 조회
-    PostInfo selectPost(Long postId);
+    PostDetail selectPost(Long postId);
     //게시물 목록 조회
-    Page<PostInfo> selectPostList(PostCriteria.SearchList criteria, Pageable pageable);
+    Page<PostSummary> selectPostList(PostCriteria.SearchList criteria, Pageable pageable);
 
 }

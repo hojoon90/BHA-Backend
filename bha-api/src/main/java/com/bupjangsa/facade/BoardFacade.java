@@ -2,6 +2,7 @@ package com.bupjangsa.facade;
 
 import com.bupjangsa.common.AppResponse;
 import com.bupjangsa.domain.post.dto.PostCriteria;
+import com.bupjangsa.domain.post.dto.PostDto;
 import com.bupjangsa.service.PostService;
 import com.bupjangsa.type.BoardType;
 import com.bupjangsa.util.FileUtil;
@@ -115,10 +116,10 @@ public class BoardFacade {
         PostService postService = postServiceList.stream().filter(i -> i.isValidService(boardType))
                 .findFirst().orElseThrow(() -> new RuntimeException(""));
 
-        final PostInfo postInfo = postService.selectPost(postId);
+        final PostDto.PostDetail postDetail = postService.selectPost(postId);
         //TODO 파일 조회(cdn url 세팅후 리턴 처리)
 
-        return AppResponse.responseSuccess(PostDetail.from(postInfo));
+        return AppResponse.responseSuccess(com.bupjangsa.dto.response.BoardResponse.PostDetail.from(postDetail));
     }
 
     /**
@@ -134,7 +135,7 @@ public class BoardFacade {
         PostService postService = postServiceList.stream().filter(i -> i.isValidService(BoardType.valueOf(request.getBoardType())))
                 .findFirst().orElseThrow(() -> new RuntimeException(""));
 
-        Page<PostInfo> postInfos = postService.selectPostList(criteria, request.getPageRequest());
+        Page<PostDto.PostSummary> postInfos = postService.selectPostList(criteria, request.getPageRequest());
 
         final PostPage page = PostPage.of(postInfos.getTotalElements(), postInfos.getTotalPages()
                 , postInfos.getPageable().getPageSize(), postInfos.getContent());

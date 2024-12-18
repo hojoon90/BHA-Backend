@@ -1,6 +1,7 @@
 package com.bupjangsa.domain.file.entity;
 
 import com.bupjangsa.domain.common.BaseEntity;
+import com.bupjangsa.domain.post.entity.BoardBase;
 import com.bupjangsa.type.BoardType;
 import jakarta.persistence.*;
 import lombok.AccessLevel;

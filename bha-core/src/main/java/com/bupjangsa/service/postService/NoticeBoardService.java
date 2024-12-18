@@ -1,13 +1,16 @@
-package com.bupjangsa.service;
+package com.bupjangsa.service.postService;
 
+import com.bupjangsa.domain.file.dto.FileDto;
 import com.bupjangsa.domain.post.dto.PostCriteria;
 import com.bupjangsa.domain.post.entity.NoticeBoard;
 import com.bupjangsa.domain.post.infra.component.PostFactory;
-import com.bupjangsa.domain.post.infra.repository.NoticeBoardRepository;
+import com.bupjangsa.domain.post.infra.repository.board.NoticeBoardRepository;
 import com.bupjangsa.domain.user.entity.User;
 import com.bupjangsa.domain.user.infra.UserRepository;
 import com.bupjangsa.exception.ForbiddenException;
 import com.bupjangsa.exception.NotFoundException;
+import com.bupjangsa.service.FileService;
+import com.bupjangsa.service.PostService;
 import com.bupjangsa.type.BoardType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,11 +28,12 @@ import static com.bupjangsa.constant.MessageConst.*;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class NoticeBoardService implements PostService{
+public class NoticeBoardService implements PostService {
 
     private final NoticeBoardRepository noticeBoardRepository;
     private final UserRepository userRepository;
     private final List<PostFactory> postFactoryList;
+    private final FileService fileService;
 
     @Override
     public boolean isValidService(BoardType boardType) {
@@ -87,22 +91,24 @@ public class NoticeBoardService implements PostService{
     @Override
     @Transactional
     //단건 조회
-    public PostInfo selectPost(Long postId){
+    public PostDetail selectPost(Long postId){
         NoticeBoard noticeBoard = noticeBoardRepository.findById(postId)
                 .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND.getMessage()));
 
         noticeBoard.updateViewCnt();
-        return PostInfo.from(noticeBoard);
+
+        List<FileDto.FileInfo> fileList = fileService.findAllFileList(postId, BoardType.NOTICE);
+        return PostDetail.from(noticeBoard, fileList);
     }
 
     @Override
     //게시물 목록 조회
-    public Page<PostInfo> selectPostList(PostCriteria.SearchList criteria, Pageable pageable){
+    public Page<PostSummary> selectPostList(PostCriteria.SearchList criteria, Pageable pageable){
 
         Page<NoticeBoard> boardPage = noticeBoardRepository.selectNoticePage(criteria, pageable);
 
-        final List<PostInfo> boardInfoList = boardPage.getContent().stream()
-                .map(PostInfo::from)
+        final List<PostSummary> boardInfoList = boardPage.getContent().stream()
+                .map(PostSummary::from)
                 .toList();
 
         return new PageImpl<>(boardInfoList, pageable, boardPage.getTotalElements());
