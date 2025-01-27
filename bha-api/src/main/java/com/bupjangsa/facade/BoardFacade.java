@@ -1,11 +1,10 @@
 package com.bupjangsa.facade;
 
-import com.bupjangsa.common.AppResponse;
 import com.bupjangsa.domain.post.dto.PostCriteria;
 import com.bupjangsa.domain.post.dto.PostDto;
+import com.bupjangsa.dto.AppResponse;
 import com.bupjangsa.service.PostService;
 import com.bupjangsa.type.BoardType;
-import com.bupjangsa.util.FileUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -30,7 +29,7 @@ import static com.bupjangsa.dto.response.BoardResponse.PostPage;
 public class BoardFacade {
 
     private final List<PostService> postServiceList;
-    private final FileUtil fileUtil;
+    private final FileFacade fileFacade;
 
     /**
      * 게시물 등록
@@ -52,7 +51,7 @@ public class BoardFacade {
 
         //파일 저장 처리
         Long postId = postService.registerPost(register);
-        fileUtil.registerFile(fileList, postId, request.getBoardType());
+        fileFacade.registerFile(fileList, request.getBoardType(), postId);
 
         return AppResponse.responseVoidSuccess(HttpStatus.CREATED.value());
     }

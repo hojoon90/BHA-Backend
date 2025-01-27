@@ -1,6 +1,6 @@
 package com.bupjangsa.controller;
 
-import com.bupjangsa.common.AppResponse;
+import com.bupjangsa.dto.AppResponse;
 import com.bupjangsa.security.dto.AppUserDetails;
 import com.bupjangsa.facade.UserFacade;
 import lombok.RequiredArgsConstructor;

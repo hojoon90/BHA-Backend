@@ -1,6 +1,6 @@
 package com.bupjangsa.facade;
 
-import com.bupjangsa.common.AppResponse;
+import com.bupjangsa.dto.AppResponse;
 import com.bupjangsa.domain.calendar.dto.CalendarDto.CalendarInfo;
 import com.bupjangsa.dto.request.CalendarRequest.CalendarDeleteRequest;
 import com.bupjangsa.dto.request.CalendarRequest.CalendarRegisterRequest;

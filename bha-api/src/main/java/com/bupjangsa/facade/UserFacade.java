@@ -1,6 +1,6 @@
 package com.bupjangsa.facade;
 
-import com.bupjangsa.common.AppResponse;
+import com.bupjangsa.dto.AppResponse;
 import com.bupjangsa.domain.user.dto.UserDto;
 import com.bupjangsa.security.dto.JwtDto;
 import com.bupjangsa.exception.AuthorizeException;

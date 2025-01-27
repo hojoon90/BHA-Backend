@@ -65,7 +65,7 @@ public class PostDto {
             return PostSummary.builder()
                     .postId(entity.getPostId())
                     .title(entity.getTitle())
-                    .thumbName()
+                    .thumbName("")
                     .viewCnt(entity.getViewCnt())
                     .createdBy(entity.getCreatedBy().getAccountId())
                     .createdAt(entity.getCreatedAt())

@@ -1,8 +1,10 @@
 package com.bupjangsa.exception;
 
+import com.bupjangsa.constant.MessageConst;
+
 public class DataProcessException extends RuntimeException{
 
-    public DataProcessException(String message) {
-        super(message);
+    public DataProcessException(MessageConst message) {
+        super(message.getMessage());
     }
 }

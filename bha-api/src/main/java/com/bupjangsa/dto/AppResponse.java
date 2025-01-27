@@ -1,4 +1,4 @@
-package com.bupjangsa.common;
+package com.bupjangsa.dto;
 
 import lombok.Builder;
 import lombok.Getter;

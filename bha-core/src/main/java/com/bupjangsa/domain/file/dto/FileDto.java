@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class FileDto {
 
@@ -37,7 +39,10 @@ public class FileDto {
         private Long postId;
         private BoardType boardType;
         private String fileName;
-        private String thumbName;
+        private String originName;
+        private long fileSize;
+        //        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+        private LocalDateTime createdAt;
 
         public static FileInfo from(File entity) {
             return FileInfo.builder()
@@ -45,7 +50,9 @@ public class FileDto {
                     .postId(entity.getPostId())
                     .boardType(entity.getBoardType())
                     .fileName(entity.getSaveName())
-                    .thumbName(entity.getThumbName())
+                    .originName(entity.getOriginName())
+                    .fileSize(entity.getFileSize())
+                    .createdAt(entity.getCreatedAt())
                     .build();
         }
     }
