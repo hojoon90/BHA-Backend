@@ -7,7 +7,7 @@ import URL from '@/data/url';
 import ForumLeftbar from "@/components/leftmenu/ForumLeftbar";
 import BoardList from "@/components/board/BoardList";
 
-function NoticePage(props) {
+function YoungsanPage(props) {
     const bbsId = "YOUNGSAN";
 
     // 기본 검색 조건
@@ -109,4 +109,4 @@ function NoticePage(props) {
     );
 }
 
-export default NoticePage;
+export default YoungsanPage;

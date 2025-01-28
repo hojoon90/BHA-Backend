@@ -8,7 +8,7 @@ import CODE from '@/data/code'; // 코드 데이터
 import { getSessionItem } from '@/lib/storage'; // 세션에서 로그인 사용자 정보 가져오기
 import BoardDetail from '@/components/board/BoardDetail';
 import Link from "next/link";
-import NewsLeftbar from "@/components/leftmenu/NewsLeftbar"; // BoardDetailView 컴포넌트 import
+import ForumLeftbar from "@/components/leftmenu/ForumLeftbar";
 
 function FreeBoardDetail({ params }) {
     const router = useRouter();
@@ -72,7 +72,7 @@ function FreeBoardDetail({ params }) {
 
                 <div className="layout">
                     {/* Navigation */}
-                    <NewsLeftbar />
+                    <ForumLeftbar />
                     {/* Contents */}
                     <div className="contents NOTICE_VIEW" id="contents">
                         <div className="top_tit">

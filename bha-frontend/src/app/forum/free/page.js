@@ -7,7 +7,7 @@ import URL from '@/data/url';
 import ForumLeftbar from "@/components/leftmenu/ForumLeftbar";
 import BoardList from "@/components/board/BoardList"; // 추가한 페이징 컴포넌트
 
-function NoticePage(props) {
+function FreeBoardPage(props) {
     const bbsId = "FREE_BOARD";
 
     // 기본 검색 조건
@@ -87,7 +87,7 @@ function NoticePage(props) {
 
                 <div className="layout">
                     {/* Navigation */}
-                    <ForumLeftbar />
+                    <ForumLeftbar/>
 
                     <div className="contents SITE_GALLARY_LIST" id="contents">
                         <div className="top_tit">
@@ -102,6 +102,17 @@ function NoticePage(props) {
                             paginationInfo={paginationInfo}
                             moveToPage={moveToPage}
                         />
+                        {/* 게시물 등록 버튼 */}
+                        <div className="board_btn_area">
+                            <div className="left_col btn1">
+                            </div>
+
+                            <div className="right_col btn1">
+                                <Link href={`${URL.FORUM_FREE}/create`}>
+                                    <button className="btn btn_blue_h46 w_100">등록</button>
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,4 +120,4 @@ function NoticePage(props) {
     );
 }
 
-export default NoticePage;
+export default FreeBoardPage;

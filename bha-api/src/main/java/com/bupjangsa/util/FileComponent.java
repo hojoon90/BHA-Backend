@@ -162,6 +162,12 @@ public class FileComponent {
         }
     }
 
+
+    /**
+     * 이미지 파일 검증
+     * @param file
+     * @return
+     */
     private boolean isImageFile(MultipartFile file) {
         try {
             // 1. MIME 타입 확인

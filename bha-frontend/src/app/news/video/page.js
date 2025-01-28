@@ -22,7 +22,7 @@ const MediaGallery = () => {
                     <ul>
                         <li><Link href={URL.HOME} className="home">Home</Link></li>
                         <li><Link href={URL.NEWS_NOTICE}>사찰 소식</Link></li>
-                        <li>법장사 뉴스</li>
+                        <li>법회 영상</li>
                     </ul>
                 </div>
                 <div className="layout">
@@ -34,7 +34,7 @@ const MediaGallery = () => {
                             <h1 className="tit_1">사찰 소식</h1>
                         </div>
 
-                        <h2 className="tit_2">법장사 뉴스</h2>
+                        <h2 className="tit_2">법회 영상</h2>
 
                         <div className="gallery-board">
                             {images.map((image) => (
