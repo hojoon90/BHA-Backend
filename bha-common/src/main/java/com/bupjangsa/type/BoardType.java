@@ -5,7 +5,7 @@ import jakarta.persistence.AttributeConverter;
 import java.util.Arrays;
 import java.util.Objects;
 
-import static com.bupjangsa.constant.MessageConst.UNKNOWN_ERROR;
+import static com.bupjangsa.constant.MessageConst.SERVER_PROCESS_ERROR;
 
 public enum BoardType {
     FREE_BOARD,NOTICE,NEWS,YOUNGSAN,GALLERY;
@@ -28,7 +28,7 @@ public enum BoardType {
             return Arrays.stream(BoardType.values())
                     .filter(csReasonCode -> Objects.equals(csReasonCode.name(), dbData))
                     .findAny()
-                    .orElseThrow(() -> new RuntimeException(UNKNOWN_ERROR.getMessage()));
+                    .orElseThrow(() -> new RuntimeException(SERVER_PROCESS_ERROR.getMessage()));
         }
     }
 }

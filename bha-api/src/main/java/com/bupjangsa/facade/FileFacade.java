@@ -8,13 +8,18 @@ import com.bupjangsa.service.FileService;
 import com.bupjangsa.type.BoardType;
 import com.bupjangsa.util.FileComponent;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,6 +27,7 @@ import static com.bupjangsa.constant.AppConst.YYYY_MM_DD;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class FileFacade {
 
     private final FileComponent fileComponent;
@@ -40,10 +46,9 @@ public class FileFacade {
                 .map(i -> fileComponent.uploadFile(i, postId, boardType))
                 .toList();
 
-        fileService.saveFile(dtoList);
+        fileService.saveFileList(dtoList);
         return AppResponse.responseVoidSuccess(HttpStatus.CREATED.value());
     }
-
     /**
      * 파일 삭제
      * @param fileId
@@ -69,7 +74,7 @@ public class FileFacade {
      */
     public AppResponse<FileResponse.FileInfoList> findFileInfoList(String boardTypeStr, Long postId) {
         BoardType boardType = BoardType.valueOf(boardTypeStr);
-        List<FileDto.FileInfo> fileInfoList = fileService.findAllFileList(boardType, postId);
+        List<FileDto.FileInfo> fileInfoList = fileService.findAllFileList(postId, boardType);
 
         final FileResponse.FileInfoList response = FileResponse.FileInfoList.from(postId, boardType, fileInfoList);
         return AppResponse.responseSuccess(response);

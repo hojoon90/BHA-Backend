@@ -44,7 +44,7 @@ public class NoticeBoardService implements PostService {
     @Transactional
     public Long registerPost(Register boardDto){
         User user = userRepository.findById(boardDto.getUserId())
-                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
+                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
 
         PostFactory factory = postFactoryList.stream()
                 .filter(i -> i.selectFactory(boardDto.getBoardType())).findFirst().orElseThrow(() -> new RuntimeException(""));
@@ -62,10 +62,10 @@ public class NoticeBoardService implements PostService {
     public void updatePost(Update boardDto){
 
         User user = userRepository.findById(boardDto.getUserId())
-                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
+                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
 
         NoticeBoard post = noticeBoardRepository.findById(boardDto.getPostId())
-                .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND.getMessage()));
+                .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND));
 
         post.updatePostData(boardDto.getTitle(), boardDto.getContents(), user);
     }
@@ -75,14 +75,14 @@ public class NoticeBoardService implements PostService {
     public void deletePost(Delete boardDto){
 
         User user = userRepository.findById(boardDto.getUserId())
-                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
+                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
 
         NoticeBoard post = noticeBoardRepository.findById(boardDto.getPostId())
-                .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND.getMessage()));
+                .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND));
 
         //등록자가 아닐 경우 예외처리
         if(!post.getCreatedBy().getAccountId().equals(user.getAccountId())){
-            throw new ForbiddenException(FORBIDDEN_AUTHORIZED.getMessage());
+            throw new ForbiddenException(FORBIDDEN_AUTHORIZED);
         }
 
         noticeBoardRepository.delete(post);
@@ -93,7 +93,7 @@ public class NoticeBoardService implements PostService {
     //단건 조회
     public PostDetail selectPost(Long postId){
         NoticeBoard noticeBoard = noticeBoardRepository.findById(postId)
-                .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND.getMessage()));
+                .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND));
 
         noticeBoard.updateViewCnt();
 

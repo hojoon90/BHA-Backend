@@ -36,7 +36,10 @@ public class File extends BaseEntity {
     private String saveName;
 
     @Column
-    private String thumbName;
+    private String thumbnailName;
+
+    @Column
+    private String thumbnailPath;
 
     @Column(nullable = false)
     private long fileSize;

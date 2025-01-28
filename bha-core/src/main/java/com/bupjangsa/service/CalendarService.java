@@ -1,5 +1,6 @@
 package com.bupjangsa.service;
 
+import com.bupjangsa.constant.MessageConst;
 import com.bupjangsa.domain.calendar.dto.CalendarDto;
 import com.bupjangsa.domain.calendar.dto.CalendarDto.CalendarInfo;
 import com.bupjangsa.domain.calendar.dto.CalendarDto.Register;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import static com.bupjangsa.constant.MessageConst.DATA_NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +30,7 @@ public class CalendarService {
     @Transactional
     public void udpateCalendar(Update dto){
         Calendar entity = calendarRepository.findById(dto.getCalId())
-                .orElseThrow(() -> new NotFoundException(""));
+                .orElseThrow(() -> new NotFoundException(DATA_NOT_FOUND));
 
         entity.updateCalendarData(dto.getEventName(), dto.getStartDate(), dto.getEndDate());
     }
@@ -46,7 +49,7 @@ public class CalendarService {
     public void deleteCalendar(Long calId){
 
         Calendar entity = calendarRepository.findById(calId)
-                        .orElseThrow(() -> new NotFoundException(""));
+                        .orElseThrow(() -> new NotFoundException(DATA_NOT_FOUND));
 
         calendarRepository.delete(entity);
     }

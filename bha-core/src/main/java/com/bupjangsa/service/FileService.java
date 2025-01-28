@@ -21,8 +21,13 @@ public class FileService {
     private final FileRepository fileRepository;
 
     @Transactional
-    public void saveFile(List<Register> fileDtoList){
+    public void saveFileList(List<Register> fileDtoList){
         fileRepository.saveAll(fileDtoList.stream().map(Register::toEntity).toList());
+    }
+
+    @Transactional
+    public void saveFile(Register fileDto){
+        fileRepository.save(fileDto.toEntity());
     }
 
     @Transactional
@@ -31,7 +36,7 @@ public class FileService {
     }
 
     public List<FileDto.FileInfo> findAllFileList(Long postId, BoardType boardType) {
-        List<File> entityList = fileRepository.findAllByPostNoAndBoardType(postId, boardType)
+        List<File> entityList = fileRepository.findAllByPostIdAndBoardType(postId, boardType)
                 .orElseThrow(() -> new NotFoundException(DATA_NOT_FOUND));
 
         return entityList.stream()

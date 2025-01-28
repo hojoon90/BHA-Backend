@@ -124,7 +124,7 @@ public class BhaSecurityService {
             return true;
         } catch (Exception e) {
             log.error(UNAUTHORIZED_TOKEN.getMessage()+" {}", e.getMessage());
-            throw new AuthorizeException(UNAUTHORIZED_TOKEN.getMessage());
+            throw new AuthorizeException(UNAUTHORIZED_TOKEN);
         }
     }
 

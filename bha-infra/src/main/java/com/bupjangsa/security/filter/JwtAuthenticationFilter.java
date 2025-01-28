@@ -40,7 +40,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             filterChain.doFilter(request, response);
         }catch (Exception e){
-            throw new AuthorizeException(MessageConst.UNAUTHORIZED_TOKEN.getMessage());
+            throw new AuthorizeException(MessageConst.UNAUTHORIZED_TOKEN);
         }
     }
 

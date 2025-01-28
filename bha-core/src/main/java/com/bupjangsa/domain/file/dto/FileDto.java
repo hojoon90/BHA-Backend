@@ -19,7 +19,14 @@ public class FileDto {
         private BoardType boardType;
         private String originName;
         private String saveName;
+        private String thumbnailName;
+        private String thumbnailPath;
         private long fileSize;
+
+        public void setThumbnailInfo(String thumbnailName, String thumbnailPath){
+            this.thumbnailName = thumbnailName;
+            this.thumbnailPath = thumbnailPath;
+        }
 
         public File toEntity(){
             return File.builder()
@@ -28,6 +35,8 @@ public class FileDto {
                     .originName(originName)
                     .saveName(saveName)
                     .fileSize(fileSize)
+                    .thumbnailName(thumbnailName)
+                    .thumbnailPath(thumbnailPath)
                     .build();
         }
     }
@@ -41,6 +50,8 @@ public class FileDto {
         private String fileName;
         private String originName;
         private long fileSize;
+        private String thumbnailName;
+        private String thumbnailPath;
         //        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
         private LocalDateTime createdAt;
 
@@ -52,6 +63,8 @@ public class FileDto {
                     .fileName(entity.getSaveName())
                     .originName(entity.getOriginName())
                     .fileSize(entity.getFileSize())
+                    .thumbnailName(entity.getThumbnailName())
+                    .thumbnailPath(entity.getThumbnailPath())
                     .createdAt(entity.getCreatedAt())
                     .build();
         }

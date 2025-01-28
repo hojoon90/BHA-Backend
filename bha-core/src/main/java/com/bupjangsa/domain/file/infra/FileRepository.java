@@ -13,13 +13,13 @@ import java.util.Optional;
 
 public interface FileRepository extends JpaRepository<File, Long> {
 
-    Optional<List<File>> findAllByPostNoAndBoardType(@Param("postNo") Long postNo,
+    Optional<List<File>> findAllByPostIdAndBoardType(@Param("postId") Long postId,
                                                      @Param("boardType") BoardType boardType);
 
     @Transactional
     @Modifying
     @Query("delete File f where f.postId=:postId and f.boardType=:boardType")
-    void deleteAllFileInfoByPostNoAndBoardType(@Param("postId") Long postId,
+    void deleteAllFileInfoByPostIdAndBoardType(@Param("postId") Long postId,
                                                @Param("boardType") BoardType boardType);
 
 }

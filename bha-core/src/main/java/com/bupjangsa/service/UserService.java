@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+import static com.bupjangsa.constant.MessageConst.USER_DATA_CONFLICT;
 import static com.bupjangsa.constant.MessageConst.USER_NOT_FOUND;
 
 /**
@@ -28,37 +29,39 @@ public class UserService {
     public void registerUser(UserDto.Register userDto){
         User user = userDto.toEntity();
         Optional<User> userInfo = userRepository.findByAccountId(user.getAccountId());
-        if(userInfo.isPresent()) throw new DataProcessException("이미 존재하는 유저입니다.");
+        if(userInfo.isPresent()) throw new DataProcessException(USER_DATA_CONFLICT);
 
         userRepository.save(user);
     }
 
     @Transactional
     public void updateUser(UserDto.Update userDto){
-        User user = userRepository.findById(userDto.getId())
-                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
-
+        User user = getUser(userDto.getId());
         user.updateUserData(userDto);
     }
 
     @Transactional
     public void deleteUser(Long id){
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
+        User user = getUser(id);
         user.updateSignOutDate();
         userRepository.delete(user);
     }
 
+
     public UserDto.UserInfo findUser(Long id){
-        return userRepository.findById(id)
-                .map(UserDto.UserInfo::from)
-                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
+        User user = getUser(id);
+        return UserDto.UserInfo.from(user);
     }
 
     public UserDto.UserInfo findUserByAccountId(String accountId){
         return userRepository.findByAccountId(accountId)
                 .map(UserDto.UserInfo::from)
-                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
+                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
+    }
+
+    private User getUser(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
     }
 
 }

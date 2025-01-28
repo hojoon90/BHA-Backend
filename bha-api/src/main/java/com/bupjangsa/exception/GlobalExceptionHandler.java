@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import static com.bupjangsa.constant.MessageConst.NOTNULL_PARAMETER;
+import static com.bupjangsa.constant.MessageConst.WRONG_PARAMETER;
 
 @Slf4j
 @RestControllerAdvice
@@ -81,6 +81,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MissingServletRequestParameterException.class)
     private ResponseEntity<AppResponse<Void>> handleMissingServletRequestParameterException(Exception ex) {
         log.error("MissingServletRequestParameterException: {}", ex.getMessage(), ex);
-        return getExceptionResponseEntity(HttpStatus.BAD_REQUEST, NOTNULL_PARAMETER.getMessage());
+        return getExceptionResponseEntity(HttpStatus.BAD_REQUEST, WRONG_PARAMETER.getMessage());
     }
 }

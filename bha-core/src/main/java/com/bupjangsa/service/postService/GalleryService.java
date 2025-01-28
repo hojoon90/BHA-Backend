@@ -44,7 +44,7 @@ public class GalleryService implements PostService {
     @Override
     public Long registerPost(PostDto.Register boardDto) {
         User user = userRepository.findById(boardDto.getUserId())
-                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
+                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
 
         PostFactory factory = postFactoryList.stream()
                 .filter(i -> i.selectFactory(boardDto.getBoardType())).findFirst().orElseThrow(() -> new RuntimeException(""));
@@ -60,10 +60,10 @@ public class GalleryService implements PostService {
     @Override
     public void updatePost(PostDto.Update boardDto) {
         User user = userRepository.findById(boardDto.getUserId())
-                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
+                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
 
         GalleryBoard post = galleryBoardRepository.findById(boardDto.getPostId())
-                .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND.getMessage()));
+                .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND));
 
         post.updatePostData(boardDto.getTitle(), boardDto.getContents(), user);
     }
@@ -71,14 +71,14 @@ public class GalleryService implements PostService {
     @Override
     public void deletePost(PostDto.Delete boardDto) {
         User user = userRepository.findById(boardDto.getUserId())
-                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND.getMessage()));
+                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
 
         GalleryBoard post = galleryBoardRepository.findById(boardDto.getPostId())
-                .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND.getMessage()));
+                .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND));
 
         //등록자가 아닐 경우 예외처리
         if(!post.getCreatedBy().getAccountId().equals(user.getAccountId())){
-            throw new ForbiddenException(FORBIDDEN_AUTHORIZED.getMessage());
+            throw new ForbiddenException(FORBIDDEN_AUTHORIZED);
         }
 
         galleryBoardRepository.delete(post);
@@ -87,7 +87,7 @@ public class GalleryService implements PostService {
     @Override
     public PostDto.PostDetail selectPost(Long postId) {
         GalleryBoard galleryBoard = galleryBoardRepository.findById(postId)
-                .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND.getMessage()));
+                .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND));
         //조회수 증가
         galleryBoard.updateViewCnt();
 

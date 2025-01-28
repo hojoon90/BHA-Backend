@@ -26,7 +26,7 @@ public class FileController {
     private final FileFacade fileFacade;
 
     @PostMapping(value = "/{boardType}/post/{postId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<AppResponse<Void>> deleteFile(
+    public ResponseEntity<AppResponse<Void>> uploadFile(
             @PathVariable String boardType,
             @PathVariable Long postId,
             @RequestPart(name = "file", required = false) final List<MultipartFile> fileList

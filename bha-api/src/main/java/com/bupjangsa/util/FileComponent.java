@@ -6,6 +6,7 @@ import com.bupjangsa.exception.NotFoundException;
 import com.bupjangsa.type.BoardType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -57,6 +60,23 @@ public class FileComponent {
         try {
             // https://stackoverflow.com/questions/60336929/java-nio-file-nosuchfileexception-when-file-transferto-is-called
             file.transferTo(uploadFile);
+
+            // 이미지 파일인 경우 썸네일 생성
+            if (isImageFile(file)) {
+                int width = 185;
+                int height = 80;
+                String thumbnailName = width+"x"+height+"_"+saveName;
+                String thumbnailPath = getUploadPath(today) + File.separator + thumbnailName;
+
+                // 썸네일 생성 (Thumbnailator 사용)
+                Thumbnails.of(uploadFile)
+                        .size(width, height) // 썸네일 크기 설정
+                        .toFile(new File(thumbnailPath));
+
+                // 썸네일 정보 추가
+                fileDto.setThumbnailInfo(thumbnailName, thumbnailPath);
+            }
+
         } catch (IOException e) {
             throw new FileUploadException(FILE_UPLOAD_ERROR);
         }
@@ -142,6 +162,39 @@ public class FileComponent {
         }
     }
 
+    private boolean isImageFile(MultipartFile file) {
+        try {
+            // 1. MIME 타입 확인
+            String contentType = file.getContentType();
+            if (contentType == null || !contentType.startsWith("image/")) {
+                return false;
+            }
 
+            // 2. 확장자 확인
+            String fileName = file.getOriginalFilename();
+            if (fileName == null || !fileName.contains(".")) {
+                return false;
+            }
+            String[] validExtensions = { "jpg", "jpeg", "png", "gif", "bmp" };
+            String extension = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
+            boolean validExtension = false;
+            for (String validExt : validExtensions) {
+                if (validExt.equals(extension)) {
+                    validExtension = true;
+                    break;
+                }
+            }
+            if (!validExtension) {
+                return false;
+            }
+
+            // 3. 이미지 데이터 검증
+            BufferedImage image = ImageIO.read(file.getInputStream());
+            return image != null;
+
+        } catch (Exception e) {
+            return false; // 예외 발생 시 이미지 파일 아님
+        }
+    }
 
 }

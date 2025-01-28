@@ -20,15 +20,15 @@ public class FileResponse {
     @Builder
     public static class FileInfoList{
         private BoardType boardType;
-        private Long postNo;
+        private Long postId;
         private List<FileInfo> fileList;
 
-        public static FileInfoList from(Long postNo, BoardType boardType, List<FileDto.FileInfo> fileInfoList){
+        public static FileInfoList from(Long postId, BoardType boardType, List<FileDto.FileInfo> fileInfoList){
             List<FileInfo> fileList = fileInfoList
                     .stream().map(FileInfo::from).toList();
 
             return FileInfoList.builder()
-                    .postNo(postNo)
+                    .postId(postId)
                     .boardType(boardType)
                     .fileList(fileList)
                     .build();
