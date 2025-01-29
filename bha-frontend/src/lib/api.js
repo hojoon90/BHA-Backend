@@ -42,10 +42,7 @@ export async function createPost(postData) {
     try {
         const res = await fetch(`${API_URL}/post`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(postData),
+            body: postData
         });
         if (!res.ok) {
             throw new Error('Failed to create post');
@@ -126,6 +123,25 @@ export async function getCalendar(params){
         if (!res.ok) {
             throw new Error('Failed to create post');
         }
+        return await res.json();
+    } catch (error) {
+        console.error('Error creating post:', error);
+        throw error;
+    }
+}
+
+export async function uploadFile(params){
+
+}
+
+export async function uploadImage(formData){
+    try{
+        const res = await fetch(`${API_URL}/file/image/upload`, {
+            method: "POST",
+            body: formData,
+        });
+        if (!res.ok) throw new Error("이미지 업로드 실패");
+
         return await res.json();
     } catch (error) {
         console.error('Error creating post:', error);

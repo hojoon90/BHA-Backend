@@ -50,8 +50,6 @@ public class FileDto {
         private String fileName;
         private String originName;
         private long fileSize;
-        private String thumbnailName;
-        private String thumbnailPath;
         //        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
         private LocalDateTime createdAt;
 
@@ -63,9 +61,22 @@ public class FileDto {
                     .fileName(entity.getSaveName())
                     .originName(entity.getOriginName())
                     .fileSize(entity.getFileSize())
-                    .thumbnailName(entity.getThumbnailName())
-                    .thumbnailPath(entity.getThumbnailPath())
                     .createdAt(entity.getCreatedAt())
+                    .build();
+        }
+    }
+
+    @Getter
+    @Builder
+    public static class ImageInfo{
+        private String imagePath;
+        private String thumbnailPath;
+        private long fileSize;
+        //        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+        private LocalDateTime createdAt;
+
+        public static ImageInfo from(File entity) {
+            return ImageInfo.builder()
                     .build();
         }
     }

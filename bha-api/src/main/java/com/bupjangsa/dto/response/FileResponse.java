@@ -15,6 +15,17 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class FileResponse {
 
+    @Getter
+    @Builder
+    public static class ImageInfo{
+        private String imageUrl;
+
+        public static ImageInfo from(FileDto.ImageInfo dto){
+            return ImageInfo.builder()
+                    .imageUrl(dto.getImagePath())
+                    .build();
+        }
+    }
 
     @Getter
     @Builder

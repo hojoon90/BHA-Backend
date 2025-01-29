@@ -28,8 +28,8 @@ public class PostController {
     public ResponseEntity<AppResponse<Void>> registerPost(
             @AuthenticationPrincipal AppUserDetails user,
             @RequestPart("data") final PostRegisterRequest request,
-            @RequestPart("file") final List<MultipartFile> fileList
-            ){
+            @RequestPart(value = "file", required = false) final List<MultipartFile> fileList
+    ){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(boardFacade.registerPost(user.getUserId(), request, fileList));
     }

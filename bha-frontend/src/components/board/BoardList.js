@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import BoardPaging from './BoardPaging'; // 기존 페이징 컴포넌트 가져오기
 
 function BoardList({ listTag, paginationInfo, moveToPage }) {

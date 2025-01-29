@@ -34,7 +34,7 @@ function FreeBoardDetail({ params }) {
     };
 
     const onClickDeleteBoardArticle = async () => {
-        const postData = { postId: postId };
+        const postData = { postId };
         try {
             const response = await ExtApi.deletePost(postData);
             if (response.resultCode === CODE.RCV_SUCCESS) {
@@ -65,7 +65,7 @@ function FreeBoardDetail({ params }) {
                 <div className="location">
                     <ul>
                         <li><Link href={URL.HOME} className="home">Home</Link></li>
-                        <li><Link href={URL.NEWS_NOTICE}>참여마당</Link></li>
+                        <li><Link href={URL.FORUM_FREE}>참여마당</Link></li>
                         <li>자유게시판</li>
                     </ul>
                 </div>
@@ -85,6 +85,7 @@ function FreeBoardDetail({ params }) {
                             boardDetail={boardDetail}
                             onClickDeleteBoardArticle={onClickDeleteBoardArticle}
                             sessionUniqId={sessionUniqId}
+                            boardUrl={URL.FORUM_FREE}
                             postId={postId}
                         />
                     </div>

@@ -18,7 +18,7 @@ export default function AboutPage() {
 
                 <div className="layout">
                     {/* <!-- Navigation --> */}
-                    <AboutLeftbar></AboutLeftbar>
+                    <AboutLeftbar/>
                     {/* <!--// Navigation --> */}
 
                     <div className="contents SITE_INTRO" id="contents">

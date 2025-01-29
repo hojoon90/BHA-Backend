@@ -18,7 +18,7 @@ export default function HistoryPage() {
 
                 <div className="layout">
                     {/* <!-- Navigation --> */}
-                    <AboutLeftbar></AboutLeftbar>
+                    <AboutLeftbar/>
                     {/* <!--// Navigation --> */}
 
                     <div className="contents SITE_HISTORY" id="contents">

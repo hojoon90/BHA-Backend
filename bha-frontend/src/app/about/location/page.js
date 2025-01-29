@@ -18,7 +18,7 @@ export default function LocationPage() {
 
                 <div className="layout">
                     {/* <!-- Navigation --> */}
-                    <AboutLeftbar></AboutLeftbar>
+                    <AboutLeftbar/>
                     {/* <!--// Navigation --> */}
 
                     <div className="contents SITE_CONTACT_US" id="contents">

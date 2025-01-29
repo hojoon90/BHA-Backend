@@ -37,6 +37,35 @@ public class FileComponent {
     @Value("${post-file.path}")
     private String uploadPath;
 
+    public FileDto.ImageInfo uploadImage(final MultipartFile file) {
+        String saveName = generateSaveFilename(file.getOriginalFilename());
+        String today = LocalDate.now().format(DateTimeFormatter.ofPattern(YYYY_MM_DD));
+        String finalUploadPath = getUploadPath(today+"/img") + File.separator + saveName;
+        File uploadFile = new File(finalUploadPath);
+
+        int width = 185;
+        int height = 80;
+        String thumbnailName = width+"x"+height+"_"+saveName;
+        String thumbnailPath = getUploadPath(today+"/thumb") + File.separator + thumbnailName;
+
+        try {
+            // https://stackoverflow.com/questions/60336929/java-nio-file-nosuchfileexception-when-file-transferto-is-called
+            file.transferTo(uploadFile);
+
+            // 썸네일 생성 (Thumbnailator 사용)
+            Thumbnails.of(uploadFile)
+                    .size(width, height) // 썸네일 크기 설정
+                    .toFile(new File(thumbnailPath));
+        } catch (IOException e) {
+            throw new FileUploadException(FILE_UPLOAD_ERROR);
+        }
+
+        return FileDto.ImageInfo.builder()
+                .imagePath(finalUploadPath)
+                .thumbnailPath(thumbnailPath)
+                .build();
+    }
+
     /**
      * 단일 파일 업로드
      * @param file
@@ -60,22 +89,6 @@ public class FileComponent {
         try {
             // https://stackoverflow.com/questions/60336929/java-nio-file-nosuchfileexception-when-file-transferto-is-called
             file.transferTo(uploadFile);
-
-            // 이미지 파일인 경우 썸네일 생성
-            if (isImageFile(file)) {
-                int width = 185;
-                int height = 80;
-                String thumbnailName = width+"x"+height+"_"+saveName;
-                String thumbnailPath = getUploadPath(today) + File.separator + thumbnailName;
-
-                // 썸네일 생성 (Thumbnailator 사용)
-                Thumbnails.of(uploadFile)
-                        .size(width, height) // 썸네일 크기 설정
-                        .toFile(new File(thumbnailPath));
-
-                // 썸네일 정보 추가
-                fileDto.setThumbnailInfo(thumbnailName, thumbnailPath);
-            }
 
         } catch (IOException e) {
             throw new FileUploadException(FILE_UPLOAD_ERROR);
@@ -159,47 +172,6 @@ public class FileComponent {
         } catch (MalformedURLException e) {
             log.error("File not found : {}", filePath);
             throw new NotFoundException(FILE_NOT_FOUND);
-        }
-    }
-
-
-    /**
-     * 이미지 파일 검증
-     * @param file
-     * @return
-     */
-    private boolean isImageFile(MultipartFile file) {
-        try {
-            // 1. MIME 타입 확인
-            String contentType = file.getContentType();
-            if (contentType == null || !contentType.startsWith("image/")) {
-                return false;
-            }
-
-            // 2. 확장자 확인
-            String fileName = file.getOriginalFilename();
-            if (fileName == null || !fileName.contains(".")) {
-                return false;
-            }
-            String[] validExtensions = { "jpg", "jpeg", "png", "gif", "bmp" };
-            String extension = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
-            boolean validExtension = false;
-            for (String validExt : validExtensions) {
-                if (validExt.equals(extension)) {
-                    validExtension = true;
-                    break;
-                }
-            }
-            if (!validExtension) {
-                return false;
-            }
-
-            // 3. 이미지 데이터 검증
-            BufferedImage image = ImageIO.read(file.getInputStream());
-            return image != null;
-
-        } catch (Exception e) {
-            return false; // 예외 발생 시 이미지 파일 아님
         }
     }
 

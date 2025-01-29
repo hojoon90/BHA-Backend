@@ -34,6 +34,17 @@ public class FileFacade {
     private final FileService fileService;
 
     /**
+     * 이미지 업로드
+     * @param file
+     * @return
+     */
+    @Transactional
+    public AppResponse<FileResponse.ImageInfo> registerImage(MultipartFile file) {
+        FileDto.ImageInfo image = fileComponent.uploadImage(file);
+        return AppResponse.responseSuccess(FileResponse.ImageInfo.from(image));
+    }
+
+    /**
      * 파일 등록
      * @param fileList
      * @param boardType

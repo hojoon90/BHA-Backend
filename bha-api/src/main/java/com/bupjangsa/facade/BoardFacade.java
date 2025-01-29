@@ -51,7 +51,9 @@ public class BoardFacade {
 
         //파일 저장 처리
         Long postId = postService.registerPost(register);
-        fileFacade.registerFile(fileList, request.getBoardType(), postId);
+        if(fileList != null){
+            fileFacade.registerFile(fileList, request.getBoardType(), postId);
+        }
 
         return AppResponse.responseVoidSuccess(HttpStatus.CREATED.value());
     }
