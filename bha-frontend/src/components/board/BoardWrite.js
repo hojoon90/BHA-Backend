@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import TextEditor from "@/components/TextEditor";
 import FileAttach from "@/components/FileAttach";
 import * as ExtApi from "@/lib/api";
+import { getSessionItem } from "@/lib/storage"
 
 function BoardWrite({ boardDetail, listUrl, mode, posblAtchFileNumber, boardType }) {
     const [currentBoardDetail, setBoardDetail] = useState(boardDetail || {});
@@ -22,7 +23,8 @@ function BoardWrite({ boardDetail, listUrl, mode, posblAtchFileNumber, boardType
     }, [mode, boardDetail]);
 
     // 게시판 저장 함수
-    const updateBoard = async () => {
+    const updateBoard = async (token) => {
+        console.log("Token: "+token);
         try {
             // 수정 또는 새 글 작성에 대한 API 호출 로직
             if (mode === "EDIT") {
@@ -50,7 +52,7 @@ function BoardWrite({ boardDetail, listUrl, mode, posblAtchFileNumber, boardType
                 });
             }
 
-            await ExtApi.createPost(formData);
+            await ExtApi.createPost(formData, token);
 
             // 성공 시 목록 페이지로 이동
             window.location.href = listUrl;  // 또는 router.push 사용
@@ -110,7 +112,7 @@ function BoardWrite({ boardDetail, listUrl, mode, posblAtchFileNumber, boardType
                             className="btn btn_skyblue_h46 w_100"
                             onClick={(e) => {
                                 e.preventDefault();
-                                updateBoard();
+                                updateBoard(getSessionItem('accessToken'));
                             }}
                         >
                             {isEditing ? "수정" : "저장"}

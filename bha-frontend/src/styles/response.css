@@ -111,7 +111,7 @@
     .btn_upload span {height: 40px; line-height: 40px;}
 
 
-    .board_list {border-top: 1px solid #dde2e5;}
+    .board_list {border-top: 1px solid #ccc;}
     .board_list .no_data {font-size: 14px;}
     .board_list .result .list_item {display: block; font-size: 0;}
     .board_list .result .list_item > div {display: inline-block;}
@@ -301,7 +301,7 @@
     .SITE_GALLARY_LIST .condition > ul li .f_search {width: 100%;}
     
     .BRD002 .head {display: none;}
-    .BRD002 .result .list_item {padding: 16px 0; border-bottom: 1px solid #dde2e5;}
+    .BRD002 .result .list_item {padding: 16px 0; border-bottom: 1px solid #ccc;}
     .BRD002 .result .list_item > div {border-bottom: 0; font-size: 14px;}
     .BRD002 .result .list_item > div:nth-child(1) {display: none;}
     .BRD002 .result .list_item > div:nth-child(2) {width: 100%; padding-bottom: 2px; font-weight: 700;}
@@ -326,7 +326,7 @@
 
     .TEMPLATE_LIST .condition > ul li .f_search {width: 100%;}
     .BRD004 .head {display: none;}
-    .BRD004 .result .list_item {border-bottom: 1px solid #dde2e5;}
+    .BRD004 .result .list_item {border-bottom: 1px solid #ccc;}
     .BRD004 .result .list_item > div {width: auto !important;}
     .BRD004 .result .list_item > div:nth-child(1) {display: none;}
     .BRD004 .result .list_item > div:nth-child(2) {padding: 18px 0 2px 0; border-bottom: 0; color: #222; font-size: 14px; text-align: left;}
@@ -340,7 +340,7 @@
 
     .TEMPLATE_PREVIEW .condition > ul li .f_search {width: 100%;}
     .BRD005 .head {display: none;}
-    .BRD005 .result .list_item {padding: 16px 0; border-bottom: 1px solid #dde2e5;}
+    .BRD005 .result .list_item {padding: 16px 0; border-bottom: 1px solid #ccc;}
     .BRD005 .result .list_item > div {border-bottom: 0; font-size: 14px;}
     .BRD005 .result .list_item > div:nth-child(1) {display: none;}
     .BRD005 .result .list_item > div:nth-child(2) {width: 100%; padding-bottom: 2px; font-weight: 700;}
@@ -355,7 +355,7 @@
     .BOARD_CREATE_LIST .condition .lb {display: none;}
     .BOARD_CREATE_LIST .condition > ul li .f_search {width: 100%;}
     .BRD006 .head {display: none;}
-    .BRD006 .result .list_item {padding-bottom: 17px; border-bottom: 1px solid #dde2e5;}
+    .BRD006 .result .list_item {padding-bottom: 17px; border-bottom: 1px solid #ccc;}
     .BRD006 .result .list_item > div {width: auto !important; padding: 0; border-bottom: 0; font-size: 12px; text-align: left;}
     .BRD006 .result .list_item > div::before {content: ""; display: inline-block; width: 1px; height: 11px; margin: 0 20px; background: rgb(44, 43, 43); vertical-align: -1px;}
     .BRD006 .result .list_item > div:nth-child(1) {display: none;}
@@ -400,7 +400,7 @@
     .PDS_LIST .recent > ul li .ymd  {height: 18px; font-size: 12px; line-height: 18px;}
 
     .BRD007 .head {display: none;}
-    .BRD007 .result .list_item {padding-bottom: 17px; border-bottom: 1px solid #dde2e5;}
+    .BRD007 .result .list_item {padding-bottom: 17px; border-bottom: 1px solid #ccc;}
     .BRD007 .result .list_item > div {width: auto !important; padding: 0; border-bottom: 0; font-size: 12px; text-align: left;}
     .BRD007 .result .list_item > div::before {content: ""; display: inline-block; width: 1px; height: 11px; margin: 0 20px; background: rgb(44, 43, 43); vertical-align: -1px;}
     .BRD007 .result .list_item > div:nth-child(1) {display: none;}
@@ -411,7 +411,7 @@
     .PDS_REG .pds_desc_edit {margin: 9px 0 30px 0;}
 
     .BRD008 .head {display: none;}
-    .BRD008 .result .list_item {padding: 16px 0; border-bottom: 1px solid #dde2e5;}
+    .BRD008 .result .list_item {padding: 16px 0; border-bottom: 1px solid #ccc;}
     .BRD008 .result .list_item > div {border-bottom: 0; font-size: 14px;}
     .BRD008 .result .list_item > div:nth-child(1) {display: none;}
     .BRD008 .result .list_item > div:nth-child(2) {width: 100%; padding-bottom: 2px; font-weight: 700;}
@@ -426,7 +426,7 @@
     .QNA_LIST .third_2 .w_500 {width: 100%;}
 
     .BRD009 .head {display: none;}
-    .BRD009 .result .list_item {padding: 16px 0; border-bottom: 1px solid #dde2e5;}
+    .BRD009 .result .list_item {padding: 16px 0; border-bottom: 1px solid #ccc;}
     .BRD009 .result .list_item > div {border-bottom: 0; font-size: 14px;}
     .BRD009 .result .list_item > div:nth-child(1) {display: none;}
     .BRD009 .result .list_item > div:nth-child(2) {width: 100%; padding: 0 0 2px 0; font-weight: 700; text-align: left;}

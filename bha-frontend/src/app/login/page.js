@@ -27,7 +27,7 @@ export default function SiteLogin() {
                 <div className="layout">
                     <LoginContents
                         onChangeLogin={onChangeLogin}
-                    ></LoginContents>
+                    />
                 </div>
             </div>
         </div>

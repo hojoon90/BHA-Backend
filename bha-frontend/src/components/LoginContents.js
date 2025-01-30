@@ -1,7 +1,7 @@
 "use client"; // 클라이언트 컴포넌트로 지정
 
 import { useState, useEffect, useRef, useContext } from 'react';
-import { useRouter } from 'next/navigation';
+import {useRouter, useSearchParams} from 'next/navigation';
 import * as ExtApi from '@/lib/api';
 import {jwtDecode} from "jwt-decode";
 
@@ -21,8 +21,12 @@ export default function LoginContents({ onChangeLogin }) {
     const idRef = useRef(null);
     const passwordRef = useRef(null);
 
+    const searchParams = useSearchParams();
+    const redirectUrl = searchParams.get('redirect') || URL.HOME;
+
     const KEY_ID = "KEY_ID";
     const KEY_SAVE_ID_FLAG = "KEY_SAVE_ID_FLAG";
+
 
     const handleSaveIDFlag = () => {
         setLocalItem(KEY_SAVE_ID_FLAG, !saveIDFlag);
@@ -78,7 +82,7 @@ export default function LoginContents({ onChangeLogin }) {
                     setSessionItem('loginUser', resultVO);
                     updateUser(resultVO);
                     if (saveIDFlag) setLocalItem(KEY_ID, resultVO?.id);
-                    router.push(URL.HOME);
+                    router.push(redirectUrl);
                 } else {
                     alert(resp.resultMessage);
                 }

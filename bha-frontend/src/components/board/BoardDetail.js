@@ -10,15 +10,14 @@ function BoardDetail({ boardDetail, onClickDeleteBoardArticle,
                 <div className="tit">{boardDetail?.title}</div>
                 <div className="info">
                     <dl>
-                        <dt>작성자</dt>
+                        <dt className="writer">작성자</dt>
                         <dd>{boardDetail?.createdBy}</dd>
                     </dl>
                     <dl>
-                        <dt>작성일</dt>
                         <dd>{boardDetail?.createdAt ? formatDate(boardDetail?.createdAt) : ''}</dd>
                     </dl>
                     <dl>
-                        <dt>조회수</dt>
+                        <dt>조회</dt>
                         <dd>{boardDetail?.viewCnt || 0}</dd>
                     </dl>
                 </div>
@@ -31,7 +30,7 @@ function BoardDetail({ boardDetail, onClickDeleteBoardArticle,
             </div>
 
             <div className="board_article">
-                <textarea cols="30" rows="10" readOnly={true} defaultValue={boardDetail?.contents}></textarea>
+                <div dangerouslySetInnerHTML={{__html: boardDetail?.contents}} style={{cols: "30", rows: "10", readOnly: true}}></div>
             </div>
 
             {/* 게시글 수정/삭제 버튼 */}
@@ -39,7 +38,7 @@ function BoardDetail({ boardDetail, onClickDeleteBoardArticle,
                 {sessionUniqId === boardDetail?.createdBy && (
                     <div className="left_col btn3">
                         <Link
-                            href={ URL.HOME /*, query: { postId} */}
+                            href={ `${URL.FORUM_FREE}/${postId}/edit` /*, query: { postId} */}
                             className="btn btn_skyblue_h46 w_100"
                         >
                             수정

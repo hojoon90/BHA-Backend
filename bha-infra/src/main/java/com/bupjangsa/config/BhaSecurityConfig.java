@@ -90,7 +90,6 @@ public class BhaSecurityConfig {
         configuration.setAllowedOrigins(List.of("*"));
         configuration.setAllowedMethods(List.of("*"));
         configuration.setAllowedHeaders(List.of("*"));
-        configuration.addAllowedMethod(HttpMethod.OPTIONS);
         configuration.setExposedHeaders(List.of("Authorization", "Refresh-Token"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

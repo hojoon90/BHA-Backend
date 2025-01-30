@@ -38,10 +38,14 @@ export async function fetchPostById(boardType, id) {
 }
 
 // 새 게시글 작성
-export async function createPost(postData) {
+export async function createPost(postData, token) {
     try {
+        console.log(token)
         const res = await fetch(`${API_URL}/post`, {
             method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
             body: postData
         });
         if (!res.ok) {

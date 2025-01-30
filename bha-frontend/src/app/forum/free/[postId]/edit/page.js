@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from 'react';
+import {useEffect, useState} from 'react';
 import { useRouter } from 'next/navigation';
 import URL from '@/data/url';
 import CODE from '@/data/code';
@@ -11,14 +11,29 @@ import ForumLeftbar from "@/components/leftmenu/ForumLeftbar";
 import * as ExtApi from "@/lib/api";
 import 'react-quill/dist/quill.snow.css';
 import BoardWrite from "@/components/board/BoardWrite";
+import {fetchPostById} from "@/lib/api";
 
-
-export default function FreeBoardEdit({initialBoardDetail}) {
-    const boardType = "FREE_BOARD"; // 게시판 타입 설정
+export default function FreeBoardModify({ params }) {
+    const router = useRouter();
+    const postId = params.postId; // 동적 경로에서 postId 가져옴
 
     // 상태 관리
-    const [boardDetail, setBoardDetail] = useState(initialBoardDetail || {});
-    const [boardAttachFiles, setBoardAttachFiles] = useState();
+    // const [boardDetail, setBoardDetail] = useState(initialBoardDetail || {});
+    // const [isLoading, setIsLoading] = useState(true);
+
+
+    // 게시물 조회 API 호출
+    useEffect(() => {
+        if (postId) {
+            ExtApi.fetchPostById("FREE_BOARD", postId)
+                .then((response) => {
+                    setBoardDetail(response.data); // API 응답 데이터를 상태에 저장
+                })
+                .catch((error) => {
+                    console.error('게시물 조회 실패:', error);
+                });
+        }
+    }, [postId]);
 
     return (
         <div className="container">
@@ -33,13 +48,13 @@ export default function FreeBoardEdit({initialBoardDetail}) {
                 </div>
                 <div className="layout">
                     {/* 페이지 구조 */}
-                    <ForumLeftbar/>
+                    <ForumLeftbar />
                     <BoardWrite
-                        boardDetail = {boardDetail}
-                        listUrl= {URL.FORUM_FREE}
-                        mode={"CREATE"}
+                        boardDetail={boardDetail}
+                        listUrl={URL.FORUM_FREE}
+                        mode={"MODIFY"}
                         posblAtchFileNumber={10}
-                        boardType={boardType}
+                        boardType={"FREE_BOARD"}
                     />
                 </div>
             </div>
