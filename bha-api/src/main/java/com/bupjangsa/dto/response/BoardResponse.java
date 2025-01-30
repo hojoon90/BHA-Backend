@@ -1,5 +1,6 @@
 package com.bupjangsa.dto.response;
 
+import com.bupjangsa.domain.file.dto.FileDto;
 import com.bupjangsa.domain.post.dto.PostDto;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -43,6 +44,7 @@ public class BoardResponse {
         private String createdBy;
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;
+        private List<FileDto.FileInfo> files;
 
         public static PostDetail from(PostDto.PostDetail dto){
             return BoardResponse.PostDetail.builder()
@@ -52,6 +54,7 @@ public class BoardResponse {
                     .viewCnt(dto.getViewCnt())
                     .createdBy(dto.getCreatedBy())
                     .createdAt(dto.getCreatedAt())
+                    .files(dto.getFileList())
                     .build();
         }
     }

@@ -66,7 +66,7 @@ public class BoardFacade {
      * @param request
      * @return
      */
-    public AppResponse<Void> updatePost(Long userId, PostUpdateRequest request){
+    public AppResponse<Void> updatePost(Long userId, PostUpdateRequest request, List<MultipartFile> fileList){
 
         Update update = Update.builder()
                 .postId(request.getPostId())
@@ -80,6 +80,9 @@ public class BoardFacade {
                 .findFirst().orElseThrow(() -> new RuntimeException(""));
 
         postService.updatePost(update);
+
+        // postId로 파일을 조회해온 후 삭제하고 fileList를 다시 저장
+//        fileFacade.updateFile(request.getPostId(), fileList, request.getBoardType());
         return AppResponse.responseVoidSuccess(HttpStatus.OK.value());
     }
 

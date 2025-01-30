@@ -58,6 +58,27 @@ export async function createPost(postData, token) {
     }
 }
 
+// 게시글 수정
+export async function modifyPost(postData, token) {
+    try {
+        console.log(token)
+        const res = await fetch(`${API_URL}/post`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+            body: postData
+        });
+        if (!res.ok) {
+            throw new Error('Failed to create post');
+        }
+        return await res.json();
+    } catch (error) {
+        console.error('Error creating post:', error);
+        throw error;
+    }
+}
+
 // 게시물 삭제
 export async function deletePost(postData) {
     try {
@@ -132,10 +153,6 @@ export async function getCalendar(params){
         console.error('Error creating post:', error);
         throw error;
     }
-}
-
-export async function uploadFile(params){
-
 }
 
 export async function uploadImage(formData){

@@ -37,10 +37,11 @@ public class PostController {
     @PutMapping
     public ResponseEntity<AppResponse<Void>> updatePost(
             @AuthenticationPrincipal AppUserDetails user,
-            @RequestBody PostUpdateRequest request
+            @RequestPart("data") final PostUpdateRequest request,
+            @RequestPart(value = "file", required = false) final List<MultipartFile> fileList
     ){
         return ResponseEntity.status(HttpStatus.OK)
-                .body(boardFacade.updatePost(user.getUserId(), request));
+                .body(boardFacade.updatePost(user.getUserId(), request, fileList));
     }
 
     @DeleteMapping

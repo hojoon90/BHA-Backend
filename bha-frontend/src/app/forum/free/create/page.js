@@ -1,24 +1,14 @@
 "use client"
 
-import { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
 import URL from '@/data/url';
-import CODE from '@/data/code';
-import { getSessionItem } from '@/lib/storage'; // 세션에서 로그인 사용자 정보 가져오기
-import BoardDetail from '@/components/board/BoardDetail';
 import Link from "next/link";
 import ForumLeftbar from "@/components/leftmenu/ForumLeftbar";
-import * as ExtApi from "@/lib/api";
 import 'react-quill/dist/quill.snow.css';
 import BoardWrite from "@/components/board/BoardWrite";
 
 
-export default function FreeBoardEdit({initialBoardDetail}) {
+export default function FreeBoardCreate({initialBoardDetail}) {
     const boardType = "FREE_BOARD"; // 게시판 타입 설정
-
-    // 상태 관리
-    const [boardDetail, setBoardDetail] = useState(initialBoardDetail || {});
-    const [boardAttachFiles, setBoardAttachFiles] = useState();
 
     return (
         <div className="container">
@@ -35,7 +25,6 @@ export default function FreeBoardEdit({initialBoardDetail}) {
                     {/* 페이지 구조 */}
                     <ForumLeftbar/>
                     <BoardWrite
-                        boardDetail = {boardDetail}
                         listUrl= {URL.FORUM_FREE}
                         mode={"CREATE"}
                         posblAtchFileNumber={10}
