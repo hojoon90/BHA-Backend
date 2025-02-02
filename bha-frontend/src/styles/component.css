@@ -134,14 +134,17 @@ a.google:before {
 .board_btn_area .left_col .btn + .btn {margin-left: 10px;}
 .board_btn_area .right_col {position: absolute; right: 0; top: 0; font-size: 0;}
 .board_btn_area .right_col .btn + .btn {margin-left: 10px;}
+.board_btn_area .center_col {position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 0;}
 
-/*.board_view2 {border-top: 2px solid #222;}*/
-/*.board_view2 dl {display: table; width: 100%; table-layout: fixed; border-bottom: 1px solid #ccc;}*/
-/*.board_view2 dl > * {display: table-cell; table-layout: fixed; vertical-align: middle;}*/
-/*.board_view2 dl dt {width: 176px; padding: 12px 25px; color: #000; font-size: 18px; letter-spacing: -2px; background: #f5f6f7; word-break: break-all;}*/
-/*.board_view2 dl dt .req {display: inline-block; width: 7px; height: 7px; margin-left: 2px; font-size: 0; background: url(images/ico_req.png) no-repeat; vertical-align: 17px;}*/
-/*.board_view2 dl dd {padding: 12px 15px; color: #222; font-size: 16px; font-weight: 300;}*/
-/*.board_view2 {border-top: 2px solid #222;}*/
+
+.board_view_reg {border-top: 2px solid #222; width: 50%; margin: 0 auto; }
+.board_view_reg dl {display: table; width: 100%; table-layout: fixed; border-bottom: 1px solid #ccc;}
+.board_view_reg dl > * {display: table-cell; table-layout: fixed; vertical-align: middle;}
+.board_view_reg dl dt {width: 176px; padding: 12px 25px; color: #000; font-size: 18px; letter-spacing: -2px; background: #fff; word-break: break-all;}
+.board_view_reg dl dt .req {display: inline-block; width: 7px; height: 7px; margin-left: 2px; font-size: 0; background: url(images/ico_req.png) no-repeat; vertical-align: 17px;}
+.board_view_reg dl dd {padding: 20px 15px; color: #222; font-size: 16px; font-weight: 300;}
+
+.board_view2 {border-top: 2px solid #222;}
 .board_view2 dl {display: block; width: 100%; } /* dl을 block으로 변경 */
 .board_view2 dl > * {display: block; width: 100%; vertical-align: middle;} /* 자식 요소들을 block으로 변경 */
 .board_view2 dl dt {padding: 12px 25px; color: #000; font-size: 18px; letter-spacing: -2px; background: #fff; word-break: break-all; margin-bottom: 0px;} /* dt에 줄 바꿈과 여백 추가 */
@@ -150,6 +153,7 @@ a.google:before {
 .board_view2 .file_add {margin-top: 5px;}
 .board_view2 .f_select,
 .board_view2 .f_input2 {vertical-align: top;}
+.board_view_reg .f_input2 {vertical-align: top;}
 /* 테두리 1px 적용 */
 .board_view2 .border-1px {border: 1px solid #222; /* 원하는 색상(#222)으로 설정 */}
 
@@ -313,6 +317,7 @@ select::-ms-expand {display:none;}
 
 .tit_4 {position: relative; padding-top: 12px; font-size: 30px; font-weight: 700;}
 .tit_4::before {content: ""; display: block; position: absolute; left: 0; top: 0; width: 30px; height: 2px; background: #B6500E;}
+.tit_4_bottom {position: relative; padding-top: 12px; font-size: 30px; font-weight: 700;}
 
 .tit_5 {color: #222; font-size: 26px; font-weight: 700;}
 
@@ -324,6 +329,7 @@ select::-ms-expand {display:none;}
 
 /* Maessage box */
 .msg_1 {padding: 33px 40px; border-top: 2px solid #ccc; border-radius: 0 0 10px 10px; color: #454545; font-size: 20px; line-height: 30px; letter-spacing: -1px; background: #f7f7f7;}
+.msg_1_scroll {padding: 33px 40px; border-top: 2px solid #ccc; border-radius: 0 0 10px 10px; color: #454545; font-size: 20px; line-height: 30px; letter-spacing: -1px; background: #f7f7f7; overflow-y: scroll; height: 300px}
 
 
 /* List */

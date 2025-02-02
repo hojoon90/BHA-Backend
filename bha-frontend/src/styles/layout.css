@@ -111,11 +111,13 @@ body {min-width: 1400px;}
 .tit_2 + .condition {margin-top: 26px;}
 .tit_2 + .board_view {margin-top: 43px;}
 .tit_2 + .board_view2 {margin-top: 43px;}
+.tit_2 + .board_view_reg {margin-top: 43px;}
 .tit_2 + .board_view3 {margin-top: 43px;}
 
 .tit_3 + .txt_1 {margin-top: 33px;}
 
 .tit_4 + .tit_5 {margin-top: 35px;}
+.tit_4_bottom + .tit_5 {margin-top: 35px;}
 
 .tit_5 + .msg_1 {margin-top: 24px;}
 .tit_5 + .pds_des {margin-top: 14px;}

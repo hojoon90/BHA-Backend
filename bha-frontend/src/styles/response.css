@@ -93,6 +93,7 @@
     .tit_2 + .board_view2 {margin-top: 31px;}
     .tit_3 + .txt_1 {margin-top: 14px;}
     .tit_4 + .tit_5 {margin-top: 27px;}
+    .tit_4_bottom + .tit_5 {margin-top: 27px;}
     .tit_5 + .msg_1 {margin-top: 11px;}
     .txt_1 + .tit_4 {margin-top: 33px;}
     
@@ -152,6 +153,14 @@
     .board_btn_area .right_col {position: static; margin-top: 15px;}
     .board_btn_area .right_col.btn1 .btn {width: 100%;}
     .board_btn_area .right_col .btn + .btn {margin: 15px 0 0 0;}
+
+    .board_view_reg {border-top: 2px solid #222; width: 100%; }
+    .board_view_reg dl dt {width: 115px; padding: 19px 19px; font-size: 14px;}
+    .board_view_reg dl dd {padding: 19px 0 19px 0; font-size: 13px;}
+    .board_view_reg .line_break {display: block; height: 40px;}
+    .board_view_reg .line_break + .line_break {margin-top: 15px;}
+    .board_view_reg .m_hide {display: none;}
+    .board_view_reg input[type=file] {width: 100%;}
 
     .board_view2 dl dt {width: 115px; padding: 19px 19px; font-size: 14px;}
     .board_view2 dl dd {padding: 19px 0 19px 15px; font-size: 13px;}
@@ -245,6 +254,7 @@
     .txt_1 {font-size: 13px; line-height: 17.5px;}
 
     .msg_1 {padding: 22px 25px; font-size: 13px; line-height: 18px;}
+    .msg_1_scroll {padding: 22px 25px; font-size: 13px; line-height: 18px; height: 300px; overflow-y: scroll}
 
 
     /* Pages */
@@ -363,8 +373,11 @@
     .BRD006 .result .list_item > div:nth-child(2)::before {content: none;}
     .BRD006 .result .list_item > div:nth-child(3)::before {content: none;}
 
-    .BOARD_CREATE_REG .board_view2 dl dd .f_select,
-    .BOARD_CREATE_REG .board_view2 dl dd .f_search2 {width: 100%;}
+    /*.BOARD_CREATE_REG .board_view2 dl dd .f_select,*/
+    /*.BOARD_CREATE_REG .board_view2 dl dd .f_search2 {width: 100%;}*/
+
+    .BOARD_CREATE_REG .board_view_reg dl dd .f_select,
+    .BOARD_CREATE_REG .board_view_reg dl dd .f_search2 {width: 100%;}
 
     .SITE_INTRO .ds_1 .t_1 {margin-top: 21px; font-size: 13px; letter-spacing: -1px;}
     .SITE_INTRO .ds_1 .li_1 {margin-top: 17px;}

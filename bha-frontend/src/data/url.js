@@ -34,6 +34,7 @@ const URL = {
 
     LOGIN: "/login",
     LOGOUT: "/logout",
+    REGISTER: "/signup/register"
 };
 
 export default URL;
