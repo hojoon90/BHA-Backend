@@ -5,7 +5,7 @@ import Link from 'next/link';
 import * as ExtApi from '@/lib/api';
 import URL from '@/data/url';
 import ForumLeftbar from "@/components/leftmenu/ForumLeftbar";
-import BoardList from "@/components/board/BoardList"; // 추가한 페이징 컴포넌트
+import BoardList from "@/components/board/BoardList";
 import { getSessionItem } from "@/lib/storage";
 import {useRouter} from "next/navigation";
 

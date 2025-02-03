@@ -43,7 +43,7 @@ function UserInfo()  {
         ):(
             <>
                 <button onClick={logInHandler} className="btn login">로그인</button>
-                <Link href={URL.HOME} className={router.pathname === URL.MYPAGE_CREATE ? "btn login cur" : "btn login"}>
+                <Link href={URL.TERMS} className={router.pathname === URL.MYPAGE_CREATE ? "btn login cur" : "btn login"}>
                     회원가입
                 </Link>
             </>

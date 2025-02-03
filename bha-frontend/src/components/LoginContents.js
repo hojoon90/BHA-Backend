@@ -45,7 +45,8 @@ export default function LoginContents({ onChangeLogin }) {
             setLocalItem(KEY_ID, "");
             checkRef.current.className = "f_chk";
         } else {
-            checkRef.current.className = "f_chk on";
+            checkRef.current.classList.add("checked"); // 체크된 상태일 때 추가할 클래스
+            // checkRef.current.className = "f_chk checked";
         }
     }, []);
 
@@ -113,9 +114,8 @@ export default function LoginContents({ onChangeLogin }) {
                                        onKeyDown={activeEnter} />
                             </span>
                             <div className="chk">
-                                <label className="f_chk" htmlFor="saveid" ref={checkRef}>
-                                    <input type="checkbox" name="" id="saveid" onChange={handleSaveIDFlag} checked={saveIDFlag}/> <em>ID저장</em>
-                                </label>
+                                <input className="f_chk" type="checkbox" name="" id="saveid" onChange={handleSaveIDFlag} checked={saveIDFlag} ref={checkRef}/>
+                                <label htmlFor="saveid">ID저장</label>
                             </div>
                             <button type="button" onClick={submitFormHandler} ><span>LOGIN</span></button>
                         </fieldset>

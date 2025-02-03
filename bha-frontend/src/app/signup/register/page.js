@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-const RegistrationContents = ({ onChangeRegistration }) => {
+const RegistrationContents = ({ confirmReg }) => {
     const [registrationInfo, setRegistrationInfo] = useState({
         username: '',
         email: '',
@@ -22,7 +22,7 @@ const RegistrationContents = ({ onChangeRegistration }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Add validation and registration logic here
-        onChangeRegistration(registrationInfo);
+        // onChangeRegistration(registrationInfo);
     };
 
     return (

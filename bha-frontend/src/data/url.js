@@ -34,6 +34,7 @@ const URL = {
 
     LOGIN: "/login",
     LOGOUT: "/logout",
+    TERMS: "/signup",
     REGISTER: "/signup/register"
 };
 

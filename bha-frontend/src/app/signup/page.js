@@ -1,8 +1,26 @@
-import Link from 'next/link';
-import URL from '@/data/url';
-import AboutLeftbar from '@/components/leftmenu/AboutLeftbar';
+"use client"
 
-export default function GreetingPage() {
+import {useState} from "react";
+import URL from '@/data/url';
+import {useRouter} from "next/navigation";
+
+export default function registerPage() {
+    const router = useRouter();
+
+    const [termsChecked, setTermsChecked] = useState(false);
+    const [privacyChecked, setPrivacyChecked] = useState(false);
+
+    const isFormValid = termsChecked && privacyChecked;
+
+    const handleRegistPage = () => {
+        if (!isFormValid) {
+            alert('약관에 모두 동의하셔야 합니다.');
+        } else {
+            // 로그인 상태면 게시글 작성 페이지로 이동
+            router.push(`${URL.REGISTER}`);
+        }
+    };
+
     return (
         <div className="container">
             <div className="c_wrap">
@@ -12,7 +30,7 @@ export default function GreetingPage() {
 
                 <div className="layout">
 
-                    <div className="contents SITE_INTRO" id="contents">
+                    <div className="contents REGIST_TERM" id="contents">
                         {/* <!-- 본문 --> */}
 
                         <h1 className="tit_3">회원 가입</h1>
@@ -83,7 +101,18 @@ export default function GreetingPage() {
                             부칙<br/>
                             본 약관은 2025년 2월 2일부터 시행됩니다.
                         </p>
-
+                        <div className="chk">
+                            <input
+                                className="f_chk"
+                                type="checkbox"
+                                id="terms"
+                                checked={termsChecked}
+                                onChange={() => setTermsChecked(!termsChecked)}
+                            />
+                            <label htmlFor="terms">
+                                이용 약관에 동의합니다.
+                            </label>
+                        </div>
                         <h2 className="tit_4_bottom">개인정보 수집 및 이용 동의</h2>
                         <h3 className="tit_5"></h3>
                         <p className="msg_1_scroll">
@@ -110,13 +139,26 @@ export default function GreetingPage() {
                             <br/>
                             본인은 위 내용을 충분히 이해하였으며, 이에 동의합니다.
                         </p>
+                        <div className="chk">
+                                <input
+                                    className="f_chk"
+                                    type="checkbox"
+                                    id="privacy"
+                                    checked={privacyChecked}
+                                    onChange={() => setPrivacyChecked(!privacyChecked)}
+                                />
+                            <label htmlFor="privacy">개인정보 수집 및 이용에 동의합니다.</label>
+                        </div>
                         <div className="board_bot"/>
                         <div className="board_btn_area">
 
                             <div className="center_col btn1">
-                                <Link href={URL.REGISTER} className="btn btn_blue_h46 w_100">
+                                <button
+                                    className="btn btn_blue_h46 w_100"
+                                    onClick={handleRegistPage}
+                                >
                                     회원가입
-                                </Link>
+                                </button>
                             </div>
                         </div>
                     </div>

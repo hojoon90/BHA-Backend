@@ -12,8 +12,9 @@
 .Plogin .login_box input[type=password]:-ms-input-placeholder {color: #aaa; opacity: 1;}
 .Plogin .login_box button {display: block; position: absolute; left: 435px; top: 70px; width: 160px; height: 110px; border-radius: 8px; color: #fff; font-size: 20px; font-weight: 500; text-align: center; line-height: 110px; background: #B9A26A;}
 .Plogin .login_box button span {display: block; position: relative; height: 100%;}
-.Plogin .login_box .chk {margin-top: 20px; font-size: 0;}
-.Plogin .login_box .chk em {display: inline-block; height: 30px; margin-left: 40px; color: #666; font-size: 16px;}
+.Plogin .login_box .chk {display: flex; justify-content: flex-start; align-items: center; width: 100%; max-width: 100%; margin-top: 20px; box-sizing: border-box;}
+/*.Plogin .login_box .chk {margin-top: 20px; font-size: 16px;}*/
+/*.Plogin .login_box .chk em {display: inline-block; height: 30px; margin-left: 40px; color: #666; font-size: 16px;}*/
 .Plogin .list {margin-top: 44px; padding: 0 360px;}
 .Plogin .list li {position: relative; padding-left: 15px; color: #666; font-size: 16px; line-height: 26px;}
 .Plogin .list li::before {content: ""; display: block; position: absolute; left: 0; top: 12px; width: 4px; height: 4px; background: #666;}
@@ -321,7 +322,11 @@
     .calendar_info ul li a {color: #222; font-size: 16px; font-weight: 300;}
     .calendar_info ul li span {position: absolute; right: 15px; top: 15px; color: #808080; font-size: 16px; font-weight: 300;}
 
-    /* 갤러리 컨테이너 */
+    /*.REGIST_TERM .chk {margin-top: 20px; font-size: 0; width: 100%; max-width: 100%}*/
+    .REGIST_TERM .chk {display: flex; justify-content: flex-end; align-items: center; width: 100%; max-width: 100%; margin-top: 20px; box-sizing: border-box;}
+
+
+/* 갤러리 컨테이너 */
     .gallery-board {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 기본 반응형 레이아웃 */

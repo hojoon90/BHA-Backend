@@ -248,6 +248,7 @@
     .tit_2 {font-size: 18px;}
     .tit_3 {font-size: 30px;}
     .tit_4 {padding-top: 11px; font-size: 18px;}
+    .tit_4_bottom {padding-top: 11px; font-size: 18px;}
     .tit_4::before {width: 25px;}
     .tit_5 {font-size: 15px;}
 
