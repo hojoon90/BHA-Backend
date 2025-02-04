@@ -3,6 +3,7 @@
 import {useState} from "react";
 import URL from '@/data/url';
 import {useRouter} from "next/navigation";
+import {setLocalItem, setSessionItem} from "@/lib/storage";
 
 export default function registerPage() {
     const router = useRouter();
@@ -11,6 +12,18 @@ export default function registerPage() {
     const [privacyChecked, setPrivacyChecked] = useState(false);
 
     const isFormValid = termsChecked && privacyChecked;
+
+    const handleTermsCheck = () => {
+        setSessionItem("TERMS_CHECK", !termsChecked);
+        setTermsChecked(!termsChecked);
+    };
+
+    const handlePrivacyCheck = () => {
+        setSessionItem("PRIVACY_CHECK", !privacyChecked);
+        setPrivacyChecked(!privacyChecked);
+    };
+
+
 
     const handleRegistPage = () => {
         if (!isFormValid) {
@@ -107,7 +120,7 @@ export default function registerPage() {
                                 type="checkbox"
                                 id="terms"
                                 checked={termsChecked}
-                                onChange={() => setTermsChecked(!termsChecked)}
+                                onChange={handleTermsCheck}
                             />
                             <label htmlFor="terms">
                                 이용 약관에 동의합니다.
@@ -145,7 +158,7 @@ export default function registerPage() {
                                     type="checkbox"
                                     id="privacy"
                                     checked={privacyChecked}
-                                    onChange={() => setPrivacyChecked(!privacyChecked)}
+                                    onChange={handlePrivacyCheck}
                                 />
                             <label htmlFor="privacy">개인정보 수집 및 이용에 동의합니다.</label>
                         </div>

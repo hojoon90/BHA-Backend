@@ -278,13 +278,11 @@ select::-ms-expand {display:none;}
 /*.f_chk {display: inline-block; position: relative; min-width: 30px; height: 30px; border: 0; line-height: 30px; background: url(images/bg_form_chk.png) no-repeat; vertical-align: top;}*/
 /*.f_chk.on {background: url(images/bg_form_chk_on.png) no-repeat;}*/
 
-.f_chk {display: inline-block; position: relative; width: 20px; margin-right: px; height: 20px; border: 1px solid #ccc; border-radius: 4px; background-color: #fff; cursor: pointer;}
-.f_chk input {display: inline-block; position: relative; width: 300px; height: 30px; }
-.f_chk::before  {content: ""; position: absolute; top: 50%; left: 50%; width: 12px; height: 6px; border: solid #fff; border-width: 0 0 3px 3px; transform: translate(-50%, -50%) rotate(-45deg); opacity: 0; transition: opacity 0.2s;}
-.f_chk.on input {background-color: #B9A26A; border-color: #B9A26A;}
-.f_chk.on::before {opacity: 1;}
+.f_chk[type="checkbox"] {appearance: none; display: inline-block; position: relative; width: 20px; height: 20px; margin-right: 5px; border: 1px solid #ccc; border-radius: 4px; background-color: #fff; cursor: pointer;}
+.f_chk[type="checkbox"]:checked {appearance: none; width: 20px; height: 20px; background-color: #B9A26A;}
+.f_chk[type="checkbox"]::before {content: ""; position: absolute; width: 0px; height: 0px; border-width: 0 2.5px 2.5px 0; transform: rotate(45deg) translate(5px, -3px);}
+.f_chk[type="checkbox"]:checked::before {content: ""; position: absolute; width: 4px; height: 8px; border-color: white; border-style: solid; border-width: 0 2.5px 2.5px 0; transform: rotate(45deg) translate(5px, -3px);}
 
-/*.f_chk input {position: absolute; opacity: 0;}*/
 
 .f_rdo {display: inline-block; position: relative; min-width: 22px; height: 22px; border: 0; line-height: 30px; background: url(images/bg_form_rdo.png) no-repeat; vertical-align: top;}
 .f_rdo + .f_rdo {margin-left: 30px;}

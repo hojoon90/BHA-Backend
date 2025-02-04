@@ -45,8 +45,8 @@ export default function LoginContents({ onChangeLogin }) {
             setLocalItem(KEY_ID, "");
             checkRef.current.className = "f_chk";
         } else {
-            checkRef.current.classList.add("checked"); // 체크된 상태일 때 추가할 클래스
-            // checkRef.current.className = "f_chk checked";
+            // checkRef.current.classList.add("checked"); // 체크된 상태일 때 추가할 클래스
+            checkRef.current.className = "f_chk checked";
         }
     }, []);
 

@@ -1,8 +1,14 @@
 "use client"
 
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
+import {useRouter} from "next/navigation";
+import URL from '@/data/url'
+import { getSessionItem } from '@/lib/storage';
 
 const RegistrationContents = ({ confirmReg }) => {
+
+    const router = useRouter();
+
     const [registrationInfo, setRegistrationInfo] = useState({
         username: '',
         email: '',
@@ -24,8 +30,16 @@ const RegistrationContents = ({ confirmReg }) => {
         // Add validation and registration logic here
         // onChangeRegistration(registrationInfo);
     };
+    useEffect(() => {
+        const sessionTerms = getSessionItem('TERMS_CHECK');
+        const sessionPrivacy = getSessionItem('PRIVACY_CHECK');
 
-    return (
+        if (!sessionTerms || !sessionPrivacy) {
+            router.push(`${URL.TERMS}`); // This will redirect the user to '/home' if no value is found in sessionStorage for 'registrationInfo'.
+        }
+    }, []);
+
+return (
         <div className="container">
             <div className="c_wrap">
 
