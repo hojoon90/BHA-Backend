@@ -39,7 +39,7 @@ function YoungsanDetail({ params }) {
             const response = await ExtApi.deletePost(postData);
             if (response.resultCode === CODE.RCV_SUCCESS) {
                 alert('게시글이 삭제되었습니다.');
-                router.push(URL.FORUM_YOUNGSAN);  // 삭제 후 목록 페이지로 이동
+                router.push(URL.NEWS_YOUNGSAN);  // 삭제 후 목록 페이지로 이동
             } else {
                 alert('게시글 삭제 실패');
             }
@@ -65,7 +65,7 @@ function YoungsanDetail({ params }) {
                 <div className="location">
                     <ul>
                         <li><Link href={URL.HOME} className="home">Home</Link></li>
-                        <li><Link href={URL.FORUM_FREE}>참여마당</Link></li>
+                        <li><Link href={URL.NEWS_NOTICE}>사찰 소식</Link></li>
                         <li>영산회상</li>
                     </ul>
                 </div>
@@ -85,7 +85,7 @@ function YoungsanDetail({ params }) {
                             boardDetail={boardDetail}
                             onClickDeleteBoardArticle={onClickDeleteBoardArticle}
                             sessionUniqId={sessionUniqId}
-                            boardUrl={URL.FORUM_YOUNGSAN}
+                            boardUrl={URL.NEWS_YOUNGSAN}
                             postId={postId}
                         />
                     </div>

@@ -4,8 +4,8 @@ import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import * as ExtApi from '@/lib/api';
 import URL from '@/data/url';
-import ForumLeftbar from "@/components/leftmenu/ForumLeftbar";
 import BoardList from "@/components/board/BoardList";
+import NewsLeftbar from "@/components/leftmenu/NewsLeftbar";
 
 function YoungsanPage(props) {
     const bbsId = "YOUNGSAN";
@@ -41,7 +41,7 @@ function YoungsanPage(props) {
                     const formattedDate = item.createdAt.split('T')[0];
 
                     mutListTag.push(
-                        <Link href={{pathname: `${URL.FORUM_YOUNGSAN}/${item.postId}`}}
+                        <Link href={{pathname: `${URL.NEWS_YOUNGSAN}/${item.postId}`}}
                               key={item.postId}
                               className="list_item"
                         >
@@ -80,18 +80,18 @@ function YoungsanPage(props) {
                 <div className="location">
                     <ul>
                         <li><Link href={URL.HOME} className="home">Home</Link></li>
-                        <li><Link href={URL.FORUM_FREE}>참여마당</Link></li>
+                        <li><Link href={URL.NEWS_NOTICE}>사찰 소식</Link></li>
                         <li>영산회상</li>
                     </ul>
                 </div>
 
                 <div className="layout">
                     {/* Navigation */}
-                    <ForumLeftbar />
+                    <NewsLeftbar />
 
                     <div className="contents SITE_GALLARY_LIST" id="contents">
                         <div className="top_tit">
-                            <h1 className="tit_1">참여마당</h1>
+                            <h1 className="tit_1">사찰 소식</h1>
                         </div>
 
                         <h2 className="tit_2">영산회상</h2>

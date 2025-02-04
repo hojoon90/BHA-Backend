@@ -144,6 +144,16 @@ a.google:before {
 .board_view_reg dl dt .req {display: inline-block; width: 7px; height: 7px; margin-left: 2px; font-size: 0; background: url(images/ico_req.png) no-repeat; vertical-align: 17px;}
 .board_view_reg dl dd {padding: 20px 15px; color: #222; font-size: 16px; font-weight: 300;}
 
+.board_view2_origin {border-top: 2px solid #222;}
+.board_view2_origin dl {display: table; width: 100%; table-layout: fixed; border-bottom: 1px solid #dde2e5;}
+.board_view2_origin dl > * {display: table-cell; table-layout: fixed; vertical-align: middle;}
+.board_view2_origin dl dt {width: 176px; padding: 12px 25px; color: #000; font-size: 18px; letter-spacing: -2px; background: #f5f6f7; word-break: break-all;}
+.board_view2_origin dl dt .req {display: inline-block; width: 7px; height: 7px; margin-left: 2px; font-size: 0; background: url(images/ico_req.png) no-repeat; vertical-align: 17px;}
+.board_view2_origin dl dd {padding: 12px 15px; color: #222; font-size: 16px; font-weight: 300;}
+.board_view2_origin .file_add {margin-top: 5px;}
+.board_view2_origin .f_select,
+.board_view2_origin .f_input2 {vertical-align: top;}
+
 .board_view2 {border-top: 2px solid #222;}
 .board_view2 dl {display: block; width: 100%; } /* dl을 block으로 변경 */
 .board_view2 dl > * {display: block; width: 100%; vertical-align: middle;} /* 자식 요소들을 block으로 변경 */
@@ -334,6 +344,8 @@ select::-ms-expand {display:none;}
 
 /* Maessage box */
 .msg_1 {padding: 33px 40px; border-top: 2px solid #ccc; border-radius: 0 0 10px 10px; color: #454545; font-size: 20px; line-height: 30px; letter-spacing: -1px; background: #f7f7f7;}
+.msg_2 {padding: 10px 30px; border-top: 2px solid #ccc; border-radius: 0 0 10px 10px; color: #454545; font-size: 15px; line-height: 20px; letter-spacing: -1px; background: #f7f7f7;}
+.msg_2 ul li em::after {content: "\00a0\00a0";  display: inline-block; width: 2em}
 .msg_1_scroll {padding: 33px 40px; border: 1px solid #ccc; border-top: 2px solid #ccc; border-radius: 0 0 10px 10px; color: #454545; font-size: 20px; line-height: 30px; letter-spacing: -1px; background: #f7f7f7; overflow-y: scroll; height: 300px}
 
 

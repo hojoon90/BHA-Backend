@@ -75,6 +75,7 @@
         .footer .right_col a:last-child {margin-right: 15px;}
         .footer .right_col a .w {display: none;}
         .footer .right_col a .m {display: block; height: 28px;}
+
     }
 
     .location {display: none;}
@@ -255,6 +256,7 @@
     .txt_1 {font-size: 13px; line-height: 17.5px;}
 
     .msg_1 {padding: 22px 25px; font-size: 13px; line-height: 18px;}
+    .msg_2 {padding: 22px 25px; font-size: 10px; line-height: 18px;}
     .msg_1_scroll {padding: 22px 25px; font-size: 13px; line-height: 18px; height: 300px; overflow-y: scroll}
 
 

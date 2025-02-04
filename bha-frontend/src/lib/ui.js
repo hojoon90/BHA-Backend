@@ -42,18 +42,18 @@ export default function InitPage() {
                 document.querySelector('.btnAllMenu').title = '전체메뉴 닫힘';
             }
         });
-        // 회원가입, 마이페이지 항목 클릭시 메뉴 닫기
-        document.querySelector('.user_info').addEventListener('click', (e) => {
-            if (e.target.matches('a')) {
-                document.querySelector('.all_menu.WEB').classList.add('closed');
-                document.querySelector('.btnAllMenu').classList.remove('active');
-                document.querySelector('.btnAllMenu').title = '전체메뉴 닫힘';
-            }
-        });
-        // 회원가입, 마이페이지 항목 클릭시 모바일 전체메뉴 열기
-        document.querySelector('.user_info_m').addEventListener('click', (e) => {
-            document.querySelector('.all_menu.Mobile').classList.add('closed');
-        });
+        // // 회원가입, 마이페이지 항목 클릭시 메뉴 닫기
+        // document.querySelector('.user_info').addEventListener('click', (e) => {
+        //     if (e.target.matches('a')) {
+        //         document.querySelector('.all_menu.WEB').classList.add('closed');
+        //         document.querySelector('.btnAllMenu').classList.remove('active');
+        //         document.querySelector('.btnAllMenu').title = '전체메뉴 닫힘';
+        //     }
+        // });
+        // // 회원가입, 마이페이지 항목 클릭시 모바일 전체메뉴 열기
+        // document.querySelector('.user_info_m').addEventListener('click', (e) => {
+        //     document.querySelector('.all_menu.Mobile').classList.add('closed');
+        // });
         // Mobile 서브메뉴 항목 클릭시 메뉴 닫기: 2023.04.13(목) 김일국 추가
         document.querySelectorAll('.all_menu.Mobile .submenu a')
             .forEach(el => el.addEventListener('click', (e) =>  {
@@ -82,7 +82,7 @@ export default function InitPage() {
             const el = e.target;
 
             // 메인화면 미니보드
-            if (el.matches('.SITE_HISTORY .mini_board .tab li a')) {
+            if (el.matches('.mini_board .tab li a')) {
                 e.preventDefault();
                 const el = e.target;
                 const tabs = el.closest('.tab');
@@ -92,7 +92,7 @@ export default function InitPage() {
                 el.classList.add('on');
 
                 // 미니보드 표시 상태 변경
-                const divs = document.querySelectorAll('.SITE_HISTORY .mini_board .list > div');
+                const divs = document.querySelectorAll('.mini_board .list > div');
                 console.log(divs);
                 divs.forEach(div => div.style.display = 'none');
 

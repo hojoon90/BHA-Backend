@@ -22,6 +22,7 @@ const AboutLeftbar = () => {
                     <li><Link href={URL.ABOUT_GREETING} className={isActive(URL.ABOUT_GREETING) ? "cur" : ""}>주지스님 인사말</Link></li>
                     <li><Link href={URL.ABOUT_HISTORY} className={isActive(URL.ABOUT_HISTORY) ? "cur" : ""}>연혁</Link></li>
                     {/*<li><Link href={URL.ABOUT_ORGANIZATION} className={isActive(URL.ABOUT_ORGANIZATION) ? "cur" : ""}>조직소개</Link></li>*/}
+                    <li><Link href={URL.ABOUT_TREASURE} className={isActive(URL.ABOUT_TREASURE) ? "cur" : ""}>성보 문화재</Link></li>
                     <li><Link href={URL.ABOUT_LOCATION} className={isActive(URL.ABOUT_LOCATION) ? "cur" : ""}>오시는 길</Link></li>
                 </ul>
             </div>

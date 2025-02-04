@@ -85,6 +85,7 @@ body {min-width: 1400px;}
 .footer .info .m_show {display: none;}
 .footer .right_col {position: absolute; right: 0; top: 73px; font-size: 0;}
 .footer .right_col a {display: inline-block; margin-right: 60px; vertical-align: top;}
+.footer .right_col a span {display: block; height: 28px; font-size: 16px; color:#888}
 .footer .right_col a .m {display: none;}
 .footer .right_col img {display: block;}
 

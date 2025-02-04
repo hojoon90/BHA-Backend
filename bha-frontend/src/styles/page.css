@@ -161,7 +161,7 @@
 
     .SITE_HISTORY .mini_board .tab::after {content: ""; display: block; clear: both;}
     .SITE_HISTORY .mini_board .tab li {float: left;}
-    .SITE_HISTORY .mini_board .tab li + li {margin-left: 40px;}
+    .SITE_HISTORY .mini_board .tab li + li {margin-left: 20px;}
     .SITE_HISTORY .mini_board .tab li a {display: block; position: relative; padding-bottom: 12px; color: #ccc; font-size: 20px; font-weight: 700;}
     .SITE_HISTORY .mini_board .tab li a.on {color: #222;}
     .SITE_HISTORY .mini_board .tab li a.on::after {content: ""; display: block; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: #0c0b0b;}
@@ -173,6 +173,42 @@
     .SITE_HISTORY .mini_board .list ul > li span {position: absolute; right: 0; top: 4px; color: #aaa; font-size: 16px;}
     .SITE_HISTORY .mini_board .two {display: none;}
     .SITE_HISTORY .mini_board .three {display: none;}
+
+    .TREASURE_LIST .mini_board .tab::after {content: ""; display: block; clear: both;}
+    .TREASURE_LIST .mini_board .tab li {float: left;}
+    .TREASURE_LIST .mini_board .tab li + li {margin-left: 25px;}
+    .TREASURE_LIST .mini_board .tab li a {display: block; position: relative; padding-bottom: 12px; color: #ccc; font-size: 20px; font-weight: 700;}
+    .TREASURE_LIST .mini_board .tab li a.on {color: #222;}
+    .TREASURE_LIST .mini_board .tab li a.on::after {content: ""; display: block; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: #0c0b0b;}
+    .TREASURE_LIST .mini_board .list ul {margin-top: 33px;}
+    .TREASURE_LIST .mini_board .list ul > li {position: relative;}
+    .TREASURE_LIST .mini_board .list ul > li + li {margin-top: 10px;}
+    .TREASURE_LIST .mini_board .list ul > li a {display: block; width: calc(100% - 100px); color: #666; font-size: 20px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;}
+    .TREASURE_LIST .mini_board .list ul > li a:hover {color: #222; text-decoration: underline;}
+    .TREASURE_LIST .mini_board .list ul > li span {position: absolute; right: 0; top: 4px; color: #aaa; font-size: 16px;}
+    .TREASURE_LIST .mini_board .two {display: none;}
+    .TREASURE_LIST .mini_board .three {display: none;}
+    .TREASURE_LIST .mini_board .four {display: none;}
+    .TREASURE_LIST .mini_board .five {display: none;}
+    .TREASURE_LIST .mini_board .six {display: none;}
+    .TREASURE_LIST .mini_board .seven {display: none;}
+    .TREASURE_LIST .mini_board .eight {display: none;}
+    .TREASURE_LIST .mini_board .nine {display: none;}
+
+    .KINDERGARTEN_LIST .mini_board .tab::after {content: ""; display: block; clear: both;}
+    .KINDERGARTEN_LIST .mini_board .tab li {float: left;}
+    .KINDERGARTEN_LIST .mini_board .tab li + li {margin-left: 40px;}
+    .KINDERGARTEN_LIST .mini_board .tab li a {display: block; position: relative; padding-bottom: 12px; color: #ccc; font-size: 20px; font-weight: 700;}
+    .KINDERGARTEN_LIST .mini_board .tab li a.on {color: #222;}
+    .KINDERGARTEN_LIST .mini_board .tab li a.on::after {content: ""; display: block; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: #0c0b0b;}
+    .KINDERGARTEN_LIST .mini_board .list ul {margin-top: 33px;}
+    .KINDERGARTEN_LIST .mini_board .list ul > li {position: relative;}
+    .KINDERGARTEN_LIST .mini_board .list ul > li + li {margin-top: 10px;}
+    .KINDERGARTEN_LIST .mini_board .list ul > li a {display: block; width: calc(100% - 100px); color: #666; font-size: 20px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;}
+    .KINDERGARTEN_LIST .mini_board .list ul > li a:hover {color: #222; text-decoration: underline;}
+    .KINDERGARTEN_LIST .mini_board .list ul > li span {position: absolute; right: 0; top: 4px; color: #aaa; font-size: 16px;}
+    .KINDERGARTEN_LIST .mini_board .two {display: none;}
+    .KINDERGARTEN_LIST .mini_board .three {display: none;}
 
     .PDS_LIST .pdslist {margin-top: 24px; border-top: 2px solid #ccc; background: #f7f7f7;}
     .PDS_LIST .pdslist ul {padding-top: 40px;}

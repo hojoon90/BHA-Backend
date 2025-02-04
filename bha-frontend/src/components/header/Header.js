@@ -37,9 +37,9 @@ function Header() {
 
                 <Navbar/>
 
-                <div className="user_info">
-                    <UserInfo/>
-                </div>
+                {/*<div className="user_info">*/}
+                    {/*<UserInfo/>*/}
+                {/*</div>*/}
 
                 <div className="right_a">
                     <button type="button" className="btn btnAllMenu" title="전체메뉴 닫힘">전체메뉴</button>
@@ -55,7 +55,7 @@ function Header() {
             {/*모바일 전체메뉴*/}
             <div className="all_menu Mobile closed">
                 <div className="user_info_m">
-                    <UserInfo/>
+                    {/*<UserInfo/>*/}
                     <button className="btn noscript close" type="button">전체메뉴 닫기</button>
                 </div>
                 <div className="menu">

@@ -38,7 +38,7 @@ function BoardDetail({ boardDetail, onClickDeleteBoardArticle,
                 {sessionUniqId === boardDetail?.createdBy && (
                     <div className="left_col btn3">
                         <Link
-                            href={ `${URL.FORUM_FREE}/${postId}/edit` /*, query: { postId} */}
+                            href={ `${URL.NEWS_YOUNGSAN}/${postId}/edit` /*, query: { postId} */}
                             className="btn btn_skyblue_h46 w_100"
                         >
                             수정

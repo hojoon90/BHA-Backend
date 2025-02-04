@@ -22,6 +22,7 @@ const NewsLeftbar = () => {
                     <li><Link href={URL.NEWS} className={isActive(URL.NEWS) ? "cur" : ""}>법장사 뉴스</Link></li>
                     <li><Link href={URL.NEWS_CALENDAR} className={isActive(URL.ABOUT_HISTORY) ? "cur" : ""}>사찰 일정</Link></li>
                     <li><Link href={URL.NEWS_VIDEO} className={isActive(URL.NEWS_VIDEO) ? "cur" : ""}>법회 영상</Link></li>
+                    <li><Link href={URL.NEWS_YOUNGSAN} className={isActive(URL.NEWS_YOUNGSAN) ? "cur" : ""}>영산회상</Link></li>
                 </ul>
             </div>
         </div>

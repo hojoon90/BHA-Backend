@@ -6,6 +6,7 @@ const URL = {
     ABOUT_SITE:"/about/site",
     ABOUT_GREETING:"/about/greeting",
     ABOUT_HISTORY:"/about/history",
+    ABOUT_TREASURE:"/about/treasure",
     ABOUT_LOCATION:"/about/location",
 
     //법회, 행사
@@ -19,11 +20,16 @@ const URL = {
     NEWS_CALENDAR: "/news/calendar",
     NEWS_CALENDAR_DETAIL: "/news/calendar/detail",
     NEWS_VIDEO: "/news/video",
+    NEWS_YOUNGSAN: "/news/youngsan",
+
+    //포교 및 신행단체
+    COMMUNITY_SCHOOL: "/community/school",
+    COMMUNITY_SANGHA: "/community/sangha",
+    COMMUNITY_KINDERGARTEN: "/community/kindergarten",
 
     //참여마당
-    FORUM_FREE: "/forum/free",
-    FORUM_GALLERY: "/forum/gallery",
-    FORUM_YOUNGSAN: "/forum/youngsan",
+    // FORUM_FREE: "/forum/free",
+    // FORUM_GALLERY: "/forum/gallery",
 
     //관리자용
     ADMIN: "/admin",
