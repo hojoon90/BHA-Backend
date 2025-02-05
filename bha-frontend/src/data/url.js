@@ -16,13 +16,12 @@ const URL = {
 
     //소식, 일정
     NEWS_NOTICE: "/news/notice",
-    NEWS: "/news",
+    NEWS_MESSAGE: "/news/message",
     NEWS_CALENDAR: "/news/calendar",
-    NEWS_CALENDAR_DETAIL: "/news/calendar/detail",
     NEWS_VIDEO: "/news/video",
     NEWS_YOUNGSAN: "/news/youngsan",
 
-    //포교 및 신행단체
+    //포교 및 신행
     COMMUNITY_SCHOOL: "/community/school",
     COMMUNITY_SANGHA: "/community/sangha",
     COMMUNITY_KINDERGARTEN: "/community/kindergarten",
@@ -32,8 +31,11 @@ const URL = {
     // FORUM_GALLERY: "/forum/gallery",
 
     //관리자용
-    ADMIN: "/admin",
-    ADMIN_CALENDAR_CREATE: "/news/calendar/create",
+    ADMIN_LOGIN: "/admin/login",
+    ADMIN_CALENDAR: "/admin/calendar",
+    ADMIN_CALENDAR_CREATE: "/admin/calendar/create",
+    ADMIN_CALENDAR_DETAIL: "/admin/calendar/detail",
+
 
 
     MYPAGE_MODIFY: "/mypage/modify",

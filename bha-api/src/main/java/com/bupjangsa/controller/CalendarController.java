@@ -1,6 +1,7 @@
 package com.bupjangsa.controller;
 
 import com.bupjangsa.dto.AppResponse;
+import com.bupjangsa.dto.response.CalendarResponse;
 import com.bupjangsa.dto.response.CalendarResponse.CalendarList;
 import com.bupjangsa.facade.CalendarFacade;
 import jakarta.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import static com.bupjangsa.dto.request.CalendarRequest.*;
+import static com.bupjangsa.dto.response.CalendarResponse.*;
 
 @Validated
 @RestController
@@ -43,6 +45,14 @@ public class CalendarController {
     ){
         return ResponseEntity.status(HttpStatus.OK)
                 .body(calendarFacade.getCalendarList(year, month));
+    }
+
+    @GetMapping("/event/{calId}")
+    public ResponseEntity<AppResponse<CalendarDetail>> getCalendaDetail(
+            @PathVariable Long calId
+    ){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(calendarFacade.getCalendarDetail(calId));
     }
 
     @DeleteMapping

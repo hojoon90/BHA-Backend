@@ -30,13 +30,13 @@ function MobileMenu() {
                 <div className="submenu closed">
                     <ul>
                         <li><Link href={URL.NEWS_NOTICE} className={router.pathname === URL.NEWS_NOTICE ? "cur" : ""}>공지사항</Link></li>
-                        <li><Link href={URL.NEWS} className={router.pathname === URL.NEWS ? "cur" : ""}>법장사 뉴스</Link></li>
+                        <li><Link href={URL.NEWS_MESSAGE} className={router.pathname === URL.NEWS_MESSAGE ? "cur" : ""}>법장사 뉴스</Link></li>
                         <li><Link href={URL.NEWS_CALENDAR} className={router.pathname === URL.NEWS_CALENDAR ? "cur" : ""}>사찰 일정</Link></li>
                         <li><Link href={URL.NEWS_VIDEO} className={router.pathname === URL.NEWS_VIDEO ? "cur" : ""}>법회 영상</Link></li>
                         <li><Link href={URL.NEWS_YOUNGSAN} className={router.pathname === URL.NEWS_YOUNGSAN ? "cur" : ""}>영산회상</Link></li>
                     </ul>
                 </div>
-                <h3><a href="#community">포교 및 신행단체</a></h3>
+                <h3><a href="#community">포교 및 신행</a></h3>
                 <div className="submenu closed">
                     <ul>
                         <li><Link href={URL.COMMUNITY_SCHOOL} className={router.pathname === URL.COMMUNITY_SCHOOL ? "cur" : ""}>영산불교학교</Link></li>

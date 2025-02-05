@@ -11,7 +11,7 @@ public class NoticeBoardFactory implements PostFactory {
 
     @Override
     public boolean selectFactory(BoardType boardType) {
-        return boardType.equals(BoardType.NOTICE);
+        return boardType.equals(BoardType.NEWS_NOTICE);
     }
 
     @Override

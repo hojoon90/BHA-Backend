@@ -16,7 +16,7 @@ const CommunityLeftBar = () => {
     return (
         <div className="nav">
             <div className="inner">
-                <h2>포교 및 신행단체</h2>
+                <h2>포교 및 신행</h2>
                 <ul>
                     <li><Link href={URL.COMMUNITY_SCHOOL} className={router.pathname === URL.COMMUNITY_SCHOOL ? "cur" : ""}>영산불교학교</Link></li>
                     <li><Link href={URL.COMMUNITY_SANGHA} className={router.pathname === URL.COMMUNITY_SANGHA ? "cur" : ""}>신행단체 안내</Link></li>

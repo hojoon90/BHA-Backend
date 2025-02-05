@@ -143,29 +143,30 @@ a.google:before {
 .board_view_reg dl dt {width: 176px; padding: 12px 25px; color: #000; font-size: 18px; letter-spacing: -2px; background: #fff; word-break: break-all;}
 .board_view_reg dl dt .req {display: inline-block; width: 7px; height: 7px; margin-left: 2px; font-size: 0; background: url(images/ico_req.png) no-repeat; vertical-align: 17px;}
 .board_view_reg dl dd {padding: 20px 15px; color: #222; font-size: 16px; font-weight: 300;}
-
-.board_view2_origin {border-top: 2px solid #222;}
-.board_view2_origin dl {display: table; width: 100%; table-layout: fixed; border-bottom: 1px solid #dde2e5;}
-.board_view2_origin dl > * {display: table-cell; table-layout: fixed; vertical-align: middle;}
-.board_view2_origin dl dt {width: 176px; padding: 12px 25px; color: #000; font-size: 18px; letter-spacing: -2px; background: #f5f6f7; word-break: break-all;}
-.board_view2_origin dl dt .req {display: inline-block; width: 7px; height: 7px; margin-left: 2px; font-size: 0; background: url(images/ico_req.png) no-repeat; vertical-align: 17px;}
-.board_view2_origin dl dd {padding: 12px 15px; color: #222; font-size: 16px; font-weight: 300;}
-.board_view2_origin .file_add {margin-top: 5px;}
-.board_view2_origin .f_select,
-.board_view2_origin .f_input2 {vertical-align: top;}
+.board_view_reg .f_input2 {vertical-align: top;}
 
 .board_view2 {border-top: 2px solid #222;}
-.board_view2 dl {display: block; width: 100%; } /* dl을 block으로 변경 */
-.board_view2 dl > * {display: block; width: 100%; vertical-align: middle;} /* 자식 요소들을 block으로 변경 */
-.board_view2 dl dt {padding: 12px 25px; color: #000; font-size: 18px; letter-spacing: -2px; background: #fff; word-break: break-all; margin-bottom: 0px;} /* dt에 줄 바꿈과 여백 추가 */
+.board_view2 dl {display: table; width: 100%; table-layout: fixed; border-bottom: 1px solid #dde2e5;}
+.board_view2 dl > * {display: table-cell; table-layout: fixed; vertical-align: middle;}
+.board_view2 dl dt {width: 176px; padding: 12px 25px; color: #000; font-size: 18px; letter-spacing: -2px; background: #f5f6f7; word-break: break-all;}
 .board_view2 dl dt .req {display: inline-block; width: 7px; height: 7px; margin-left: 2px; font-size: 0; background: url(images/ico_req.png) no-repeat; vertical-align: 17px;}
-.board_view2 dl dd {padding: 12px 0px; color: #222; font-size: 16px; font-weight: 300; margin-top: 0px;} /* dd에 줄 바꿈과 여백 추가 */
+.board_view2 dl dd {padding: 12px 15px; color: #222; font-size: 16px; font-weight: 300;}
 .board_view2 .file_add {margin-top: 5px;}
 .board_view2 .f_select,
 .board_view2 .f_input2 {vertical-align: top;}
-.board_view_reg .f_input2 {vertical-align: top;}
+
+.board_view2_post {border-top: 2px solid #222;}
+.board_view2_post dl {display: block; width: 100%; } /* dl을 block으로 변경 */
+.board_view2_post dl > * {display: block; width: 100%; vertical-align: middle;} /* 자식 요소들을 block으로 변경 */
+.board_view2_post dl dt {padding: 12px 25px; color: #000; font-size: 18px; letter-spacing: -2px; background: #fff; word-break: break-all; margin-bottom: 0px;} /* dt에 줄 바꿈과 여백 추가 */
+.board_view2_post dl dt .req {display: inline-block; width: 7px; height: 7px; margin-left: 2px; font-size: 0; background: url(images/ico_req.png) no-repeat; vertical-align: 17px;}
+.board_view2_post dl dd {padding: 12px 0px; color: #222; font-size: 16px; font-weight: 300; margin-top: 0px;} /* dd에 줄 바꿈과 여백 추가 */
+.board_view2_post .file_add {margin-top: 5px;}
+.board_view2_post .f_select,
+.board_view2_post .f_input2 {vertical-align: top;}
 /* 테두리 1px 적용 */
-.board_view2 .border-1px {border: 1px solid #222; /* 원하는 색상(#222)으로 설정 */}
+.board_view2_post .border-1px {border: 1px solid #222; /* 원하는 색상(#222)으로 설정 */}
+
 
 .board_view3 {border-top: 2px solid #222;}
 .board_view3 .tit {padding: 24px; border-bottom: 1px solid #888; color: #222; font-size: 18px; font-weight: 500; text-align: center;}

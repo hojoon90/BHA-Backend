@@ -31,14 +31,14 @@ function SubMenus() {
                 <h3>사찰 소식</h3>
                 <ul>
                     <li><Link href={URL.NEWS_NOTICE} className={router.pathname === URL.NEWS_NOTICE ? "cur" : ""}>공지사항</Link></li>
-                    <li><Link href={URL.NEWS} className={router.pathname === URL.NEWS ? "cur" : ""}>법장사 뉴스</Link></li>
+                    <li><Link href={URL.NEWS_MESSAGE} className={router.pathname === URL.NEWS_MESSAGE ? "cur" : ""}>법장사 뉴스</Link></li>
                     <li><Link href={URL.NEWS_CALENDAR} className={router.pathname === URL.ABOUT_HISTORY ? "cur" : ""}>사찰 일정</Link></li>
                     <li><Link href={URL.NEWS_VIDEO} className={router.pathname === URL.NEWS_VIDEO ? "cur" : ""}>법회 영상</Link></li>
                     <li><Link href={URL.NEWS_YOUNGSAN} className={router.pathname === URL.NEWS_YOUNGSAN ? "cur" : ""}>영산회상</Link></li>
                 </ul>
             </div>
             <div className="col">
-                <h3>포교 및 신행단체</h3>
+                <h3>포교 및 신행</h3>
                 <ul>
                     <li><Link href={URL.COMMUNITY_SCHOOL} className={router.pathname === URL.COMMUNITY_SCHOOL ? "cur" : ""}>영산불교학교</Link></li>
                     <li><Link href={URL.COMMUNITY_SANGHA} className={router.pathname === URL.COMMUNITY_SANGHA ? "cur" : ""}>신행단체 안내</Link></li>

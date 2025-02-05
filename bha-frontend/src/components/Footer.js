@@ -16,7 +16,7 @@ function Footer() {
                 <div className="right_col">
 
                     <br/>
-                    <a href={URL.ADMIN}> <span className="w">관리자 로그인</span></a>
+                    <a href={URL.ADMIN_LOGIN}> <span className="w">관리자 로그인</span></a>
                 </div>
             </div>
         </div>

@@ -7,6 +7,7 @@ import URL from "@/data/url";
 import CODE from "@/data/code";
 import NewsLeftbar from "@/components/leftmenu/NewsLeftbar";
 import { getSessionItem } from "@/lib/storage";
+import AdminLeftBar from "@/components/leftmenu/AdminLeftBar";
 
 function NewsCalendarList() {
     const TODAY = new Date();
@@ -107,35 +108,27 @@ function NewsCalendarList() {
 
                     return (
                         <td key={dayIdx}>
-                            {/*{isAdmin ? (*/}
-                            {/*    <Link*/}
-                            {/*        href={{*/}
-                            {/*            pathname: URL.ADMIN_CALENDAR_CREATE,*/}
-                            {/*            query: {useDate: formattedDate},*/}
-                            {/*        }}*/}
-                            {/*        className="day"*/}
-                            {/*    >*/}
-                            {/*        {day}*/}
-                            {/*    </Link>*/}
-                            {/*) : (*/}
-                                <span className="day">{day}</span>
-                            {/*)}*/}
+                            <Link
+                                href={{
+                                    pathname: URL.ADMIN_CALENDAR_CREATE,
+                                    query: {useDate: formattedDate},
+                                }}
+                                className="day"
+                            >
+                                {day}
+                            </Link>
 
                             {daySchedules.map((schedule) =>
-                                // isAdmin ? (
-                                //     <Link
-                                //         href={{
-                                //             pathname: URL.NEWS_CALENDAR_DETAIL,
-                                //             query: {calId: schedule.calId},
-                                //         }}
-                                //         key={schedule.calId}
-                                //     >
-                                //         <br/><br/>
-                                //         {schedule.eventName}
-                                //     </Link>
-                                // ) : (
-                                    <span key={schedule.calId}><br/><br/>{schedule.eventName}</span>
-                                // )
+                                <Link
+                                    href={{
+                                        pathname: URL.ADMIN_CALENDAR_DETAIL,
+                                        query: {calId: schedule.calId},
+                                    }}
+                                    key={schedule.calId}
+                                >
+                                    <br/><br/>
+                                    {schedule.eventName}
+                                </Link>
                             )}
 
                         </td>
@@ -167,18 +160,18 @@ function NewsCalendarList() {
                             </Link>
                         </li>
                         <li>
-                            <Link href={URL.NEWS_NOTICE}>사찰 소식</Link>
+                            <Link href={URL.NEWS_NOTICE}>사이트관리</Link>
                         </li>
-                        <li>사찰 일정</li>
+                        <li>일정 관리</li>
                     </ul>
                 </div>
                 <div className="layout">
-                    <NewsLeftbar />
+                    <AdminLeftBar />
                     <div className="contents NOTICE_LIST" id="contents">
                         <div className="top_tit">
-                            <h1 className="tit_1">사찰 소식</h1>
+                            <h1 className="tit_1">사이트관리</h1>
                         </div>
-                        <h2 className="tit_2">사찰 일정</h2>
+                        <h2 className="tit_2">일정 관리</h2>
                         <div className="condition">
                             <ul>
                                 <li className="half L">

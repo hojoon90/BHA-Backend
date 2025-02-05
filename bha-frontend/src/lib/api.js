@@ -109,12 +109,12 @@ export async function loginUser(postData){
             body: JSON.stringify(postData),
         });
         if (!res.ok) {
-            throw new Error('Failed to create post');
+            console.error(res.resultMsg)
         }
         return await res.json();
     } catch (error) {
         console.error('Error creating post:', error);
-        throw error;
+        alert(error);
     }
 }
 
@@ -147,6 +147,24 @@ export async function getCalendar(params){
         });
         if (!res.ok) {
             throw new Error('Failed to create post');
+        }
+        return await res.json();
+    } catch (error) {
+        console.error('Error creating post:', error);
+        throw error;
+    }
+}
+
+export async function getCalendarDetail(params){
+    try{
+        const res = await fetch(`${API_URL}/calendar/event/${params}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        if (!res.ok) {
+            throw new Error('Failed to get calenter');
         }
         return await res.json();
     } catch (error) {

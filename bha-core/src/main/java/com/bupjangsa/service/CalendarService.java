@@ -45,6 +45,12 @@ public class CalendarService {
                 .toList();
     }
 
+    public CalendarInfo getCalendarInfo(Long calId){
+        return calendarRepository.findById(calId)
+                .map(CalendarInfo::from)
+                .orElseThrow(() -> new NotFoundException(DATA_NOT_FOUND));
+    }
+
     @Transactional
     public void deleteCalendar(Long calId){
 

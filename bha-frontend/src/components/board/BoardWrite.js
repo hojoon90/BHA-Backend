@@ -93,7 +93,7 @@ function BoardWrite({ postId, listUrl, mode, posblAtchFileNumber, boardType }) {
 
     return (
         <div className="contents NOTICE_LIST" id="contents">
-            <div className="board_view2">
+            <div className="board_view2_post">
                 <h2 className="tit_2">{isEditing ? "글 수정" : "글 작성"}</h2>
                 <dl>
                     <dd>

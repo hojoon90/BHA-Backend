@@ -24,6 +24,14 @@ function NewsDetail({ params }) {
         setSessionUniqId(sessionUser?.accountId); // 세션 정보 로드 후 상태 업데이트
     }, []);
 
+    // 로그인 상태 확인 함수 (예시)
+    const isLoggedIn = () => {
+        // 여기서 로그인 상태를 확인하는 로직을 추가합니다.
+        // 예: localStorage나 쿠키에서 토큰 확인
+        const token = getSessionItem('accessToken'); // 예시
+        return !!token; // 토큰이 있으면 true, 없으면 false
+    };
+
     const retrieveDetail = async () => {
         try {
             const response = await ExtApi.fetchPostById(boardType, postId);
@@ -39,7 +47,7 @@ function NewsDetail({ params }) {
             const response = await ExtApi.deletePost(postData);
             if (response.resultCode === CODE.RCV_SUCCESS) {
                 alert('게시글이 삭제되었습니다.');
-                router.push(URL.NEWS);  // 삭제 후 목록 페이지로 이동
+                router.push(URL.NEWS_MESSAGE);  // 삭제 후 목록 페이지로 이동
             } else {
                 alert('게시글 삭제 실패');
             }
@@ -85,7 +93,7 @@ function NewsDetail({ params }) {
                             boardDetail={boardDetail}
                             onClickDeleteBoardArticle={onClickDeleteBoardArticle}
                             sessionUniqId={sessionUniqId}
-                            boardUrl={URL.NEWS}
+                            boardUrl={URL.NEWS_MESSAGE}
                             postId={postId}
                         />
                     </div>

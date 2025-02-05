@@ -9,6 +9,7 @@ import Navbar from "@/components/header/Navbar";
 import UserInfo from "@/components/header/UserInfo";
 import SubMenus from "@/components/header/SubMenus";
 import MobileMenu from "@/components/header/MobileMenu";
+import AdminUserInfo from "@/components/header/AdminUserInfo";
 
 // import CODE from 'constants/code';
 function Header() {
@@ -37,9 +38,9 @@ function Header() {
 
                 <Navbar/>
 
-                {/*<div className="user_info">*/}
-                    {/*<UserInfo/>*/}
-                {/*</div>*/}
+                <div className="user_info">
+                    <AdminUserInfo/>
+                </div>
 
                 <div className="right_a">
                     <button type="button" className="btn btnAllMenu" title="전체메뉴 닫힘">전체메뉴</button>

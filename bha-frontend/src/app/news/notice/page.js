@@ -1,14 +1,18 @@
 "use client"
 
-import { useState, useEffect, useCallback } from 'react';
+import {useState, useEffect, useCallback, useContext} from 'react';
+import {useRouter} from "next/navigation";
 import Link from 'next/link';
 import * as ExtApi from '@/lib/api';
 import URL from '@/data/url';
 import NewsLeftbar from "@/components/leftmenu/NewsLeftbar";
-import BoardList from "@/components/board/BoardList"; // 추가한 페이징 컴포넌트
+import BoardList from "@/components/board/BoardList";
+import {AuthContext} from "@/components/AuthProvider"; // 추가한 페이징 컴포넌트
 
 function NoticePage(props) {
-    const bbsId = "NOTICE";
+    const bbsId = "NEWS_NOTICE";
+    const router = useRouter();
+    const { user, updateUser } = useContext(AuthContext);
 
     // 기본 검색 조건
     const [searchCondition, setSearchCondition] = useState({
@@ -69,6 +73,11 @@ function NoticePage(props) {
         }));
     };
 
+    const handleCreatePost = () => {
+        // 로그인 상태면 게시글 작성 페이지로 이동
+        router.push(`${URL.NEWS_NOTICE}/create`);
+    };
+
     useEffect(() => {
         retrieveList(searchCondition);
     }, [searchCondition]);
@@ -102,6 +111,24 @@ function NoticePage(props) {
                             paginationInfo={paginationInfo}
                             moveToPage={moveToPage}
                         />
+
+                        {user?.authority === 'ADMIN' ? (
+                            <div className="board_btn_area">
+                                <div className="left_col btn1">
+                                </div>
+
+                                <div className="right_col btn1">
+                                    <button
+                                        className="btn btn_blue_h46 w_100"
+                                        onClick={handleCreatePost}
+                                    >
+                                        등록
+                                    </button>
+                                </div>
+                            </div>
+                        ):(
+                            <></>
+                        )}
                     </div>
                 </div>
             </div>

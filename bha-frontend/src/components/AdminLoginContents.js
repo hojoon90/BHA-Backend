@@ -73,6 +73,10 @@ export default function AdminLoginContents({ onChangeLogin }) {
         ExtApi.loginUser(userInfo)
             .then(resp  => {
                 // let resultVO = resp.resultVO;
+                if(resp.resultCode === 404){
+                    alert(resp.resultMsg);
+                    return;
+                }
                 let accessToken = resp?.data.accessToken || null;
 
                 setSessionItem('accessToken', accessToken);
@@ -84,8 +88,6 @@ export default function AdminLoginContents({ onChangeLogin }) {
                     updateUser(resultVO);
                     if (saveIDFlag) setLocalItem(KEY_ID, resultVO?.id);
                     router.push(redirectUrl);
-                } else {
-                    alert(resp.resultMessage);
                 }
             });
     };

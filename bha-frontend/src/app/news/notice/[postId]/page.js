@@ -39,7 +39,7 @@ function NoticeDetail({ params }) {
             const response = await ExtApi.deletePost(postData);
             if (response.resultCode === CODE.RCV_SUCCESS) {
                 alert('게시글이 삭제되었습니다.');
-                router.push(URL.NEWS);  // 삭제 후 목록 페이지로 이동
+                router.push(URL.NEWS_MESSAGE);  // 삭제 후 목록 페이지로 이동
             } else {
                 alert('게시글 삭제 실패');
             }

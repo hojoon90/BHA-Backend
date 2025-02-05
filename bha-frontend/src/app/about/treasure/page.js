@@ -38,10 +38,6 @@ export default function HistoryPage() {
                                 <li><a href="#2010년대">2010년대</a></li>
                                 <li><a href="#2011년대">2011년대</a></li>
                                 <li><a href="#2012년대">2012년대</a></li>
-                                <li><a href="#2013년대">2013년대</a></li>
-                                <li><a href="#2014년대">2014년대</a></li>
-                                <li><a href="#2015년대">2015년대</a></li>
-                                <li><a href="#2016년대">2016년대</a></li>
                             </ul>
                             <div className="list">
                                 <div className="one msg_2">
@@ -64,21 +60,6 @@ export default function HistoryPage() {
                                     5
                                 </div>
 
-                                <div className="six msg_2">
-                                    6
-                                </div>
-
-                                <div className="seven msg_2">
-                                    7
-                                </div>
-
-                                <div className="eight msg_2">
-                                    8
-                                </div>
-
-                                <div className="nine msg_2">
-                                    9
-                                </div>
                             </div>
                         </div>
 

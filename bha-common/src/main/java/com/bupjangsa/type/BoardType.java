@@ -8,7 +8,14 @@ import java.util.Objects;
 import static com.bupjangsa.constant.MessageConst.SERVER_PROCESS_ERROR;
 
 public enum BoardType {
-    FREE_BOARD,NOTICE,NEWS,YOUNGSAN,GALLERY;
+    FREE_BOARD,
+
+    NEWS_NOTICE,
+    NEWS_MESSAGE,
+    NEWS_VIDEO,
+    NEWS_YOUNGSAN,
+
+    GALLERY;
 
     public static class Converter implements AttributeConverter<BoardType, String> {
 

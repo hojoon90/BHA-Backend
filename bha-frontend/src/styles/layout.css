@@ -11,7 +11,7 @@ body {min-width: 1400px;}
 .header .logo .m {display: none;}
 .header .user_info {position: absolute; right: 50px; top: 20px; line-height: 30px;}
 .header .user_info .person {display: inline-block; color: #B9A26A; font-weight: 500;}
-.header .user_info .person::before {content: ""; display: inline-block; width: 22px; height: 22px; margin-right: 7px; background: url(images/ico_person.png) no-repeat; background-size: contain; vertical-align: -4px;}
+.header .user_info .person::before {content: ""; display: inline-block; width: 22px; height: 22px; margin-right: 7px; background-size: contain; vertical-align: -4px;}
 .header .user_info .btn {margin-left: 14px; padding: 0 20px; border-radius: 15px; color: #fff; font-size: 14px; line-height: 30px; background: #B9A26A;}
 
 .header .gnb {position: absolute; left: 430px; top: 78px; width: 920px;}
@@ -112,6 +112,7 @@ body {min-width: 1400px;}
 .tit_2 + .condition {margin-top: 26px;}
 .tit_2 + .board_view {margin-top: 43px;}
 .tit_2 + .board_view2 {margin-top: 43px;}
+.tit_2 + .board_view2_post {margin-top: 43px;}
 .tit_2 + .board_view_reg {margin-top: 43px;}
 .tit_2 + .board_view3 {margin-top: 43px;}
 
@@ -127,8 +128,10 @@ body {min-width: 1400px;}
 
 .txt_1 + .tit_4 {margin-top: 64px;}
 
+.board_view .board_btn_area {margin-top: 30px;}
 .board_attach + .board_btn_area {margin-top: 30px;}
 .board_view2 dl + .board_btn_area {margin-top: 30px;}
+.board_view2_post dl + .board_btn_area {margin-top: 30px;}
 .board_view3 + .tit_5 {margin-top: 22px;}
 .board_bot + .board_btn_area {margin-top: 30px;}
 .pds_des + .board_btn_area {margin-top: 30px;}

@@ -1,14 +1,19 @@
 "use client"
 
-import { useState, useEffect, useCallback } from 'react';
+import {useState, useEffect, useCallback, useContext} from 'react';
 import Link from 'next/link';
 import * as ExtApi from '@/lib/api';
 import URL from '@/data/url';
 import BoardList from "@/components/board/BoardList";
 import NewsLeftbar from "@/components/leftmenu/NewsLeftbar";
+import {useRouter} from "next/navigation";
+import {AuthContext} from "@/components/AuthProvider";
+
 
 function YoungsanPage(props) {
-    const bbsId = "YOUNGSAN";
+    const bbsId = "NEWS_YOUNGSAN";
+    const router = useRouter();
+    const { user, updateUser } = useContext(AuthContext);
 
     // 기본 검색 조건
     const [searchCondition, setSearchCondition] = useState({
@@ -69,6 +74,11 @@ function YoungsanPage(props) {
         }));
     };
 
+    const handleCreatePost = () => {
+        // 로그인 상태면 게시글 작성 페이지로 이동
+        router.push(`${URL.NEWS_NOTICE}/create`);
+    };
+
     useEffect(() => {
         retrieveList(searchCondition);
     }, [searchCondition]);
@@ -102,6 +112,24 @@ function YoungsanPage(props) {
                             paginationInfo={paginationInfo}
                             moveToPage={moveToPage}
                         />
+
+                        {user?.authority === 'ADMIN' ? (
+                            <div className="board_btn_area">
+                                <div className="left_col btn1">
+                                </div>
+
+                                <div className="right_col btn1">
+                                    <button
+                                        className="btn btn_blue_h46 w_100"
+                                        onClick={handleCreatePost}
+                                    >
+                                        등록
+                                    </button>
+                                </div>
+                            </div>
+                        ):(
+                            <></>
+                        )}
                     </div>
                 </div>
             </div>

@@ -37,7 +37,7 @@ public class NoticeBoardService implements PostService {
 
     @Override
     public boolean isValidService(BoardType boardType) {
-        return boardType.equals(BoardType.NOTICE);
+        return boardType.equals(BoardType.NEWS_NOTICE);
     }
 
     @Override
@@ -97,7 +97,7 @@ public class NoticeBoardService implements PostService {
 
         noticeBoard.updateViewCnt();
 
-        List<FileDto.FileInfo> fileList = fileService.findAllFileList(postId, BoardType.NOTICE);
+        List<FileDto.FileInfo> fileList = fileService.findAllFileList(postId, BoardType.NEWS_NOTICE);
         return PostDetail.from(noticeBoard, fileList);
     }
 

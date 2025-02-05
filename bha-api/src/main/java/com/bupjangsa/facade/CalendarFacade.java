@@ -5,6 +5,7 @@ import com.bupjangsa.domain.calendar.dto.CalendarDto.CalendarInfo;
 import com.bupjangsa.dto.request.CalendarRequest.CalendarDeleteRequest;
 import com.bupjangsa.dto.request.CalendarRequest.CalendarRegisterRequest;
 import com.bupjangsa.dto.request.CalendarRequest.CalendarUpdateRequest;
+import com.bupjangsa.dto.response.CalendarResponse;
 import com.bupjangsa.dto.response.CalendarResponse.CalendarList;
 import com.bupjangsa.service.CalendarService;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import static com.bupjangsa.domain.calendar.dto.CalendarDto.Register;
 import static com.bupjangsa.domain.calendar.dto.CalendarDto.Update;
+import static com.bupjangsa.dto.response.CalendarResponse.*;
 
 @Service
 @RequiredArgsConstructor
@@ -53,6 +55,11 @@ public class CalendarFacade {
 
         List<CalendarInfo> calendarInfoList = calendarService.getCalendarInfoList(year, month);
         return AppResponse.responseSuccess(CalendarList.of(calendarInfoList));
+    }
+
+    public AppResponse<CalendarDetail> getCalendarDetail(long calId){
+        CalendarInfo calendarInfo = calendarService.getCalendarInfo(calId);
+        return AppResponse.responseSuccess(CalendarDetail.from(calendarInfo));
     }
 
     public AppResponse<Void> deleteCalendar(CalendarDeleteRequest request){

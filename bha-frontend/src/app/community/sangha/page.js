@@ -11,7 +11,7 @@ export default function SanghaPage() {
                 <div className="location">
                     <ul>
                         <li><Link href={URL.HOME}>Home</Link></li>
-                        <li><Link href={URL.ABOUT_SITE}>포교 및 신행단체</Link></li>
+                        <li><Link href={URL.ABOUT_SITE}>포교 및 신행</Link></li>
                         <li>영산불교학교</li>
                     </ul>
                 </div>
@@ -25,8 +25,8 @@ export default function SanghaPage() {
                     <div className="contents SITE_INTRO" id="contents">
                         {/* <!-- 본문 --> */}
 
-                        <h1 className="tit_3">포교 및 신행단체</h1>
-                        <p className="txt_1">포교활동 및 신행단체 안내입니다.</p>
+                        <h1 className="tit_3">포교 및 신행</h1>
+                        <p className="txt_1">포교활동 및 신행 안내입니다.</p>
                         <h2 className="tit_4">신행단체 안내</h2>
                         <h3 className="tit_5">소개</h3>
                         <p className="msg_1">

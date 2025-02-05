@@ -10,7 +10,7 @@ public class YoungsanBoardFactory implements PostFactory {
 
     @Override
     public boolean selectFactory(BoardType boardType) {
-        return boardType.equals(BoardType.YOUNGSAN);
+        return boardType.equals(BoardType.NEWS_YOUNGSAN);
     }
 
     @Override

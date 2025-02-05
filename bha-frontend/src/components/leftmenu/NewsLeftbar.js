@@ -19,7 +19,7 @@ const NewsLeftbar = () => {
                 <h2>사찰 소식</h2>
                 <ul className="menu4">
                     <li><Link href={URL.NEWS_NOTICE} className={isActive(URL.NEWS_NOTICE) ? "cur" : ""}>공지사항</Link></li>
-                    <li><Link href={URL.NEWS} className={isActive(URL.NEWS) ? "cur" : ""}>법장사 뉴스</Link></li>
+                    <li><Link href={URL.NEWS_MESSAGE} className={isActive(URL.NEWS_MESSAGE) ? "cur" : ""}>법장사 뉴스</Link></li>
                     <li><Link href={URL.NEWS_CALENDAR} className={isActive(URL.ABOUT_HISTORY) ? "cur" : ""}>사찰 일정</Link></li>
                     <li><Link href={URL.NEWS_VIDEO} className={isActive(URL.NEWS_VIDEO) ? "cur" : ""}>법회 영상</Link></li>
                     <li><Link href={URL.NEWS_YOUNGSAN} className={isActive(URL.NEWS_YOUNGSAN) ? "cur" : ""}>영산회상</Link></li>
