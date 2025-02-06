@@ -47,20 +47,22 @@
     .c_wrap .layout .nav .inner {border: 0; border-radius: 0; border-bottom: 1px solid #e6e6e6; overflow-x: auto; -ms-overflow-style: none; box-shadow: 3px 4px 5px #ccc;}
     .c_wrap .layout .nav .inner::-webkit-scrollbar {display: none;}
     .c_wrap .layout .nav h2 {position: absolute; top: -9999px;}
-    .c_wrap .layout .nav ul {padding: 0 20px;}
-    .c_wrap .layout .nav ul.menu4 {width: 570px;}
+    .c_wrap .layout .nav ul {padding: 0 10px;}
+    /*.c_wrap .layout .nav ul.menu4 {width: 570px;}*/
+    .c_wrap .layout .nav ul.menu4 {width: 400px;}
+    .c_wrap .layout .nav ul.menu4_1 {width: 450px;}
     .c_wrap .layout .nav ul.menu6 {width: 1000px;}
     .c_wrap .layout .nav ul::after {content: ""; display: block; clear: both;}
     .c_wrap .layout .nav ul li {float: left;}
     .c_wrap .layout .nav ul li + li {margin-top: 0;}
-    .c_wrap .layout .nav ul li a {height: 45px; padding: 0 25px; font-size: 15px; line-height: 45px;}
+    .c_wrap .layout .nav ul li a {height: 45px; padding: 0 25px; font-size: 14px; line-height: 45px;}
     .c_wrap .layout .nav ul li a:hover::after {content: none;}
     .c_wrap .layout .nav ul li a.cur {border-bottom: 2px solid #000;}
 
     .c_wrap .layout .contents {display: block; padding: 0 20px 60px 20px;}
 
     @media (max-width: 768px) {
-        .footer {height: 297px; border-top: 10px solid #f5f5f5;}
+        .footer {min-height: auto; border-top: 10px solid #f5f5f5;}
         .footer::before {content: none;}
         .footer .inner {width: 100%; padding: 0 20px;}
         .footer h1 {float: none; width: 100%; padding-top: 28px;}
@@ -281,12 +283,12 @@
     .P_MAIN .banner > a span {font-size: 13px; line-height: 18px;}
 
     .P_MAIN .banner_bot {padding: 60px 20px 10px 20px;}
-    .P_MAIN .banner_bot > div {width: calc(50% - 10px); height: 260px; margin-bottom: 20px; padding: 0 15px; letter-spacing: -1px;}
+    .P_MAIN .banner_bot > div {width: calc(50% - 10px); height: 180px; margin-bottom: 20px; padding: 0 15px; letter-spacing: -1px;}
     .P_MAIN .banner_bot > div:nth-child(2n)  {margin-left: 20px;}
     .P_MAIN .banner_bot > div + div {margin-left: 0;}
     .P_MAIN .banner_bot > div h2 {font-size: 16px;}
     .P_MAIN .banner_bot > div p {margin-top: 13px; font-size: 11px; line-height: 15px;}
-    .P_MAIN .banner_bot > div > div {height: 215px; padding-top: 114px; background-size: 70px !important; background-position: center 30px !important;}
+    .P_MAIN .banner_bot > div > div {height: 120px; padding-top: 30px; background-size: 70px !important; background-position: center 30px !important;}
     .P_MAIN .banner_bot > div a {height: 45px; font-size: 11px; line-height: 45px;}
     .P_MAIN .banner_bot > div a::before {width: 10px; height: 10px; margin-right: 7px; background-size: contain; vertical-align: -1px;}
 
@@ -513,6 +515,10 @@
     .calendar_info ul li::before {content: none;}
     .calendar_info ul li a {font-size: 11px;}
     .calendar_info ul li span {display: block; top: 14px; font-size: 11px; text-align: right;}
+
+    .KINDERGARTEN_LIST .mini_board .tab li a {display: block; position: relative; padding-bottom: 12px; color: #ccc; font-size: 14px; font-weight: 700;}
+
+    .TREASURE_LIST .mini_board .tab li a {display: block; position: relative; padding-bottom: 12px; color: #ccc; font-size: 14px; font-weight: 700;}
 }
 
 @media (max-width: 414px) {

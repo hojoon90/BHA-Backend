@@ -2,9 +2,9 @@
 
 import URL from '@/data/url';
 import Link from "next/link";
-import ForumLeftbar from "@/components/leftmenu/ForumLeftbar";
 import 'react-quill/dist/quill.snow.css';
 import BoardWrite from "@/components/board/BoardWrite";
+import NewsLeftbar from "@/components/leftmenu/NewsLeftbar";
 
 
 export default function NoticeCreate({initialBoardDetail}) {
@@ -23,7 +23,7 @@ export default function NoticeCreate({initialBoardDetail}) {
                 </div>
                 <div className="layout">
                     {/* 페이지 구조 */}
-                    <ForumLeftbar/>
+                    <NewsLeftbar/>
                     <BoardWrite
                         listUrl= {URL.NEWS_NOTICE}
                         mode={"CREATE"}

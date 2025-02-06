@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import Link from 'next/link';
 import DatePicker from "react-datepicker";
 
@@ -11,6 +11,7 @@ import * as ExtApi from '@/lib/api';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import AdminLeftBar from "@/components/leftmenu/AdminLeftBar";
+import TextEditor from "@/components/TextEditor";
 
 export default function CalendarEdit({ params }) {
 
@@ -24,7 +25,16 @@ export default function CalendarEdit({ params }) {
     const [schdulBgndeMM, setSchdulBgndeMM] = useState(null);
     const [schdulEnddeHH, setSchdulEnddeHH] = useState(null);
     const [schdulEnddeMM, setSchdulEnddeMM] = useState(null);
+    const [editorValue, setEditorValue] = useState('');
 
+    // `useCallback`을 사용해 상태 업데이트 최적화
+    const handleEditorChange = useCallback((value) => {
+        setEditorValue(value);
+        setBoardDetail(prevDetail => ({
+            ...prevDetail,
+            contents: value
+        }));
+    }, []); // 의존성 배열을 빈 배열로 설정하여 최초 한 번만 리렌더링
 
     const initMode = () => {
         switch (params.mode) {
@@ -54,9 +64,7 @@ export default function CalendarEdit({ params }) {
         let year = str.substring(0, 4);
         let month = str.substring(4, 6);
         let date = str.substring(6, 8);
-        let hour = str.substring(8, 10);
-        let minute = str.substring(10, 12);
-        return new Date(year, month - 1, date, hour, minute)
+        return new Date(year, month - 1, date)
     }
 
     //일정 조회
@@ -226,18 +234,9 @@ export default function CalendarEdit({ params }) {
                             <dl>
                                 <dt><label htmlFor="schdulNm">일정명</label><span className="req">필수</span></dt>
                                 <dd>
-                                    <input className="f_input2 w_full" type="text" name="schdulNm" title="부서" id="schdulNm" placeholder="일정 테스트"
+                                    <input className="f_input2 w_full" type="text" name="schdulNm" title="부서" id="schdulNm"
                                            defaultValue={scheduleDetail.schdulNm}
                                            onChange={(e) => setScheduleDetail({ ...scheduleDetail, schdulNm: e.target.value })} />
-                                </dd>
-                            </dl>
-                            <dl>
-                                <dt><label htmlFor="schdulCn">일정내용</label><span className="req">필수</span></dt>
-                                <dd>
-                                    <textarea className="f_txtar w_full h_100" name="schdulCn" id="schdulCn" cols="30" rows="10" placeholder="일정내용"
-                                              defaultValue={scheduleDetail.schdulCn}
-                                              onChange={(e) => setScheduleDetail({ ...scheduleDetail, schdulCn: e.target.value })}
-                                    ></textarea>
                                 </dd>
                             </dl>
                             <dl>
@@ -251,23 +250,19 @@ export default function CalendarEdit({ params }) {
                                 </dd>
                             </dl>
                             <dl>
-                                <dt>날짜/시간<span className="req">필수</span></dt>
+                                <dt>날짜<span className="req">필수</span></dt>
                                 <dd className="datetime">
                                     <span className="line_break">
                                         <DatePicker
                                             selected={scheduleDetail.startDate}
                                             name="schdulBgnde"
                                             className="f_input"
-                                            dateFormat="yyyy-MM-dd HH:mm"
+                                            dateFormat="yyyy-MM-dd"
                                             showTimeInput
                                             onChange={(date) => {
                                                 console.log("setStartDate : ", date);
-                                                setScheduleDetail({ ...scheduleDetail, schdulBgnde: getDateFourteenDigit(date), schdulBgndeYYYMMDD: getYYYYMMDD(date), schdulBgndeHH: date.getHours(), schdulBgndeMM: date.getMinutes(), startDate: date });
-                                                setSchdulBgndeHH(date.getHours());
-                                                setSchdulBgndeMM(date.getMinutes());
+                                                setScheduleDetail({ ...scheduleDetail, schdulBgnde: getDateFourteenDigit(date), schdulBgndeYYYMMDD: getYYYYMMDD(date), startDate: date });
                                             }} />
-                                        <input type="hidden" name="schdulBgndeHH" defaultValue={schdulBgndeHH} readOnly />
-                                        <input type="hidden" name="schdulBgndeMM" defaultValue={schdulBgndeMM} readOnly />
                                         <span className="f_inn_txt">~</span>
                                     </span>
                                     <span className="line_break">
@@ -275,18 +270,14 @@ export default function CalendarEdit({ params }) {
                                             selected={scheduleDetail.endDate}
                                             name="schdulEndde"
                                             className="f_input"
-                                            dateFormat="yyyy-MM-dd HH:mm"
+                                            dateFormat="yyyy-MM-dd"
                                             showTimeInput
                                             minDate={scheduleDetail.startDate}
                                             onChange={(date) => {
                                                 console.log("setEndDate: ", date);
-                                                setScheduleDetail({ ...scheduleDetail, schdulEndde: getDateFourteenDigit(date), schdulEnddeYYYMMDD: getYYYYMMDD(date), schdulEnddeHH: date.getHours(), schdulEnddeMM: date.getMinutes(), endDate: date });
-                                                setSchdulEnddeHH(date.getHours());
-                                                setSchdulEnddeMM(date.getMinutes());
+                                                setScheduleDetail({ ...scheduleDetail, schdulEndde: getDateFourteenDigit(date), schdulEnddeYYYMMDD: getYYYYMMDD(date), endDate: date });
                                             }
                                             } />
-                                        <input type="hidden" name="schdulEnddeHH" defaultValue={schdulEnddeHH} readOnly />
-                                        <input type="hidden" name="schdulEnddeMM" defaultValue={schdulEnddeMM} readOnly />
                                     </span>
                                 </dd>
                             </dl>

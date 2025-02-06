@@ -78,4 +78,21 @@ public class BoardResponse {
         }
     }
 
+    @Getter
+    @Builder
+    public static class MainPage{
+        private List<PostSummary> noticeDetails;
+        private List<PostSummary> messageDetails;
+
+        public static MainPage of(List<PostDto.PostSummary> noticeDetails, List<PostDto.PostSummary> messageDetails) {
+            final List<PostSummary> noticeCollect = noticeDetails.stream().map(BoardResponse.PostSummary::from).toList();
+            final List<PostSummary> messageCollect = messageDetails.stream().map(BoardResponse.PostSummary::from).toList();
+
+            return MainPage.builder()
+                    .noticeDetails(noticeCollect)
+                    .messageDetails(messageCollect)
+                    .build();
+        }
+    }
+
 }

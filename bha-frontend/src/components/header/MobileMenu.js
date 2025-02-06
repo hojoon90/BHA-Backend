@@ -14,7 +14,7 @@ function MobileMenu() {
                         <li><Link href={URL.ABOUT_SITE} className={router.pathname === URL.ABOUT_SITE ? "cur" : ""}>소개</Link></li>
                         <li><Link href={URL.ABOUT_GREETING} className={router.pathname === URL.ABOUT_GREETING ? "cur" : ""}>주지스님 인사말</Link></li>
                         <li><Link href={URL.ABOUT_HISTORY} className={router.pathname === URL.ABOUT_HISTORY ? "cur" : ""}>연혁</Link></li>
-                        <li><Link href={URL.ABOUT_LOCATION} className={router.pathname === URL.ABOUT_LOCATION ? "cur" : ""}>성보 문화재</Link></li>
+                        <li><Link href={URL.ABOUT_TREASURE} className={router.pathname === URL.ABOUT_TREASURE ? "cur" : ""}>성보 문화재</Link></li>
                         <li><Link href={URL.ABOUT_LOCATION} className={router.pathname === URL.ABOUT_LOCATION ? "cur" : ""}>오시는 길</Link></li>
                     </ul>
                 </div>
@@ -40,8 +40,8 @@ function MobileMenu() {
                 <div className="submenu closed">
                     <ul>
                         <li><Link href={URL.COMMUNITY_SCHOOL} className={router.pathname === URL.COMMUNITY_SCHOOL ? "cur" : ""}>영산불교학교</Link></li>
-                        <li><Link href={URL.COMMUNITY_SANGHA} className={router.pathname === URL.COMMUNITY_SANGHA ? "cur" : ""}>신행단체 안내</Link></li>
-                        <li><Link href={URL.COMMUNITY_KINDERGARTEN} className={router.pathname === URL.COMMUNITY_KINDERGARTEN ? "cur" : ""}>어린이집 위탁운영</Link></li>
+                        <li><Link href={URL.COMMUNITY_SANGHA} className={router.pathname === URL.COMMUNITY_SANGHA ? "cur" : ""}>신행단체</Link></li>
+                        <li><Link href={URL.COMMUNITY_KINDERGARTEN} className={router.pathname === URL.COMMUNITY_KINDERGARTEN ? "cur" : ""}>위탁어린이집</Link></li>
                     </ul>
                 </div>
                 {/*<h3><a href="#forum">참여마당</a></h3>*/}

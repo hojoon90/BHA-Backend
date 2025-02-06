@@ -66,6 +66,10 @@ public class BoardRequest {
             int correctionOffset = Math.max(this.getOffset() - 1, 0);   //페이지 보정
             return PageRequest.of(correctionOffset, this.getLimit());
         }
+
+        public static PageRequest getMainPageRequest() {
+            return PageRequest.of(0, 5);
+        }
     }
 
 }

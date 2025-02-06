@@ -11,52 +11,8 @@ import Link from "next/link";
 import NewsLeftbar from "@/components/leftmenu/NewsLeftbar"; // BoardDetailView 컴포넌트 import
 
 function YoungsanDetail({ params }) {
-    const router = useRouter();
     const postId = params.postId; // 동적 경로에서 postId 가져옴
-    const boardType = "YOUNGSAN"; // 게시판 타입 설정
-
-    const [sessionUniqId, setSessionUniqId] = useState(null); // 세션 값 상태로 관리
-    const [boardDetail, setBoardDetail] = useState({});
-
-    // 세션에서 사용자 정보 가져오기
-    useEffect(() => {
-        const sessionUser = getSessionItem('loginUser');
-        setSessionUniqId(sessionUser?.accountId); // 세션 정보 로드 후 상태 업데이트
-    }, []);
-
-    const retrieveDetail = async () => {
-        try {
-            const response = await ExtApi.fetchPostById(boardType, postId);
-            setBoardDetail(response.data);
-        } catch (error) {
-            console.error('게시글 상세 조회 오류:', error);
-        }
-    };
-
-    const onClickDeleteBoardArticle = async () => {
-        const postData = { postId: postId };
-        try {
-            const response = await ExtApi.deletePost(postData);
-            if (response.resultCode === CODE.RCV_SUCCESS) {
-                alert('게시글이 삭제되었습니다.');
-                router.push(URL.NEWS_YOUNGSAN);  // 삭제 후 목록 페이지로 이동
-            } else {
-                alert('게시글 삭제 실패');
-            }
-        } catch (error) {
-            console.error('게시글 삭제 오류:', error);
-        }
-    };
-
-    useEffect(() => {
-        if (postId) {
-            retrieveDetail();
-        }
-    }, [postId]);
-
-    if (sessionUniqId === null) {
-        return <div>Loading...</div>; // 세션 정보가 로드되기 전에는 로딩 화면 표시
-    }
+    const boardType = "NEWS_YOUNGSAN"; // 게시판 타입 설정
 
     return (
         <div className="container">
@@ -82,10 +38,8 @@ function YoungsanDetail({ params }) {
 
                         {/* 게시판 상세보기 */}
                         <BoardDetail
-                            boardDetail={boardDetail}
-                            onClickDeleteBoardArticle={onClickDeleteBoardArticle}
-                            sessionUniqId={sessionUniqId}
-                            boardUrl={URL.NEWS_YOUNGSAN}
+                            pageUrl={URL.NEWS_YOUNGSAN}
+                            boardType={boardType}
                             postId={postId}
                         />
                     </div>

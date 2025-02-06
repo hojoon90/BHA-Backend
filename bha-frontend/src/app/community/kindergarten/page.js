@@ -12,7 +12,7 @@ export default function KindergartenPage() {
                     <ul>
                         <li><Link href={URL.HOME}>Home</Link></li>
                         <li><Link href={URL.ABOUT_SITE}>포교 및 신행</Link></li>
-                        <li>위탁 어린이집</li>
+                        <li>위탁어린이집</li>
                     </ul>
                 </div>
                 {/* <!--// Location --> */}
@@ -27,7 +27,7 @@ export default function KindergartenPage() {
 
                         <h1 className="tit_3">포교 및 신행</h1>
                         <p className="txt_1">포교활동 및 신행 안내입니다.</p>
-                        <h2 className="tit_4">위탁 어린이집</h2>
+                        <h2 className="tit_4">위탁어린이집</h2>
                         <h3 className="tit_5"></h3>
 
 

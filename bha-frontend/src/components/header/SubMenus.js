@@ -41,8 +41,8 @@ function SubMenus() {
                 <h3>포교 및 신행</h3>
                 <ul>
                     <li><Link href={URL.COMMUNITY_SCHOOL} className={router.pathname === URL.COMMUNITY_SCHOOL ? "cur" : ""}>영산불교학교</Link></li>
-                    <li><Link href={URL.COMMUNITY_SANGHA} className={router.pathname === URL.COMMUNITY_SANGHA ? "cur" : ""}>신행단체 안내</Link></li>
-                    <li><Link href={URL.COMMUNITY_KINDERGARTEN} className={router.pathname === URL.COMMUNITY_KINDERGARTEN ? "cur" : ""}>위탁 어린이집</Link></li>
+                    <li><Link href={URL.COMMUNITY_SANGHA} className={router.pathname === URL.COMMUNITY_SANGHA ? "cur" : ""}>신행단체</Link></li>
+                    <li><Link href={URL.COMMUNITY_KINDERGARTEN} className={router.pathname === URL.COMMUNITY_KINDERGARTEN ? "cur" : ""}>위탁어린이집</Link></li>
                 </ul>
             </div>
             {/*TODO*/}

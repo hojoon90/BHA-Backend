@@ -187,3 +187,20 @@ export async function uploadImage(formData){
         throw error;
     }
 }
+
+export async function getMainPost(){
+    try{
+        const res = await fetch(`${API_URL}/post/main`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        if (!res.ok) throw new Error("메인데이터 조회 실패");
+
+        return await res.json();
+    } catch (error) {
+        console.error('Error creating post:', error);
+        throw error;
+    }
+}

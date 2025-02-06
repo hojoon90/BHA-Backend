@@ -27,7 +27,7 @@ export default function SanghaPage() {
 
                         <h1 className="tit_3">포교 및 신행</h1>
                         <p className="txt_1">포교활동 및 신행 안내입니다.</p>
-                        <h2 className="tit_4">신행단체 안내</h2>
+                        <h2 className="tit_4">신행단체</h2>
                         <h3 className="tit_5">소개</h3>
                         <p className="msg_1">
 

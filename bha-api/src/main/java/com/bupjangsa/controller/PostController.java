@@ -1,6 +1,7 @@
 package com.bupjangsa.controller;
 
 import com.bupjangsa.dto.AppResponse;
+import com.bupjangsa.dto.response.BoardResponse;
 import com.bupjangsa.security.dto.AppUserDetails;
 import com.bupjangsa.dto.response.BoardResponse.PostDetail;
 import com.bupjangsa.facade.BoardFacade;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 import static com.bupjangsa.dto.request.BoardRequest.*;
+import static com.bupjangsa.dto.response.BoardResponse.*;
 import static com.bupjangsa.dto.response.BoardResponse.PostPage;
 
 @RestController
@@ -68,5 +70,11 @@ public class PostController {
     ){
         return ResponseEntity.status(HttpStatus.OK)
                 .body(boardFacade.selectPostList(request));
+    }
+
+    @GetMapping(value = "/main")
+    public ResponseEntity<AppResponse<MainPage>> getMainPost(){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(boardFacade.selectPostMainPage());
     }
 }

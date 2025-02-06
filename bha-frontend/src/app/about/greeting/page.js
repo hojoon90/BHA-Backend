@@ -31,6 +31,9 @@ export default function GreetingPage() {
                         <h3 className="tit_5"></h3>
 
                         <p className="msg_1">
+                            <span className="left_col">
+                                <img src={"https://cdn.beopbo.com/news/photo/PEG/13660907613782.jpg"} alt={"사진"} style={{float: 'left', paddingRight: '15px'}}/>
+                            </span>
                             법장사(法藏寺)는 한국 불교의 오랜 전통 종단인 대한불교 조계종 소속 사찰로서, 부처님이 중생구제를 위해여
                             이 세상에 오신 근본이유를 밝혀 주신 대승경전의 정수인 '묘법연화경(법화경)' 을 소의경전으로 삼아서 정진해 나가고 있습니다.
                             서울 중랑구의 중심에 위치한 봉화산 자락에 있는 도심속의 사찰로써, 다니기 좋고 기도하기 좋은 아파트와 주택가에 인접한

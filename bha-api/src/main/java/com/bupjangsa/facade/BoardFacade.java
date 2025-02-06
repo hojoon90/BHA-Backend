@@ -3,10 +3,12 @@ package com.bupjangsa.facade;
 import com.bupjangsa.domain.post.dto.PostCriteria;
 import com.bupjangsa.domain.post.dto.PostDto;
 import com.bupjangsa.dto.AppResponse;
+import com.bupjangsa.dto.response.BoardResponse;
 import com.bupjangsa.service.PostService;
 import com.bupjangsa.type.BoardType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -144,6 +146,34 @@ public class BoardFacade {
         final PostPage page = PostPage.of(postInfos.getTotalElements(), postInfos.getTotalPages()
                 , postInfos.getPageable().getPageSize(), postInfos.getContent());
         return AppResponse.responseSuccess(page);
+    }
+
+    //메린페이지
+    public AppResponse<BoardResponse.MainPage> selectPostMainPage(){
+        PageRequest mainPageRequest = PageablePostSearchRequest.getMainPageRequest();
+        final PostCriteria.SearchList noticeCriteria = PostCriteria.SearchList.builder()
+                .boardType(BoardType.NEWS_NOTICE)
+                .build();
+        final PostCriteria.SearchList messageCriteria = PostCriteria.SearchList.builder()
+                .boardType(BoardType.NEWS_MESSAGE)
+                .build();
+
+
+        PostService noticePostService = postServiceList.stream()
+                .filter(i -> i.isValidService(BoardType.NEWS_NOTICE))
+                .findFirst().orElseThrow(() -> new RuntimeException(""));
+
+        PostService messagePostService = postServiceList.stream()
+                .filter(i -> i.isValidService(BoardType.NEWS_MESSAGE))
+                .findFirst().orElseThrow(() -> new RuntimeException(""));
+
+        Page<PostDto.PostSummary> noticePostInfos = noticePostService.selectPostList(noticeCriteria, mainPageRequest);
+        Page<PostDto.PostSummary> messagePostInfos = messagePostService.selectPostList(messageCriteria, mainPageRequest);
+
+        final BoardResponse.MainPage page =
+                BoardResponse.MainPage.of(noticePostInfos.getContent(), messagePostInfos.getContent());
+        return AppResponse.responseSuccess(page);
+
     }
 
 }
