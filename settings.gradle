@@ -1,4 +1,4 @@
-rootProject.name = 'BHA'
+rootProject.name = 'BHA-backend'
 include 'bha-api'
 include 'bha-core'
 include 'bha-infra'
