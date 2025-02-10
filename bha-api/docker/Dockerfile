@@ -12,4 +12,4 @@ USER root
 
 RUN yum install -y fontconfig libfreetype6
 
-CMD ["sh", "-c", "source /etc/profile &&  java -Dfile.encoding=UTF-8 -jar -Dserver.port=7101 /apps/bjs/bha-api.jar"]
+CMD ["sh", "-c", "source /etc/profile &&  java -Dfile.encoding=UTF-8 -jar -Dserver.port=8080 /apps/bjs/bha-api.jar"]
