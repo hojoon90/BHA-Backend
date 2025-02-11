@@ -1,12 +1,12 @@
 FROM openjdk:17-alpine
 
 USER app
-RUN mkdir /apps/bjs
+RUN mkdir -p /apps/bjs
 ADD ./bha-api.jar /apps/bjs/
 
 # Java 환경 설정
-ENV JAVA_HOME /apps/jdk/17.0.2
-ENV PATH $PATH:$JAVA_HOME/bin
+#ENV JAVA_HOME /apps/jdk/17.0.2
+#ENV PATH $PATH:$JAVA_HOME/bin
 
 USER root
 
