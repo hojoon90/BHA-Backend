@@ -2,7 +2,7 @@ FROM openjdk:17-alpine
 
 # app 사용자 생성
 RUN adduser -D app
-
+RUN chown app:app /apps
 # app 사용자로 디렉토리 생성
 USER app
 RUN mkdir -p /apps/bjs
