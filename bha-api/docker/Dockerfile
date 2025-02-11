@@ -4,6 +4,7 @@ FROM openjdk:17-alpine
 RUN adduser -D app
 RUN mkdir -p /apps/bjs
 RUN chown app:app /apps
+
 # app 사용자로 디렉토리 생성
 USER app
 
@@ -12,7 +13,7 @@ ADD ./bha-api.jar /apps/bjs/
 
 # root 사용자로 돌아가서 필요한 패키지 설치
 USER root
-RUN apk add --no-cache fontconfig libfreetype6 bash
+RUN apk add --no-cache fontconfig freetype bash
 
 # Java 환경 설정 (필요하면 주석을 제거하고 사용)
 # ENV JAVA_HOME /apps/jdk/17.0.2
