@@ -1,5 +1,7 @@
 FROM openjdk:17-alpine
 
+RUN useradd -m app
+
 USER app
 RUN mkdir -p /apps/bjs
 ADD ./bha-api.jar /apps/bjs/
