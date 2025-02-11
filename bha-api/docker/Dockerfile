@@ -1,6 +1,6 @@
 FROM openjdk:17-alpine
 
-RUN useradd -m app
+RUN adduser -D app
 
 USER app
 RUN mkdir -p /apps/bjs
