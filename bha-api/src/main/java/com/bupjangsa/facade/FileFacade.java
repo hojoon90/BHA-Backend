@@ -9,6 +9,7 @@ import com.bupjangsa.type.BoardType;
 import com.bupjangsa.util.FileComponent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,9 @@ public class FileFacade {
     private final FileComponent fileComponent;
     private final FileService fileService;
 
+    @Value("${post-file.domain}")
+    private String imageDomain;
+
     /**
      * 이미지 업로드
      * @param file
@@ -41,7 +45,7 @@ public class FileFacade {
     @Transactional
     public AppResponse<FileResponse.ImageInfo> registerImage(MultipartFile file) {
         FileDto.ImageInfo image = fileComponent.uploadImage(file);
-        return AppResponse.responseSuccess(FileResponse.ImageInfo.from(image));
+        return AppResponse.responseSuccess(FileResponse.ImageInfo.from(imageDomain, image));
     }
 
     /**

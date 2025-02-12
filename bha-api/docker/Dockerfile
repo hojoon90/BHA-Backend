@@ -15,9 +15,5 @@ ADD ./bha-api.jar /apps/bjs/
 USER root
 RUN apk add --no-cache fontconfig freetype bash
 
-# Java 환경 설정 (필요하면 주석을 제거하고 사용)
-# ENV JAVA_HOME /apps/jdk/17.0.2
-# ENV PATH $PATH:$JAVA_HOME/bin
-
 # Java 애플리케이션 실행
 CMD ["bash", "-c", "source /etc/profile && java -Dfile.encoding=UTF-8 -jar -Dserver.port=8080 /apps/bjs/bha-api.jar"]

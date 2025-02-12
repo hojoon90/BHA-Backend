@@ -25,7 +25,7 @@ public class FileController {
 
     private final FileFacade fileFacade;
 
-    @PostMapping(value = "/image/upload")
+    @PostMapping(value = "/image/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<AppResponse<FileResponse.ImageInfo>> uploadImage(
             @RequestPart final MultipartFile file
     ){
