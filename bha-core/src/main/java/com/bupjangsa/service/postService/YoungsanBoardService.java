@@ -33,7 +33,6 @@ public class YoungsanBoardService implements PostService {
     private final YoungsanBoardRepository youngsanBoardRepository;
     private final UserRepository userRepository;
     private final List<PostFactory> postFactoryList;
-    private final FileService fileService;
 
     @Override
     public boolean isValidService(BoardType boardType) {
@@ -96,9 +95,7 @@ public class YoungsanBoardService implements PostService {
                 .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND));
 
         youngsanBoard.updateViewCnt();
-
-        List<FileDto.FileInfo> fileList = fileService.findAllFileList(postId, BoardType.NEWS_YOUNGSAN);
-        return PostDetail.from(youngsanBoard, fileList);
+        return PostDetail.from(youngsanBoard);
     }
 
     @Override

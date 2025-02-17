@@ -33,7 +33,6 @@ public class NoticeBoardService implements PostService {
     private final NoticeBoardRepository noticeBoardRepository;
     private final UserRepository userRepository;
     private final List<PostFactory> postFactoryList;
-    private final FileService fileService;
 
     @Override
     public boolean isValidService(BoardType boardType) {
@@ -96,9 +95,7 @@ public class NoticeBoardService implements PostService {
                 .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND));
 
         noticeBoard.updateViewCnt();
-
-        List<FileDto.FileInfo> fileList = fileService.findAllFileList(postId, BoardType.NEWS_NOTICE);
-        return PostDetail.from(noticeBoard, fileList);
+        return PostDetail.from(noticeBoard);
     }
 
     @Override

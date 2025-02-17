@@ -95,33 +95,34 @@ public class FileFacade {
         return AppResponse.responseSuccess(response);
     }
 
-//    /**
-//     * 파일 업데이트
-//     * @param fileId
-//     * @param fileList
-//     * @param request
-//     * @return
-//     */
-//    @Transactional
-//    public AppResponse<Void> updateFile(Long postId, List<MultipartFile> fileList, BoardType boardType) {
+    /**
+     * 파일 업데이트
+     * @param fileId
+     * @param fileList
+     * @param request
+     * @return
+     */
+    @Transactional
+    public AppResponse<Void> updateFile(Long postId, List<MultipartFile> fileList, BoardType boardType) {
 //        String addPath = request.getCreatedAt().toLocalDate().format(DateTimeFormatter.ofPattern(YYYY_MM_DD));
-//
-//        List<FileDto.FileInfo> fileInfoList = fileService.findAllFileList(postId, boardType);
-//        fileInfoList.forEach(f -> {
-//            fileService.deleteFile(f.getFileId());
-//            fileComponent.deleteFile(addPath, f.getFileName());
-//        });
-//        //로컬 파일 삭제
-//
-//        final List<FileDto.Register> dtoList = fileList.stream()
-//                .filter(Objects::nonNull)
-//                .map(i -> fileComponent.uploadFile(i, postId, boardType))
-//                .toList();
-//
-//        fileService.saveFileList(dtoList);
-//
-//        return AppResponse.responseVoidSuccess(HttpStatus.NO_CONTENT.value());
-//    }
+
+        List<FileDto.FileInfo> fileInfoList = fileService.findAllFileList(postId, boardType);
+        fileInfoList.forEach(f -> {
+            fileService.deleteFile(f.getFileId());
+            //로컬 파일 삭제
+            String datePath = f.getCreatedAt().toLocalDate().format(DateTimeFormatter.ofPattern(YYYY_MM_DD));
+            fileComponent.deleteFile(datePath, f.getFileName());
+        });
+
+        final List<FileDto.Register> dtoList = fileList.stream()
+                .filter(Objects::nonNull)
+                .map(i -> fileComponent.uploadFile(i, postId, boardType))
+                .toList();
+
+        fileService.saveFileList(dtoList);
+
+        return AppResponse.responseVoidSuccess(HttpStatus.NO_CONTENT.value());
+    }
 
 
 

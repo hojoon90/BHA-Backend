@@ -1,13 +1,13 @@
 package com.bupjangsa.facade;
 
-import com.bupjangsa.dto.AppResponse;
 import com.bupjangsa.domain.calendar.dto.CalendarDto.CalendarInfo;
+import com.bupjangsa.dto.AppResponse;
 import com.bupjangsa.dto.request.CalendarRequest.CalendarDeleteRequest;
 import com.bupjangsa.dto.request.CalendarRequest.CalendarRegisterRequest;
 import com.bupjangsa.dto.request.CalendarRequest.CalendarUpdateRequest;
-import com.bupjangsa.dto.response.CalendarResponse;
 import com.bupjangsa.dto.response.CalendarResponse.CalendarList;
 import com.bupjangsa.service.CalendarService;
+import com.bupjangsa.type.CalendarType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.List;
 
 import static com.bupjangsa.domain.calendar.dto.CalendarDto.Register;
 import static com.bupjangsa.domain.calendar.dto.CalendarDto.Update;
-import static com.bupjangsa.dto.response.CalendarResponse.*;
+import static com.bupjangsa.dto.response.CalendarResponse.CalendarDetail;
 
 @Service
 @RequiredArgsConstructor
@@ -26,9 +26,11 @@ public class CalendarFacade {
     private final CalendarService calendarService;
 
     public AppResponse<Void> registerCalendar(CalendarRegisterRequest request){
+        CalendarType calendarType = CalendarType.valueOf(request.getCalendarType());
 
         Register register = Register.builder()
                 .eventName(request.getEventName())
+                .calendarType(calendarType)
                 .startDate(request.getStartDate())
                 .endDate(request.getEndDate())
                 .build();
@@ -38,9 +40,12 @@ public class CalendarFacade {
     }
 
     public AppResponse<Void> updateCalendar(CalendarUpdateRequest request){
+        CalendarType calendarType = CalendarType.valueOf(request.getCalendarType());
+
         Update update = Update.builder()
                 .calId(request.getCalId())
                 .eventName(request.getEventName())
+                .calendarType(calendarType)
                 .startDate(request.getStartDate())
                 .endDate(request.getEndDate())
                 .build();

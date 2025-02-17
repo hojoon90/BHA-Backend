@@ -1,6 +1,7 @@
 package com.bupjangsa.dto.response;
 
 import com.bupjangsa.domain.calendar.dto.CalendarDto;
+import com.bupjangsa.type.CalendarType;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,6 +17,7 @@ public class CalendarResponse {
     public static class CalendarDetail {
         private Long calId;
         private String eventName;
+        private CalendarType calendarType;
         private Long startDate;
         private Long endDate;
 
@@ -23,6 +25,7 @@ public class CalendarResponse {
             return CalendarDetail.builder()
                     .calId(dto.getCalId())
                     .eventName(dto.getEventName())
+                    .calendarType(dto.getCalendarType())
                     .startDate(dto.getStartDate())
                     .endDate(dto.getEndDate())
                     .build();

@@ -50,7 +50,7 @@ public class FileDto {
         private String fileName;
         private String originName;
         private long fileSize;
-        //        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+//        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
         private LocalDateTime createdAt;
 
         public static FileInfo from(File entity) {
