@@ -1,7 +1,7 @@
 package com.bupjangsa.domain.calendar.entity;
 
-
 import com.bupjangsa.domain.common.BaseEntity;
+import com.bupjangsa.type.CalendarType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,6 @@ import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.annotations.Where;
 
 import static lombok.AccessLevel.PROTECTED;
-
 
 @Getter
 @Entity
@@ -30,13 +29,17 @@ public class Calendar extends BaseEntity {
     private String eventName;
 
     @Column(nullable = false)
+    private CalendarType calendarType;
+
+    @Column(nullable = false)
     private Long startDate;
 
     @Column(nullable = false)
     private Long endDate;
 
-    public void updateCalendarData(String eventName, Long startDate, Long endDate){
+    public void updateCalendarData(String eventName, CalendarType calendarType, Long startDate, Long endDate){
         this.eventName = eventName;
+        this.calendarType = calendarType;
         this.startDate = startDate;
         this.endDate = endDate;
     }

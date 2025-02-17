@@ -33,7 +33,6 @@ public class FreeBoardService implements PostService {
     private final FreeBoardRepository freeBoardRepository;
     private final UserRepository userRepository;
     private final List<PostFactory> postFactoryList;
-    private final FileService fileService;
 
     @Override
     public boolean isValidService(BoardType boardType) {
@@ -97,9 +96,7 @@ public class FreeBoardService implements PostService {
 
         //조회수 증가
         freeBoard.updateViewCnt();
-
-        List<FileDto.FileInfo> fileList = fileService.findAllFileList(postId, BoardType.FREE_BOARD);
-        return PostDetail.from(freeBoard, fileList);
+        return PostDetail.from(freeBoard);
 
     }
 

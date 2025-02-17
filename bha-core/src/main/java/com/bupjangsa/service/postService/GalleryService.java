@@ -34,7 +34,6 @@ public class GalleryService implements PostService {
     private final GalleryBoardRepository galleryBoardRepository;
     private final UserRepository userRepository;
     private final List<PostFactory> postFactoryList;
-    private final FileService fileService;
 
     @Override
     public boolean isValidService(BoardType boardType) {
@@ -90,9 +89,7 @@ public class GalleryService implements PostService {
                 .orElseThrow(() -> new NotFoundException(POST_NOT_FOUND));
         //조회수 증가
         galleryBoard.updateViewCnt();
-
-        List<FileDto.FileInfo> fileList = fileService.findAllFileList(postId, BoardType.GALLERY);
-        return PostDto.PostDetail.from(galleryBoard, fileList);
+        return PostDto.PostDetail.from(galleryBoard);
 
     }
 

@@ -69,7 +69,8 @@ public class BhaSecurityConfig {
                                                 AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/api/v1/user/login"),
 
                                                 AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/api/v1/post/**"),
-                                                AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/api/v1/calendar/**")
+                                                AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/api/v1/calendar/**"),
+                                                AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/files/**")
 
                                         ).permitAll()
                                         .anyRequest()

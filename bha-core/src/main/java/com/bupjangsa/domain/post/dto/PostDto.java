@@ -81,17 +81,17 @@ public class PostDto {
         private Long postId;
         private String title;
         private String contents;
+        @Setter
         private List<FileDto.FileInfo> fileList;
         private String createdBy;
         private Long viewCnt;
         private LocalDateTime createdAt;
 
-        public static PostDetail from(BoardBase entity, List<FileDto.FileInfo> fileList) {
+        public static PostDetail from(BoardBase entity) {
             return PostDetail.builder()
                     .postId(entity.getPostId())
                     .title(entity.getTitle())
                     .contents(entity.getContents())
-                    .fileList(fileList)
                     .viewCnt(entity.getViewCnt())
                     .createdBy(entity.getCreatedBy().getAccountId())
                     .createdAt(entity.getCreatedAt())

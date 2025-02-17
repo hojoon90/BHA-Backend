@@ -32,7 +32,7 @@ public class CalendarService {
         Calendar entity = calendarRepository.findById(dto.getCalId())
                 .orElseThrow(() -> new NotFoundException(DATA_NOT_FOUND));
 
-        entity.updateCalendarData(dto.getEventName(), dto.getStartDate(), dto.getEndDate());
+        entity.updateCalendarData(dto.getEventName(), dto.getCalendarType(), dto.getStartDate(), dto.getEndDate());
     }
 
     public List<CalendarInfo> getCalendarInfoList(Long year, Long month){
@@ -64,6 +64,9 @@ public class CalendarService {
     private Long convertDate(Long year, Long month, String date){
         String yearStr = String.valueOf(year);
         String monthStr = String.valueOf(month);
+        if(monthStr.length() == 1){
+            monthStr = "0"+monthStr;
+        }
         return Long.parseLong(yearStr+monthStr+date);
     }
 }

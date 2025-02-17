@@ -20,9 +20,9 @@ public class FileResponse {
     public static class ImageInfo{
         private String imageUrl;
 
-        public static ImageInfo from(FileDto.ImageInfo dto){
+        public static ImageInfo from(String domain, FileDto.ImageInfo dto){
             return ImageInfo.builder()
-                    .imageUrl(dto.getImagePath())
+                    .imageUrl(domain + dto.getImagePath())
                     .build();
         }
     }

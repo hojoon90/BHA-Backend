@@ -41,12 +41,14 @@ public class FileComponent {
         String saveName = generateSaveFilename(file.getOriginalFilename());
         String today = LocalDate.now().format(DateTimeFormatter.ofPattern(YYYY_MM_DD));
         String finalUploadPath = getUploadPath(today+"/img") + File.separator + saveName;
+        String urlUploadPath = "/images/"+today+"/img" + File.separator + saveName;
         File uploadFile = new File(finalUploadPath);
 
         int width = 185;
         int height = 80;
         String thumbnailName = width+"x"+height+"_"+saveName;
         String thumbnailPath = getUploadPath(today+"/thumb") + File.separator + thumbnailName;
+        String urlThumbnailPath = "/images/"+today+"/thumb" + File.separator + thumbnailName;
 
         try {
             // https://stackoverflow.com/questions/60336929/java-nio-file-nosuchfileexception-when-file-transferto-is-called
@@ -61,8 +63,8 @@ public class FileComponent {
         }
 
         return FileDto.ImageInfo.builder()
-                .imagePath(finalUploadPath)
-                .thumbnailPath(thumbnailPath)
+                .imagePath(urlUploadPath)
+                .thumbnailPath(urlThumbnailPath)
                 .build();
     }
 

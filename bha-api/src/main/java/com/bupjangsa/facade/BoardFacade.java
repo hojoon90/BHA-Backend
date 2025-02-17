@@ -1,9 +1,12 @@
 package com.bupjangsa.facade;
 
+import com.bupjangsa.domain.file.dto.FileDto;
 import com.bupjangsa.domain.post.dto.PostCriteria;
 import com.bupjangsa.domain.post.dto.PostDto;
 import com.bupjangsa.dto.AppResponse;
 import com.bupjangsa.dto.response.BoardResponse;
+import com.bupjangsa.dto.response.FileResponse;
+import com.bupjangsa.service.FileService;
 import com.bupjangsa.service.PostService;
 import com.bupjangsa.type.BoardType;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +35,7 @@ public class BoardFacade {
 
     private final List<PostService> postServiceList;
     private final FileFacade fileFacade;
-
+    private final FileService fileService;
     /**
      * 게시물 등록
      * @param userId
@@ -83,8 +86,11 @@ public class BoardFacade {
 
         postService.updatePost(update);
 
-        // postId로 파일을 조회해온 후 삭제하고 fileList를 다시 저장
-//        fileFacade.updateFile(request.getPostId(), fileList, request.getBoardType());
+        //파일이 존재하면 삭제 후 저장
+        if(fileList != null){
+            // postId로 파일을 조회해온 후 삭제하고 fileList를 다시 저장
+            fileFacade.updateFile(request.getPostId(), fileList, request.getBoardType());
+        }
         return AppResponse.responseVoidSuccess(HttpStatus.OK.value());
     }
 
@@ -124,6 +130,8 @@ public class BoardFacade {
 
         final PostDto.PostDetail postDetail = postService.selectPost(postId);
         //TODO 파일 조회(cdn url 세팅후 리턴 처리)
+        List<FileDto.FileInfo> boardFileList = fileService.findAllFileList(postId, boardType);
+        postDetail.setFileList(boardFileList);
 
         return AppResponse.responseSuccess(com.bupjangsa.dto.response.BoardResponse.PostDetail.from(postDetail));
     }
@@ -148,7 +156,7 @@ public class BoardFacade {
         return AppResponse.responseSuccess(page);
     }
 
-    //메린페이지
+    //메인페이지
     public AppResponse<BoardResponse.MainPage> selectPostMainPage(){
         PageRequest mainPageRequest = PageablePostSearchRequest.getMainPageRequest();
         final PostCriteria.SearchList noticeCriteria = PostCriteria.SearchList.builder()

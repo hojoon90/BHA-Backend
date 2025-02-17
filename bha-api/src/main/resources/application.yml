@@ -32,3 +32,4 @@ active:
 
 post-file:
   path: /Users/choehojun/Documents/imageTest/
+  domain: http://localhost:8080

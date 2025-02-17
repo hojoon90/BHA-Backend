@@ -1,5 +1,6 @@
 package com.bupjangsa.dto.request;
 
+import com.bupjangsa.type.CalendarType;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,6 +14,7 @@ public class CalendarRequest {
     public static class CalendarRegisterRequest {
 
         private String eventName;
+        private String calendarType;
         private Long startDate;
         private Long endDate;
 
@@ -24,6 +26,7 @@ public class CalendarRequest {
 
         private Long calId;
         private String eventName;
+        private String calendarType;
         private Long startDate;
         private Long endDate;
 
