@@ -41,10 +41,10 @@ public class BhaSecurityService {
     }
 
     @Transactional
-    public JwtDto.Tokens getTokens(Long userId, String accountId, AuthorityType authority){
+    public JwtDto.Tokens getTokens(Long userId, String accountId, String userName, AuthorityType authority){
 
-        String accessToken = this.createAccessToken(userId, accountId, authority);
-        String refreshToken = this.createRefreshToken(accountId, authority);
+        String accessToken = this.createAccessToken(userId, accountId, userName, authority);
+        String refreshToken = this.createRefreshToken(accountId, userName, authority);
 
         return JwtDto.Tokens.builder()
                 .accessToken(accessToken)
@@ -53,7 +53,7 @@ public class BhaSecurityService {
 
     }
 
-    public String createAccessToken(Long userId, String accountId, AuthorityType authority) {
+    public String createAccessToken(Long userId, String accountId, String userName, AuthorityType authority) {
 
         LocalDateTime now = LocalDateTime.now();
         Date accessTokenExpiresIn = Timestamp.valueOf(now.plusDays(1));
@@ -61,6 +61,7 @@ public class BhaSecurityService {
         Claims claims = Jwts.claims()
                 .setSubject(String.valueOf(userId));
         claims.put("accountId", accountId);
+        claims.put("userName", userName);
         claims.put("authority", authority);
 
         return Jwts.builder()
@@ -70,12 +71,13 @@ public class BhaSecurityService {
                 .compact();
     }
 
-    public String createRefreshToken(String accountId, AuthorityType authority){
+    public String createRefreshToken(String accountId, String userName, AuthorityType authority){
         LocalDateTime now = LocalDateTime.now();
         Date accessTokenExpiresIn = Timestamp.valueOf(now.plusDays(14));
 
         Claims claims = Jwts.claims();
         claims.put("accountId", accountId);
+        claims.put("userName", userName);
         claims.put("userType", authority);
 
         return Jwts.builder()
