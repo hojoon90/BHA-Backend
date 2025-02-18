@@ -102,7 +102,8 @@ public class UserFacade {
         boolean checkPassword = passwordComponent.checkUserValidation(request.getPassword(), userDto.getPassword());
         if(!checkPassword) throw new AuthorizeException(WRONG_PASSWORD);
 
-        final JwtDto.Tokens tokens = bhaSecurityService.getTokens(userDto.getUserId(), userDto.getAccountId(), userDto.getAuthority());
+        final JwtDto.Tokens tokens = bhaSecurityService
+                .getTokens(userDto.getUserId(), userDto.getAccountId(), userDto.getUserName(), userDto.getAuthority());
         return AppResponse.responseSuccess(TokenResponse.from(tokens));
     }
 
