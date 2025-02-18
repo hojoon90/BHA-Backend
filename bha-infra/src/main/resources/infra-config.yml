@@ -1,3 +1,6 @@
 secret:
   key:
     jwt: "0e6e851fb98e66c7204889dbbd805d434bdc80e7dc0253a9acb93b31c6c9985d"
+
+domain:
+  url: "http://localhost:3000"
