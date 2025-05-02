@@ -1,6 +1,5 @@
 package com.bupjangsa.domain.post.infra.component;
 
-import com.bupjangsa.domain.post.entity.FreeBoard;
 import com.bupjangsa.domain.post.entity.NoticeBoard;
 import com.bupjangsa.domain.user.entity.User;
 import com.bupjangsa.type.BoardType;
@@ -11,7 +10,7 @@ public class NoticeBoardFactory implements PostFactory {
 
     @Override
     public boolean selectFactory(BoardType boardType) {
-        return boardType.equals(BoardType.NEWS_NOTICE);
+        return boardType.equals(BoardType.NOTICE);
     }
 
     @Override

@@ -10,7 +10,8 @@ import static com.bupjangsa.constant.MessageConst.SERVER_PROCESS_ERROR;
 public enum BoardType {
     FREE_BOARD,
 
-    NEWS_NOTICE,
+    NOTICE,
+
     NEWS_MESSAGE,
     NEWS_VIDEO,
     NEWS_YOUNGSAN,

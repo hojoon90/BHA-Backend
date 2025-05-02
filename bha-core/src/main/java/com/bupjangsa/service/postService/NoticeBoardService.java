@@ -1,6 +1,5 @@
 package com.bupjangsa.service.postService;
 
-import com.bupjangsa.domain.file.dto.FileDto;
 import com.bupjangsa.domain.post.dto.PostCriteria;
 import com.bupjangsa.domain.post.entity.NoticeBoard;
 import com.bupjangsa.domain.post.infra.component.PostFactory;
@@ -9,7 +8,6 @@ import com.bupjangsa.domain.user.entity.User;
 import com.bupjangsa.domain.user.infra.UserRepository;
 import com.bupjangsa.exception.ForbiddenException;
 import com.bupjangsa.exception.NotFoundException;
-import com.bupjangsa.service.FileService;
 import com.bupjangsa.service.PostService;
 import com.bupjangsa.type.BoardType;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +34,7 @@ public class NoticeBoardService implements PostService {
 
     @Override
     public boolean isValidService(BoardType boardType) {
-        return boardType.equals(BoardType.NEWS_NOTICE);
+        return boardType.equals(BoardType.NOTICE);
     }
 
     @Override

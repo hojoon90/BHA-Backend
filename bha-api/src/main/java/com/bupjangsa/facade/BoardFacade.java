@@ -5,7 +5,6 @@ import com.bupjangsa.domain.post.dto.PostCriteria;
 import com.bupjangsa.domain.post.dto.PostDto;
 import com.bupjangsa.dto.AppResponse;
 import com.bupjangsa.dto.response.BoardResponse;
-import com.bupjangsa.dto.response.FileResponse;
 import com.bupjangsa.service.FileService;
 import com.bupjangsa.service.PostService;
 import com.bupjangsa.type.BoardType;
@@ -160,7 +159,7 @@ public class BoardFacade {
     public AppResponse<BoardResponse.MainPage> selectPostMainPage(){
         PageRequest mainPageRequest = PageablePostSearchRequest.getMainPageRequest();
         final PostCriteria.SearchList noticeCriteria = PostCriteria.SearchList.builder()
-                .boardType(BoardType.NEWS_NOTICE)
+                .boardType(BoardType.NOTICE)
                 .build();
         final PostCriteria.SearchList messageCriteria = PostCriteria.SearchList.builder()
                 .boardType(BoardType.NEWS_MESSAGE)
@@ -168,7 +167,7 @@ public class BoardFacade {
 
 
         PostService noticePostService = postServiceList.stream()
-                .filter(i -> i.isValidService(BoardType.NEWS_NOTICE))
+                .filter(i -> i.isValidService(BoardType.NOTICE))
                 .findFirst().orElseThrow(() -> new RuntimeException(""));
 
         PostService messagePostService = postServiceList.stream()

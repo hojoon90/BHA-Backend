@@ -22,7 +22,6 @@ public class PostDto {
         private BoardType boardType;
         private Long userId;
 
-
         public BoardBase toEntity(PostFactory factory, User user){
             return factory.createPost(title, contents, user);
         }
