@@ -1,4 +1,4 @@
-package com.bupjangsa.domain.post.infra.repository.search;
+package com.bupjangsa.domain.post.infra.search;
 
 import com.bupjangsa.domain.post.dto.PostCriteria;
 import com.bupjangsa.domain.post.entity.*;

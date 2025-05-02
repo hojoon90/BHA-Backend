@@ -2,13 +2,13 @@ package com.bupjangsa.domain.post.dto;
 
 import com.bupjangsa.domain.file.dto.FileDto;
 import com.bupjangsa.domain.post.entity.BoardBase;
-import com.bupjangsa.domain.post.infra.component.PostFactory;
 import com.bupjangsa.type.BoardType;
-import com.bupjangsa.domain.user.entity.User;
 import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static com.bupjangsa.constant.AppConst.BLANK;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PostDto {
@@ -21,10 +21,6 @@ public class PostDto {
         private String contents;
         private BoardType boardType;
         private Long userId;
-
-        public BoardBase toEntity(PostFactory factory, User user){
-            return factory.createPost(title, contents, user);
-        }
 
     }
 
@@ -64,7 +60,7 @@ public class PostDto {
             return PostSummary.builder()
                     .postId(entity.getPostId())
                     .title(entity.getTitle())
-                    .thumbName("")
+                    .thumbName(BLANK)
                     .viewCnt(entity.getViewCnt())
                     .createdBy(entity.getCreatedBy().getAccountId())
                     .createdAt(entity.getCreatedAt())

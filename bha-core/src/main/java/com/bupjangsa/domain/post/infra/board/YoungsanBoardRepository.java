@@ -1,7 +1,7 @@
-package com.bupjangsa.domain.post.infra.repository.board;
+package com.bupjangsa.domain.post.infra.board;
 
 import com.bupjangsa.domain.post.entity.YoungsanBoard;
-import com.bupjangsa.domain.post.infra.repository.search.SearchPostRepository;
+import com.bupjangsa.domain.post.infra.search.SearchPostRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

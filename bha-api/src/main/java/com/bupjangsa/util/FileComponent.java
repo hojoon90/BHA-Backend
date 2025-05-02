@@ -105,7 +105,7 @@ public class FileComponent {
      * @return
      */
     public String generateSaveFilename(final String filename) {
-        String uuid = UUID.randomUUID().toString().replaceAll(DASH, "");
+        String uuid = UUID.randomUUID().toString().replaceAll(DASH, BLANK);
         String extension = StringUtils.getFilenameExtension(filename);
         return uuid + DOT + extension;
     }

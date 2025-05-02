@@ -32,9 +32,10 @@ import static com.bupjangsa.dto.response.BoardResponse.PostPage;
 @RequiredArgsConstructor
 public class BoardFacade {
 
-    private final List<PostService> postServiceList;
+    private final PostService postService;
     private final FileFacade fileFacade;
     private final FileService fileService;
+
     /**
      * 게시물 등록
      * @param userId
@@ -49,20 +50,15 @@ public class BoardFacade {
                 .contents(request.getContents())
                 .userId(userId)
                 .build();
-
-        PostService postService = postServiceList.stream().filter(i -> i.isValidService(request.getBoardType()))
-                        .findFirst().orElseThrow(() -> new RuntimeException(""));
+        Long postId = postService.registerPost(register);
 
         //파일 저장 처리
-        Long postId = postService.registerPost(register);
         if(fileList != null){
             fileFacade.registerFile(fileList, request.getBoardType(), postId);
         }
 
         return AppResponse.responseVoidSuccess(HttpStatus.CREATED.value());
     }
-
-
 
     /**
      * 게시물 업데이트
@@ -79,10 +75,6 @@ public class BoardFacade {
                 .boardType(request.getBoardType())
                 .userId(userId)
                 .build();
-
-        PostService postService = postServiceList.stream().filter(i -> i.isValidService(request.getBoardType()))
-                .findFirst().orElseThrow(() -> new RuntimeException(""));
-
         postService.updatePost(update);
 
         //파일이 존재하면 삭제 후 저장
@@ -107,9 +99,6 @@ public class BoardFacade {
                 .userId(userId)
                 .build();
 
-        PostService postService = postServiceList.stream().filter(i -> i.isValidService(request.getBoardType()))
-                .findFirst().orElseThrow(() -> new RuntimeException(""));
-
         postService.deletePost(delete);
         return AppResponse.responseVoidSuccess(HttpStatus.NO_CONTENT.value());
     }
@@ -124,11 +113,8 @@ public class BoardFacade {
 
         BoardType boardType = BoardType.valueOf(boardTypeStr);
 
-        PostService postService = postServiceList.stream().filter(i -> i.isValidService(boardType))
-                .findFirst().orElseThrow(() -> new RuntimeException(""));
+        final PostDto.PostDetail postDetail = postService.selectPost(boardType, postId);
 
-        final PostDto.PostDetail postDetail = postService.selectPost(postId);
-        //TODO 파일 조회(cdn url 세팅후 리턴 처리)
         List<FileDto.FileInfo> boardFileList = fileService.findAllFileList(postId, boardType);
         postDetail.setFileList(boardFileList);
 
@@ -141,14 +127,12 @@ public class BoardFacade {
      * @return
      */
     public AppResponse<PostPage> selectPostList(PageablePostSearchRequest request){
+        BoardType boardType = BoardType.valueOf(request.getBoardType());
         final PostCriteria.SearchList criteria = PostCriteria.SearchList.builder()
-                .boardType(BoardType.valueOf(request.getBoardType()))
+                .boardType(boardType)
                 .build();
 
-        PostService postService = postServiceList.stream().filter(i -> i.isValidService(BoardType.valueOf(request.getBoardType())))
-                .findFirst().orElseThrow(() -> new RuntimeException(""));
-
-        Page<PostDto.PostSummary> postInfos = postService.selectPostList(criteria, request.getPageRequest());
+        Page<PostDto.PostSummary> postInfos = postService.selectPostList(boardType, criteria, request.getPageRequest());
 
         final PostPage page = PostPage.of(postInfos.getTotalElements(), postInfos.getTotalPages()
                 , postInfos.getPageable().getPageSize(), postInfos.getContent());
@@ -165,17 +149,8 @@ public class BoardFacade {
                 .boardType(BoardType.NEWS_MESSAGE)
                 .build();
 
-
-        PostService noticePostService = postServiceList.stream()
-                .filter(i -> i.isValidService(BoardType.NOTICE))
-                .findFirst().orElseThrow(() -> new RuntimeException(""));
-
-        PostService messagePostService = postServiceList.stream()
-                .filter(i -> i.isValidService(BoardType.NEWS_MESSAGE))
-                .findFirst().orElseThrow(() -> new RuntimeException(""));
-
-        Page<PostDto.PostSummary> noticePostInfos = noticePostService.selectPostList(noticeCriteria, mainPageRequest);
-        Page<PostDto.PostSummary> messagePostInfos = messagePostService.selectPostList(messageCriteria, mainPageRequest);
+        Page<PostDto.PostSummary> noticePostInfos = postService.selectPostList(BoardType.NOTICE, noticeCriteria, mainPageRequest);
+        Page<PostDto.PostSummary> messagePostInfos = postService.selectPostList(BoardType.NEWS_MESSAGE, messageCriteria, mainPageRequest);
 
         final BoardResponse.MainPage page =
                 BoardResponse.MainPage.of(noticePostInfos.getContent(), messagePostInfos.getContent());

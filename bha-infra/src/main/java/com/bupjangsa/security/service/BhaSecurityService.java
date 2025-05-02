@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
 
+import static com.bupjangsa.constant.AppConst.BLANK;
 import static com.bupjangsa.constant.MessageConst.UNAUTHORIZED_TOKEN;
 
 @Slf4j
@@ -94,7 +95,7 @@ public class BhaSecurityService {
     public Optional<String> extractAccessToken(HttpServletRequest request) {
         return Optional.ofNullable(request.getHeader(ACCESS_HEADER))
                 .filter(accessToken -> accessToken.startsWith(BEARER))
-                .map(accessToken -> accessToken.replace(BEARER, ""));
+                .map(accessToken -> accessToken.replace(BEARER, BLANK));
     }
 
     public Optional<UserDetails> getUserDetails(String accessToken) {

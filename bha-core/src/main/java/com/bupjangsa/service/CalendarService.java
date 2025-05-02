@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static com.bupjangsa.constant.AppConst.*;
 import static com.bupjangsa.constant.MessageConst.DATA_NOT_FOUND;
 
 @Service
@@ -37,8 +38,8 @@ public class CalendarService {
 
     public List<CalendarInfo> getCalendarInfoList(Long year, Long month){
 
-        Long startDate = convertDate(year, month, "01");
-        Long endDate = convertDate(year, month, "31");
+        Long startDate = convertDate(year, month, START_OF_DAY);
+        Long endDate = convertDate(year, month, END_OF_DAY);
 
         return calendarRepository.findCalendarList(startDate, endDate).stream()
                 .map(CalendarInfo::from)

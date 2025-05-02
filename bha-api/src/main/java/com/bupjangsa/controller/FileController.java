@@ -18,6 +18,8 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import static com.bupjangsa.constant.AppConst.BLANK;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "/api/v1/file")
@@ -71,7 +73,7 @@ public class FileController {
         String filename = URLEncoder.encode(resource.getFileName(), StandardCharsets.UTF_8);
         return ResponseEntity.status(HttpStatus.OK)
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; fileName=\"" + filename + "\";")
-                .header(HttpHeaders.CONTENT_LENGTH, resource.getFileSize() + "")
+                .header(HttpHeaders.CONTENT_LENGTH, resource.getFileSize() + BLANK)
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(resource.getResource());
     }
